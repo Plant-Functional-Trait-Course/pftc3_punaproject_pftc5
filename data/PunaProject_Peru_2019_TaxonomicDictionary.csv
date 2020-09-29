@@ -1,0 +1,766 @@
+month,site,treatment,plot_id,functional_group,family,taxon,name_2020,notes
+July,ACJ,NB,1,Forb,Apiaceae,Niphogetum dissecta,Niphogeton dissecta,NA
+July,ACJ,NB,1,Fern,Blechnaceae,Blechnum auratum,Blechnum auratum,NA
+July,ACJ,NB,1,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+July,ACJ,NB,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+July,ACJ,NB,1,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+July,ACJ,NB,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,ACJ,NB,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+July,ACJ,NB,1,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+July,ACJ,NB,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+July,ACJ,NB,1,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus goeppingeri,NA
+July,ACJ,NB,1,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+July,ACJ,NB,1,Forb,Eriocaulaceae,Paepalanthus carynauta,Eriocaulon microcephalum,NA
+July,ACJ,NB,4,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+July,ACJ,NB,4,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+July,ACJ,NB,4,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+July,ACJ,NB,4,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+July,ACJ,NB,4,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,ACJ,NB,5,Gramminoid,Poaceae,Cortaderia aserrada,Cortaderia hapalotricha,NA
+July,ACJ,NB,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+July,ACJ,NB,5,Woody,Asteraceae,Diplostephium sp1,Diplostephium cf. haenkei,NA
+July,ACJ,NB,2,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+July,ACJ,NB,2,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,ACJ,NB,2,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+July,ACJ,NB,2,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+July,ACJ,NB,2,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+July,ACJ,NB,2,Woody,Melastomataceae,Miconia rotundifolia,Miconia rotundifolia,NA
+July,ACJ,NB,3,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+July,ACJ,NB,3,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+July,ACJ,NB,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,ACJ,NB,3,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+July,ACJ,NB,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+July,WAY,B,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,WAY,B,2,Forb,Orchidaceae,Cyrtochilum mystacinum,Cyrtochilum mystacinum,NA
+July,WAY,B,2,Forb,Asteraceae,Bidens triplinervia,Bidens triplinervia,NA
+July,WAY,B,3,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+July,WAY,B,4,Forb,Iridaceae,Sisyrinchium vaginatum,Sisyrinchium vaginatum,NA
+July,WAY,B,4,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+July,WAY,B,5,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+July,WAY,B,3,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+July,ACJ,NB,5,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+July,ACJ,NB,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+July,ACJ,NB,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+July,ACJ,NB,5,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+July,ACJ,NB,5,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+July,PIL,B,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+July,PIL,B,1,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+July,PIL,B,3,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+July,PIL,B,3,Gramminoid,Cyperaceae,Carex duro,Carex sp7,NA
+July,PIL,B,4,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+July,PIL,B,5,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,PIL,B,2,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+July,TRE,C,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+July,TRE,C,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,TRE,C,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+July,TRE,C,2,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+July,TRE,C,2,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+July,TRE,C,2,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+July,TRE,C,2,Gramminoid,Poaceae,Not stipa softer,Calamagrostis tarmensis,NA
+July,TRE,C,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,TRE,C,3,Forb,Rosaceae,Acaena cylindristachya,Acaena cylindristachya,NA
+July,TRE,C,4,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+July,TRE,B,1,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+July,TRE,B,2,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+July,WAY,C,2,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+July,WAY,C,4,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+July,WAY,C,5,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+July,WAY,C,5,Forb,Iridaceae,Sisyrinchium vaginatum,Sisyrinchium vaginatum,NA
+July,WAY,C,5,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,WAY,C,2,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,WAY,C,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,WAY,C,5,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+July,ACJ,NB,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+July,ACJ,NB,2,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+July,ACJ,NB,General,Gramminoid,Cyperaceae,Rinchospora machrochaeta fina,Rhynchospora seedlings,NA
+July,ACJ,NB,General,Gramminoid,Cyperaceae,Rinchospora machrochaeta gruesa,Rhynchospora seedlings,NA
+July,PIL,B,3,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+July,ACJ,B,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,ACJ,B,4,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+July,ACJ,B,4,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+July,ACJ,B,4,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+July,PIL,C,2,Gramminoid,Poaceae,Not stipa softer,Calamagrostis tarmensis,NA
+July,PIL,C,2,Gramminoid,Poaceae,Calamagrostis big,Calamagrostis rigida,NA
+July,PIL,C,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+July,PIL,C,1,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+July,PIL,C,4,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+July,PIL,C,4,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+July,PIL,C,3,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+July,PIL,C,2,Forb,Asteraceae,Perezia pungens,Perezia pungens,NA
+July,PIL,C,5,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+April,QUE,C,3,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,ACJ,C,5,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,ACJ,C,1,Forb,Asteraceae,Senecio rhizomatosus,Senecio rhizomathus,NA
+April,ACJ,C,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,ACJ,B,2,Gramminoid,Poaceae,Not stipa softer,Calamagrostis tarmensis,NA
+April,TRE,C,1,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,WAY,C,4,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,ACJ,C,3,Forb,Asteraceae,Senecio rhizomatosus,Senecio rhizomathus,NA
+April,ACJ,C,5,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+April,TRE,C,1,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+April,ACJ,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+April,TRE,C,1,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,TRE,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+April,TRE,C,1,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+April,ACJ,C,1,Forb,Orchidaceae,Cyrtochilum mystacinum,Cyrtochilum mystacinum,NA
+April,TRE,C,2,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+April,TRE,C,3,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+April,TRE,C,1,Forb,Asteraceae,Perezia pungens,Perezia pungens,NA
+April,PIL,C,3,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+April,TRE,C,1,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+April,ACJ,C,1,Woody,Ericaceae,Gaultheria vaccinioides,Gaultheria vaccinioides,NA
+April,TRE,C,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+April,TRE,C,2,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+April,TRE,C,3,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+April,ACJ,B,2,Forb,Asteraceae,Baccharis caespitosa,Laestadia musicola,NA
+April,TRE,C,1,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+April,TRE,C,1,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+April,TRE,C,4,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+April,TRE,C,4,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+April,ACJ,C,4,Forb,Iridaceae,Sisyrinchium vaginatum,Sisyrinchium vaginatum,NA
+April,TRE,C,1,Gramminoid,Poaceae,Agrostis sp1,Agrostis trichodes,NA
+April,ACJ,C,1,Forb,Asteraceae,Senecio burkartii,Senecio burkartii,NA
+April,ACJ,C,1,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+April,QUE,C,5,Forb,Rubiaceae,Galium corymbosum,Galium corymbosum,NA
+April,QUE,C,3,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+April,WAY,B,5,Forb,Asteraceae,Senecio pegajoso,Senecio burkartii,NA
+April,WAY,B,2,Forb,Orchidaceae,Gomphichis sp1,Gomphichis valida,NA
+April,WAY,B,2,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,B,1,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+April,WAY,B,3,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+April,WAY,B,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,WAY,B,3,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+April,WAY,B,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+April,WAY,B,4,Forb,Asteraceae,Senecio pegajoso,Senecio burkartii,NA
+April,WAY,B,4,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,B,5,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,WAY,B,1,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,TRE,B,1,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+April,WAY,B,1,Forb,Orchidaceae,Cyrtochilum mystacinum,Cyrtochilum mystacinum,NA
+April,WAY,B,3,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,B,1,Woody,Melastomataceae,Brachyotum pubescente,Brachyotum grisebachii,NA
+April,WAY,C,1,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+April,WAY,C,2,Forb,Asteraceae,Stevia sp,Stevia pennellii,NA
+April,WAY,C,4,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+April,WAY,C,2,Forb,Asteraceae,Stevia cuzcoensis,Stevia pennellii,NA
+April,WAY,C,2,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+April,WAY,C,5,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,WAY,C,4,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+April,WAY,C,4,Woody,Melastomataceae,Brachyotum pubescente,Brachyotum grisebachii,NA
+April,WAY,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+April,WAY,C,1,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,B,5,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+April,TRE,B,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+April,TRE,B,4,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+April,TRE,B,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+April,WAY,B,2,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,WAY,B,3,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+April,WAY,B,3,Forb,Orchidaceae,Cyrtochilum mystacinum,Cyrtochilum mystacinum,NA
+April,WAY,C,3,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,C,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,PIL,C,2,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+April,PIL,C,4,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+April,PIL,C,5,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+April,PIL,C,1,Forb,Caryophyllaceae,Cerastium arvense,Cerastium arvense,NA
+April,PIL,C,3,Fern,Dryopteridaceae,Elaphoglossum huacsaro,Elaphoglossum huacsaro,NA
+April,PIL,C,2,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,PIL,C,4,Forb,Orchidaceae,Gomphichis sp1,Gomphichis valida,NA
+April,PIL,C,3,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+April,PIL,C,3,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+April,PIL,C,2,Woody,Polygonaceae,Muehlenbeckia volcanica,Muehlenbeckia volcanica,NA
+April,ACJ,B,2,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+April,ACJ,B,5,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+April,WAY,C,5,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,ACJ,B,5,Forb,Violaceae,Viola wedelii,Viola thymifolia,NA
+April,ACJ,B,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+April,PIL,C,1,Woody,Polygonaceae,Muehlenbeckia volcanica,Muehlenbeckia volcanica,NA
+April,PIL,C,2,Woody,Ericaceae,Gaultheria vaccinioides,Gaultheria vaccinioides,NA
+April,PIL,C,4,Forb,Asteraceae,Perezia pungens,Perezia pungens,NA
+April,PIL,C,5,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+April,ACJ,B,2,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus venezuelensis,NA
+April,PIL,C,3,Woody,Asteraceae,Baccharis tricuneata,Baccharis tricuneata,NA
+April,ACJ,B,1,Gramminoid,Poaceae,Not stipa softer,Calamagrostis tarmensis,NA
+April,ACJ,B,5,Gramminoid,Poaceae,Not stipa softer,Calamagrostis tarmensis,NA
+April,ACJ,B,4,Gramminoid,Poaceae,Calamagrostis big,Calamagrostis rigida,NA
+April,ACJ,B,1,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+April,ACJ,B,4,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+April,ACJ,B,4,Woody,Melastomataceae,Miconia rotundifolia,Miconia rotundifolia,NA
+April,ACJ,B,1,Forb,Asteraceae,Baccharis caespitosa,Laestadia muscicola,NA
+April,ACJ,B,4,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+April,ACJ,B,4,Gramminoid,Poaceae,Not stipa softer,Calamagrostis tarmensis,NA
+April,WAY,C,5,Woody,Melastomataceae,Brachyotum pubescente,Brachyotum grisebachii,NA
+April,QUE,C,4,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+April,TRE,B,5,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+April,TRE,B,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+April,TRE,B,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+April,TRE,B,2,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+April,TRE,B,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+April,QUE,C,5,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+April,TRE,B,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+April,TRE,B,4,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+April,TRE,B,4,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+April,TRE,B,2,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+April,TRE,B,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+April,TRE,B,4,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+April,TRE,B,3,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+April,TRE,B,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+April,TRE,B,2,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+April,TRE,B,3,Forb,Asteraceae,Antennaria linearifolia,Gamochaeta coarctata,"before Antennaria linearifolia, changed by Lucely"
+April,QUE,C,5,Forb,Asteraceae,Oritrophium hieracioides,Oritrophium hieracioides,NA
+April,QUE,C,5,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+April,TRE,B,1,Gramminoid,Cyperaceae,Carex pichinchensis,Rhynchospora macrochaeta,"before Carex pichinchensis, changed by Lucely"
+April,QUE,C,2,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+April,QUE,C,5,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+April,QUE,C,5,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+April,QUE,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+April,QUE,C,5,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+April,TRE,B,3,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+April,PIL,B,4,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+April,PIL,B,5,Forb,Asteraceae,Antennaria linearifolia,Antennaria linearifolia,NA
+April,PIL,B,2,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+April,PIL,B,4,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+April,TRE,B,5,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+April,TRE,B,5,Forb,Asteraceae,Antennaria linearifolia,Gamochaeta coarctata,before Antennaria linearifolia changed by lucely
+April,PIL,B,3,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+April,PIL,B,5,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+April,PIL,B,2,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+April,PIL,B,5,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+April,PIL,B,3,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+April,TRE,B,2,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+April,TRE,B,1,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+April,PIL,B,5,Forb,Apiaceae,Azorella biloba,Azorella biloba,NA
+April,PIL,B,1,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus goeppingeri,NA
+April,TRE,B,3,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+April,TRE,B,2,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+April,QUE,C,5,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,before was TRE
+April,TRE,B,2,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+April,TRE,B,3,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+April,QUE,C,1,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+April,TRE,B,3,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+April,TRE,B,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+April,TRE,B,3,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+April,QUE,C,1,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+April,TRE,B,2,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+April,TRE,B,4,Forb,Asteraceae,Antennaria linearifolia,Gamochaeta coarctata,before Antennaria linearifolia changed by lucely
+April,QUE,C,4,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,before was TRE
+April,WAY,B,5,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+April,PIL,B,2,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+April,QUE,C,5,Woody,Polygonaceae,Muehlenbeckia volcanica,Muehlenbeckia volcanica,NA
+April,WAY,B,4,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,WAY,C,4,Gramminoid,Cyperaceae,Oreobolus mediano,Oreobolus venezuelensis,NA
+April,WAY,C,4,Gramminoid,Cyperaceae,Carex duro,Carex sp7,NA
+April,WAY,B,4,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+April,WAY,B,3,Forb,Orchidaceae,Pterichis sp1,Pterichis sp1,NA
+April,PIL,B,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+April,TRE,B,2,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,TRE,B,5,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+April,TRE,B,4,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+April,TRE,B,3,Forb,Asteraceae,Aphanactis sp1,Aphanactis villosa,NA
+April,TRE,B,2,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+April,PIL,B,1,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+April,PIL,B,5,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus goeppingeri,NA
+April,PIL,B,5,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+April,PIL,B,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+April,TRE,C,2,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+April,WAY,B,1,Woody,Primulaceae,Myrsine,Myrsine coriacea,NA
+April,WAY,B,2,Forb,Iridaceae,Sisyrinchium vaginatum,Sisyrinchium vaginatum,NA
+April,WAY,B,1,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,B,5,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,C,2,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+April,WAY,C,2,Gramminoid,Cyperaceae,Rhynchospora brillante,Rhynchospora aristata,NA
+April,QUE,C,5,Forb,Asteraceae,Antennaria linearifolia,Antennaria linearifolia,NA
+April,ACJ,C,3,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+April,TRE,C,3,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+April,TRE,C,1,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+April,ACJ,C,2,Forb,Asteraceae,Senecio purple leaf,Senecio rhizomathus,NA
+April,ACJ,C,1,Gramminoid,Poaceae,Bromus lanatus,Bromus lanatus,NA
+April,PIL,C,4,Fern,Polypodiaceae,Melpomene moniliformis,Melpomene moniliformis,NA
+April,PIL,C,2,Fern,Polypodiaceae,Melpomene moniliformis,Melpomene moniliformis,NA
+April,ACJ,B,1,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus venezuelensis,NA
+April,ACJ,B,2,Gramminoid,Poaceae,Calamagrostis big,Calamagrostis rigida,NA
+November,TRE,B,1,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+November,TRE,B,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,TRE,B,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,TRE,B,1,Forb,Orobanchaceae,Bartsia sp1,Bartsia tricophylla,NA
+November,TRE,B,1,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,TRE,B,1,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,TRE,B,3,Forb,Asteraceae,Aphanactis sp1,Aphanactis villosa,NA
+November,TRE,B,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,TRE,B,3,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,TRE,B,3,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+November,TRE,B,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,TRE,B,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,TRE,B,3,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,TRE,B,3,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+November,TRE,B,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,TRE,B,3,Forb,Asteraceae,Gamochaeta americana,Gamochaeta coarctata,NA
+November,TRE,B,3,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+November,TRE,B,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,TRE,B,3,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,TRE,B,3,Forb,Asteraceae,Laestadia musicola,Laestadia muscicola,NA
+November,TRE,B,3,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,TRE,B,3,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,TRE,C,5,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+November,TRE,C,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,TRE,C,5,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,TRE,C,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,TRE,C,5,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,TRE,C,5,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,TRE,C,5,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,TRE,C,5,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+November,TRE,C,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,TRE,C,5,Gramminoid,Cyperaceae,Scirpus rigidus,Trichophorum rigidum,NA
+November,TRE,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,TRE,C,5,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,TRE,C,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,TRE,C,5,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,TRE,C,2,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,TRE,C,3,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+November,TRE,C,3,Forb,Asteraceae,Oritrophium hieracioides,Oritrophium hieracioides,NA
+November,TRE,C,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,TRE,C,3,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+November,TRE,C,3,Forb,Asteraceae,Oreithales integrifolia,Oreithales integrifolia,NA
+November,TRE,C,3,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,TRE,C,3,Gramminoid,Cyperaceae,Scirpus rigidus,Trichophorum rigidum,NA
+November,TRE,C,3,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,TRE,C,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,TRE,C,3,Forb,Rosaceae,Alchemilla orbiculata,Lachemilla orbiculata,NA
+November,TRE,C,3,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,TRE,C,3,Gramminoid,Poaceae,Chusquea intipakarina,Chusquea intipaqariy,NA
+November,TRE,C,3,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,TRE,C,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,TRE,C,3,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,TRE,C,3,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+November,TRE,C,3,Forb,Rosaceae,Acaena cylindristachya,Acaena cylindristachya,NA
+November,TRE,C,3,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+November,TRE,C,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,TRE,C,3,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,TRE,C,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,TRE,C,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,TRE,C,1,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,TRE,C,1,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,TRE,C,1,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,TRE,C,1,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,TRE,C,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,TRE,C,1,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+November,TRE,C,1,Forb,Asteraceae,Perezia pungens,Perezia pungens,NA
+November,TRE,C,1,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+November,TRE,C,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,TRE,C,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,TRE,C,1,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,TRE,C,1,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,TRE,C,1,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+November,TRE,C,1,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,TRE,C,1,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+November,TRE,B,5,Forb,Asteraceae,Gamochaeta americana,Gamochaeta coarctata,NA
+November,TRE,B,5,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+November,TRE,B,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,TRE,B,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,TRE,B,5,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,TRE,B,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,TRE,B,5,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,TRE,B,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,TRE,B,5,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+November,TRE,B,5,Gramminoid,Poaceae,Calamagrostis Tre,Anatherostipa hans-meyeri,NA
+November,TRE,B,5,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,TRE,B,5,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+November,PIL,B,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,PIL,B,3,Gramminoid,Cyperaceae,Carex duro,Carex sp7,NA
+November,PIL,B,3,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+November,PIL,B,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,PIL,B,1,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus goeppingeri,NA
+November,PIL,B,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,PIL,B,1,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,PIL,B,1,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,PIL,B,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,PIL,B,1,Forb,Rosaceae,Alchemilla vulcanica,Lachemilla jamesonii,NA
+November,PIL,B,1,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+November,PIL,B,3,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,PIL,B,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,PIL,B,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,ACJ,B,3,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,PIL,B,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,PIL,B,3,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,PIL,B,3,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,PIL,B,3,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,PIL,B,3,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,PIL,B,3,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,PIL,B,3,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,PIL,B,3,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,PIL,B,3,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,PIL,C,1,Forb,Caryophyllaceae,Cerastium arvense,Cerastium arvense,NA
+November,PIL,C,1,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,PIL,C,1,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+November,PIL,C,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,PIL,C,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,PIL,C,1,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,PIL,C,1,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,PIL,C,1,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,PIL,C,1,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,PIL,C,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,PIL,C,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,PIL,C,1,Fern,Dryopteridaceae,Elaphoglossum ceboso,Elaphoglossum engelii,NA
+November,PIL,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,PIL,C,5,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,PIL,C,5,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,PIL,C,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,PIL,C,5,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,PIL,C,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,PIL,C,5,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,PIL,C,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,PIL,C,1,Gramminoid,Poaceae,Poa purpurea,Agrostis foliata,NA
+November,PIL,C,3,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,PIL,C,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,PIL,C,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,PIL,B,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,PIL,B,1,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,PIL,B,1,Forb,Asteraceae,Oritrophium hieracioides,Oritrophium hieracioides,NA
+November,PIL,B,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,PIL,B,1,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,PIL,B,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,PIL,B,1,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,PIL,B,5,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,PIL,B,5,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,PIL,B,5,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+November,PIL,B,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,PIL,B,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,PIL,B,5,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,PIL,B,5,Forb,Apiaceae,Azorella biloba,Azorella biloba,NA
+November,PIL,B,5,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus goeppingeri,NA
+November,PIL,B,5,Forb,Asteraceae,Oritrophium hieracioides,Oritrophium hieracioides,NA
+November,PIL,B,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,PIL,B,5,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,PIL,B,5,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,PIL,B,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,PIL,B,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,PIL,B,5,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,PIL,B,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,PIL,C,5,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,PIL,C,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,PIL,C,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,PIL,C,5,Fern,Dryopteridaceae,Elaphoglossum ceboso,Elaphoglossum engelii,NA
+November,PIL,C,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,PIL,C,5,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+November,PIL,C,3,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,PIL,C,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,PIL,C,3,Woody,Asteraceae,Baccharis tricuneata,Baccharis tricuneata,NA
+November,PIL,C,3,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+November,PIL,C,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,PIL,C,3,Fern,Dryopteridaceae,Elaphoglossum ceboso,Elaphoglossum huacsaro,modified by lucely
+November,PIL,C,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,PIL,C,3,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,PIL,C,3,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,PIL,C,3,Forb,Rosaceae,Alchemilla orbiculata,Lachemilla jamesonii,"is not A, orbiculata, changed by Lucely"
+November,PIL,C,3,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+November,PIL,C,3,Woody,Polygonaceae,Muehlenbeckia volcanica,Muehlenbeckia volcanica,NA
+November,PIL,C,3,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,PIL,C,3,Gramminoid,Poaceae,Festuca green,Festuca procera,NA
+November,PIL,C,3,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,PIL,C,3,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,PIL,C,3,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,PIL,C,3,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,PIL,C,3,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,PIL,C,3,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,B,1,Forb,Asteraceae,Laestadia musicola,Laestadia muscicola,NA
+November,ACJ,B,1,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,B,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,C,1,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,before was ACJ B1
+November,ACJ,B,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,ACJ,B,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,ACJ,B,1,Woody,Melastomataceae,Miconia rotundifolia,Miconia rotundifolia,NA
+November,ACJ,B,1,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+November,ACJ,B,1,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,ACJ,B,1,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,ACJ,B,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,ACJ,B,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,B,1,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+November,ACJ,B,1,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,ACJ,B,1,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,ACJ,B,1,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,ACJ,B,3,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,ACJ,B,3,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,B,3,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,ACJ,B,3,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,ACJ,B,3,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+November,ACJ,B,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,ACJ,B,3,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+November,ACJ,B,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,B,3,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,ACJ,B,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,B,3,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,ACJ,B,3,Woody,Melastomataceae,Miconia rotundifolia,Miconia rotundifolia,NA
+November,ACJ,NB,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,NB,1,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,ACJ,NB,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,NB,1,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,ACJ,NB,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,ACJ,NB,1,Forb,Apiaceae,Oreomyrrhis andicola,Niphogeton dissecta,NA
+November,ACJ,NB,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,ACJ,NB,1,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+November,ACJ,NB,1,Fern,Blechnaceae,Blechnum auratum,Blechnum auratum,NA
+November,ACJ,NB,1,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+November,ACJ,NB,1,Forb,Eriocaulaceae,Paepalanthus carynauta,Eriocaulon microcephalum,NA
+November,ACJ,NB,1,Gramminoid,Cyperaceae,Oreobolus sp1,Oreobolus goeppingeri,NA
+November,ACJ,NB,2,Forb,Apiaceae,Oreomyrrhis andicola,Niphogeton dissecta,NA
+November,ACJ,NB,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,ACJ,NB,3,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,ACJ,NB,3,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+November,ACJ,NB,3,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,NB,3,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+November,ACJ,NB,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,NB,5,Fern,Pteridaceae,Jamesonia alstonii,Jamesonia blepharum,NA
+November,ACJ,NB,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,ACJ,NB,5,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+November,ACJ,NB,5,Gramminoid,Poaceae,Cortaderia aserrada,Cortaderia hapalotricha,NA
+November,ACJ,NB,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,ACJ,NB,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,NB,5,Woody,Asteraceae,Diplostephium sp1,Diplostephium cf. haenkei,NA
+November,ACJ,NB,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,C,3,Forb,Asteraceae,Senecio purple leaf,Senecio rhizomathus,NA
+November,ACJ,C,5,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,ACJ,C,5,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,ACJ,C,5,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,ACJ,C,5,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+November,ACJ,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,C,5,Fern,Dryopteridaceae,Elaphoglossum huacsaro,Elaphoglossum huacsaro,NA
+November,ACJ,C,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,C,5,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,ACJ,C,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,ACJ,C,5,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,ACJ,C,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,ACJ,C,5,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,ACJ,C,5,Gramminoid,Poaceae,Bromus lanatus,Bromus lanatus,NA
+November,ACJ,C,5,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,ACJ,C,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,ACJ,C,5,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+November,ACJ,C,5,Woody,Melastomataceae,Miconia rotundifolia,Miconia rotundifolia,NA
+November,ACJ,C,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,C,3,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,ACJ,C,3,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,ACJ,C,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Not stipa big,Calamagrostis tarmensis,NA
+November,ACJ,C,1,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+November,ACJ,C,1,Woody,Melastomataceae,Miconia rotundifolia,Miconia rotundifolia,NA
+November,ACJ,C,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,ACJ,C,1,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,C,1,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,ACJ,C,1,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,ACJ,C,1,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+November,ACJ,C,1,Forb,Asteraceae,Senecio purple leaf,Senecio rhizomathus,NA
+November,ACJ,C,1,Fern,Dryopteridaceae,Elaphoglossum amphioxys,Elaphoglossum amphioxys,NA
+November,ACJ,C,1,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,C,1,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,C,1,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+November,ACJ,C,1,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,ACJ,C,1,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,ACJ,C,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Bromus lanatus,Bromus lanatus,NA
+November,ACJ,C,1,Fern,Polypodiaceae,Melpomene moniliformis,Melpomene moniliformis,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Cortaderia aserrada,Cortaderia hapalotricha,NA
+November,ACJ,C,5,Gramminoid,Poaceae,Not stipa big,Calamagrostis tarmensis,NA
+November,ACJ,C,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,ACJ,B,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,ACJ,B,3,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,ACJ,B,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,ACJ,B,5,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,ACJ,B,5,Gramminoid,Cyperaceae,Rhynchospora macrochaeta,Rhynchospora macrochaeta,NA
+November,ACJ,B,5,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,ACJ,B,5,Woody,Ericaceae,Pernettya prostrata,Pernettya prostrata,NA
+November,ACJ,B,5,Gramminoid,Juncaceae,Luzula narrow,Luzula racemosa,NA
+November,ACJ,B,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,ACJ,B,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,ACJ,B,5,Fern,Dryopteridaceae,Elaphoglossum huacsaro,Elaphoglossum huacsaro,NA
+November,ACJ,B,5,Forb,Violaceae,Viola wedelii,Viola thymifolia,NA
+November,ACJ,B,5,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,ACJ,B,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,ACJ,B,5,Forb,Bromeliaceae,Puya leptostachya,Puya leptostachya,NA
+November,ACJ,B,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,ACJ,B,4,Gramminoid,Cyperaceae,Oreobolus mediano,Oreobolus venezuelensis,NA
+November,ACJ,C,3,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,ACJ,C,3,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,ACJ,C,3,Gramminoid,Poaceae,Bromus lanatus,Bromus lanatus,NA
+November,ACJ,C,3,Gramminoid,Poaceae,Cortaderia peluda,Cortaderia bifida,NA
+November,ACJ,C,3,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,WAY,C,1,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,WAY,C,1,Gramminoid,Cyperaceae,Carex boliviensis,Carex boliviensis,NA
+November,WAY,C,1,Fern,Lycopodiaceae,Lycopodiella cernua,Lycopodium thyoides,NA
+November,WAY,C,1,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,WAY,C,3,Gramminoid,Poaceae,Calamagrostis beauty hairy,Danthonia secundiflora,NA
+November,WAY,C,3,Gramminoid,Cyperaceae,Carex boliviensis,Carex boliviensis,NA
+November,WAY,C,3,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,WAY,C,3,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,WAY,C,3,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,WAY,C,5,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,WAY,C,5,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,WAY,C,5,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+November,WAY,C,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,WAY,C,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,WAY,C,5,Gramminoid,Poaceae,Calamagrostis beauty hairy,Danthonia secundiflora,NA
+November,WAY,C,5,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,WAY,C,5,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,WAY,C,5,Woody,Melastomataceae,Brachyotum pubescente,Brachyotum grisebachii,NA
+November,WAY,C,5,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+November,WAY,C,5,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,WAY,C,5,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+November,WAY,B,1,Forb,Iridaceae,Sisyrinchium vaginatum,Sisyrinchium vaginatum,NA
+November,WAY,B,1,Woody,Asteraceae,Baccharis tricuneata,Baccharis tricuneata,NA
+November,WAY,B,1,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,WAY,B,1,Fern,Lycopodiaceae,Lycopodiella cernua,Lycopodium thyoides,NA
+November,WAY,B,1,Forb,Asteraceae,Senecio pegajoso,Senecio burkartii,NA
+November,WAY,B,1,Forb,Asteraceae,Stevia sp,Stevia pennellii,NA
+November,WAY,B,1,Woody,Ericaceae,Gaulteria grande,Gaultheria erecta,NA
+November,WAY,B,5,Forb,Alstroemeriaceae,Bomarea sp1,Bomarea brevis,NA
+November,WAY,B,4,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,WAY,B,5,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,WAY,B,5,Gramminoid,Cyperaceae,Rhynchospora brillante,Rhynchospora aristata,NA
+November,WAY,B,5,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,WAY,B,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,WAY,B,5,Gramminoid,Poaceae,Calamagrostis beauty,Calamagrostis cf. amoena,NA
+November,WAY,B,3,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,WAY,B,3,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,WAY,B,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,WAY,B,3,Forb,Asteraceae,Senecio pegajoso,Senecio burkartii,NA
+November,WAY,B,3,Gramminoid,Cyperaceae,Rhynchospora brillante,Rhynchospora aristata,NA
+November,WAY,B,3,Fern,Lycopodiaceae,Lycopodiella cernua,Lycopodium thyoides,NA
+November,WAY,B,3,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,WAY,B,3,Woody,Asteraceae,Baccharis genistelloides,Baccharis genistelloides,NA
+November,WAY,B,3,Gramminoid,Poaceae,Calamagrostis beauty hairy,Danthonia secundiflora,NA
+November,WAY,B,3,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,WAY,B,3,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,WAY,B,3,Forb,Asteraceae,Stevia sp,Stevia pennellii,NA
+November,WAY,B,1,Gramminoid,Poaceae,Not stipa,Calamagrostis rigida,before C. tarmensis modified by Lucely
+November,WAY,B,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,WAY,B,1,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,WAY,B,1,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+November,WAY,B,1,Forb,Rubiaceae,Nertera granadensis,Nertera granadensis,NA
+November,WAY,B,1,Gramminoid,Cyperaceae,Carex pedunculado largo,Carex cf. crinalis,NA
+November,WAY,B,1,Gramminoid,Poaceae,Calamagrostis beauty hairy,Danthonia secundiflora,NA
+November,WAY,B,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,WAY,B,1,Woody,Primulaceae,Myrsine,Myrsine coriacea,NA
+November,WAY,B,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,WAY,B,3,Gramminoid,Cyperaceae,Carex ecuadorica,Carex bonplandii,NA
+November,WAY,B,5,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,WAY,B,5,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+November,WAY,B,5,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+November,WAY,B,5,Forb,Asteraceae,Stevia cuzcoensis,Stevia pennellii,NA
+November,WAY,B,5,Fern,Lycopodiaceae,Lycopodiella cernua,Lycopodium thyoides,NA
+November,WAY,B,5,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,WAY,B,5,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,WAY,B,5,Gramminoid,Poaceae,Calamagrostis beauty hairy,Danthonia secundiflora,NA
+November,WAY,B,5,Forb,Iridaceae,Sisyrinchium vaginatum,Sisyrinchium vaginatum,NA
+November,WAY,B,5,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,WAY,C,1,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,WAY,C,1,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+November,WAY,C,1,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,WAY,C,1,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,WAY,C,1,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+November,WAY,C,1,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,WAY,C,1,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+November,WAY,C,1,Forb,Asteraceae,Stevia sp,Stevia pennellii,NA
+November,WAY,C,1,Gramminoid,Poaceae,Calamagrostis beauty hairy,Danthonia secundiflora,NA
+November,WAY,C,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,WAY,C,1,Forb,Rosaceae,Alchemilla orbiculata,Lachemilla orbiculata,NA
+November,WAY,C,3,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,WAY,C,3,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,WAY,C,3,Fern,Lycopodiaceae,Lycopodium clavatum,Lycopodium clavatum,NA
+November,WAY,C,3,Fern,Lycopodiaceae,Lycopodiella cernua,Lycopodium thyoides,NA
+November,WAY,C,3,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,WAY,C,3,Gramminoid,Poaceae,Festuca blue,Festuca dolichophylla,NA
+November,WAY,C,3,Forb,Gentianaceae,Halenia umbellata,Halenia umbellata,NA
+November,WAY,C,3,Fern,Pteridaceae,Eriosorus cheilanthoides,Eriosorus cheilanthoides,NA
+November,WAY,C,3,Forb,Asteraceae,Senecio pegajoso,Senecio burkartii,NA
+November,WAY,C,3,Forb,Asteraceae,Stevia sp,Stevia pennellii,NA
+November,WAY,C,3,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+November,WAY,C,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,WAY,C,5,Forb,Asteraceae,Stevia sp,Stevia pennellii,NA
+November,WAY,C,5,Forb,Asteraceae,Gnaphalium dombeyanum,Gnaphalium dombeyanum,NA
+November,WAY,C,5,Gramminoid,Cyperaceae,Carex boliviensis,Carex boliviensis,NA
+November,WAY,C,5,Fern,Lycopodiaceae,Lycopodiella cernua,Lycopodium thyoides,NA
+November,WAY,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,WAY,C,5,Gramminoid,Poaceae,Agrostis sp2,Agrostis mertensii,NA
+November,QUE,C,4,Forb,Apiaceae,Azorella biloba,Azorella biloba,NA
+November,QUE,C,1,Forb,Apiaceae,Oreomyrrhis andicola,Oreomyrrhis andicola,NA
+November,QUE,C,1,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,QUE,C,2,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,QUE,C,1,Gramminoid,Poaceae,Paspalum bonplandianum,Paspalum bonplandianum,NA
+November,QUE,C,1,Forb,Asteraceae,Gamochaeta americana,Gamochaeta coarctata,NA
+November,QUE,C,1,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+November,QUE,C,1,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+November,QUE,C,1,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,QUE,C,1,Forb,Asteraceae,Antennaria linearifolia,Antennaria linearifolia,NA
+November,QUE,C,1,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,QUE,C,1,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,QUE,C,1,Forb,Asteraceae,Werneria villosa,Werneria villosa,NA
+November,QUE,C,1,Gramminoid,Poaceae,Bromus lanatus,Bromus lanatus,NA
+November,QUE,C,1,Gramminoid,Juncaceae,Luzula narrow small,Luzula racemosa,NA
+November,QUE,C,2,Gramminoid,Poaceae,Agrostis green,Agrostis breviculmis,NA
+November,QUE,C,1,Forb,Geraniaceae,Geranium sessiliflorum,Geranium sessiliflorum,NA
+November,QUE,C,1,Forb,Asteraceae,Perezia pungens,Perezia pungens,NA
+November,QUE,C,1,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+November,QUE,C,1,Forb,Asteraceae,Hieracium sp1,Hieracium cf. mandonii,NA
+November,QUE,C,1,Forb,Asteraceae,Chaptalia cordata,Chaptalia cordata,NA
+November,QUE,C,1,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+November,QUE,C,1,Forb,Asteraceae,Aphanactis sp1,Aphanactis villosa,NA
+November,QUE,C,1,Forb,Caryophyllaceae,Cerastium arvense,Cerastium arvense,NA
+November,QUE,C,3,Gramminoid,Cyperaceae,Carex pichinchensis,Carex pichinchensis,NA
+November,QUE,C,3,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+November,QUE,C,3,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,QUE,C,3,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,QUE,C,3,Gramminoid,Cyperaceae,Carex tristicha,Carex pygmaea,NA
+November,QUE,C,3,Gramminoid,Poaceae,Mini poa,Poa sp2,NA
+November,QUE,C,3,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+November,QUE,C,3,Forb,Asteraceae,Oreithales integrifolia,Oreithales integrifolia,NA
+November,QUE,C,3,Forb,Caprifoliaceae,Belonanthus hispidus,Belonanthus hispidus,NA
+November,QUE,C,3,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,QUE,C,3,Gramminoid,Cyperaceae,Carex duro,Carex sp7,NA
+November,QUE,C,3,Forb,Geraniaceae,Geranium sessiliflorum,Geranium sessiliflorum,NA
+November,QUE,C,3,Forb,Asteraceae,Aphanactis sp1,Aphanactis villosa,NA
+November,QUE,C,3,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,QUE,C,3,Forb,Campanulaceae,Lisipomia glanduliera,Lysipomia glandulifera,NA
+November,QUE,C,3,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,QUE,C,5,Gramminoid,Poaceae,Not stipa,Calamagrostis tarmensis,NA
+November,QUE,C,3,Forb,Asteraceae,Antennaria linearifolia,Antennaria linearifolia,NA
+November,QUE,C,5,Forb,Asteraceae,Aphanactis sp1,Aphanactis villosa,NA
+November,QUE,C,5,Gramminoid,Juncaceae,Luzula wide,Luzula racemosa,NA
+November,QUE,C,5,Forb,Asteraceae,Antennaria linearifolia,Antennaria linearifolia,NA
+November,QUE,C,5,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+November,QUE,C,5,Woody,Ericaceae,Vaccinium floribundum,Vaccinium floribundum,NA
+November,QUE,C,4,Gramminoid,Poaceae,Agrostis green,Agrostis breviculmis,NA
+November,QUE,C,5,Forb,Gentianaceae,Gentiana sedifolia,Gentiana sedifolia,NA
+November,QUE,C,5,Forb,Asteraceae,Oreithales integrifolia,Oreithales integrifolia,NA
+November,QUE,C,5,Forb,Asteraceae,Hypochaeris taraxacoides,Hypochaeris taraxacoides,NA
+November,QUE,C,5,Forb,Asteraceae,Oritrophium hieracioides,Oritrophium hieracioides,NA
+November,QUE,C,5,Forb,Violaceae,Viola pygmaea,Viola pygmaea,NA
+November,QUE,C,5,Forb,Geraniaceae,Geranium sessiliflorum,Geranium sessiliflorum,NA
+November,QUE,C,5,Gramminoid,Cyperaceae,Carex duro,Carex sp7,NA
+November,QUE,C,5,Gramminoid,Poaceae,Bromus lanatus,Bromus lanatus,NA
+November,QUE,C,5,Gramminoid,Juncaceae,Luzula narrow small,Luzula racemosa,NA
+November,QUE,C,5,Gramminoid,Poaceae,Mini bromus,Poa spicigera,NA
+November,QUE,C,5,Forb,Asteraceae,Gamochaeta americana,Gamochaeta coarctata,NA
+November,QUE,C,5,Forb,Rosaceae,Alchemilla sectada,Lachemilla cf vulcanica,NA
+November,QUE,C,5,Woody,Hypericaceae,Hypericum andinum,Hypericum andinum,NA
+November,QUE,C,5,Forb,Euphobiaceae,Euphorbia thymifolia,Euphorbia huanchahana,NA
+November,QUE,C,5,Woody,Ericaceae,Gaultheria glomerata,Gaultheria glomerata,NA
+November,QUE,C,5,Forb,Gentianaceae,Gentianella ernestii,Gentianella ernestii,NA
+November,QUE,C,3,Gramminoid,Poaceae,Polvoriento,Anatherostipa hans-meyeri,NA
+November,QUE,C,5,Woody,Asteraceae,Baccharis caespitosa,Baccharis caespitosa,NA
+November,QUE,C,5,Forb,Campanulaceae,Lisipomia glanduliera,Lysipomia glandulifera,NA
+April,OCC,C,1,Gramminoid,Cyperaceae,Juncus micro,Oreobolus goeppingeri,NA
+April,OCC,C,1,Gramminoid,Poaceae,Micrograss,Poaceae sp1,NA
+April,OCC,C,1,Forb,Asteraceae,Gnaphalium micro,Lucilia kunthiana,NA
+April,OCC,C,1,Gramminoid,Juncaceae,Luzula micro,Luzula racemosa,NA
+April,OCC,C,1,Forb,Geraniaceae,Geranium sp1,Geranium sessiliflorum,NA
+April,OCC,C,1,Forb,Asteraceae,Werneria microfila,Werneria pygmaea,NA
+April,OCC,C,1,Gramminoid,Juncaceae,Luzula small,Luzula racemosa,NA
+April,OCC,C,1,Forb,Malvaceae,Acaulimalva sp1,Nototriche sp1,NA
+April,OCC,C,1,Forb,Rosaceae,Alchemilla pinnata,Alchemilla pinnata,NA
+April,OCC,C,1,Forb,Apiaceae,Azorella biloba,Azorella biloba,NA
+April,OCC,C,1,Forb,Asteraceae,Werneria nubigena,Werneria nubigena,NA
+April,OCC,C,1,Forb,Orchidaceae,Myrosmodes sp1,Myrosmodes paludosa,NA
+April,OCC,C,1,Gramminoid,Poaceae,Bromus micro,Festuca rigescens,NA
+April,OCC,C,1,Forb,Asteraceae,Oreithales integrifolia,Oreithales integrifolia,NA
+April,OCC,C,1,Gramminoid,Poaceae,Spiky,Aciachne pulvinata,NA
