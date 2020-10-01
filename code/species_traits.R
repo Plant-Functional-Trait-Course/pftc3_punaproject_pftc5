@@ -143,7 +143,7 @@ trait_puna <- trait_2019 %>%
 # Helpers -----------------------------------------------------------------
 
 pn <- . %>% print(n = Inf)
-source("r_gathering/taxon_correction.R")
+source("code/taxon_correction.R")
 
 # Get valid IDs -----------------------------------------------------------
 
