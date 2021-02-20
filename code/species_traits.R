@@ -9,7 +9,8 @@ library("lubridate")
 library("tpl")
 library("PFTCFunctions")
 library("janitor")
-library(osf)
+library("osfr")
+library("here")
 
 # 0RIGINAL ENVELOPE CODES -------------------------------------------------
 
@@ -88,8 +89,8 @@ trait_pftc3 <- trait_2018 %>%
 # Trait from Puna Project
 
 trait_puna <- trait_2019 %>%
- mutate(plot_id = as.character(plot_id)) %>%
- left_join(spp_trait_dictionary_2019,
+  mutate(plot_id = as.character(plot_id)) %>%
+  left_join(spp_trait_dictionary_2019,
             by = c("month", "site", "treatment", "plot_id", "taxon")) %>%
   mutate(project = "Puna",
          country = "PE",
@@ -103,7 +104,7 @@ trait_puna <- trait_2019 %>%
          dry_flag = NA_character_,          #
          wet_flag = NA_character_,          #
          date = as.character(date)) %>%
-# Cleaning trait values
+  # Cleaning trait values
   mutate(number_leaves_scan = ifelse(name_2020 %in% c("Baccharis genistelloides",
                                                       "Lycopodium thyoides",
                                                       "Lycopodium clavatum",
@@ -248,8 +249,8 @@ read_plus <- function(flnm) {
     mutate(filename = flnm)
 }
 
-leafarea.raw  <- list.files(path = "data/raw_leaf_area_2020",
-                            pattern = "*.csv",
+leafarea.raw  <- list.files(path = "data/",
+                            pattern = "LeafArea",
                             full.names = T) %>%
   map_df(~read_plus(.)) %>%
   clean_names()
@@ -460,11 +461,14 @@ trait_pftc5 <- trait_pftc5 %>%
          year = 2020,
          leaf_thickness_ave_mm = rowMeans(select(., matches("leaf_thickness_\\d_mm")),
                                           na.rm = TRUE)
-         ) %>%
+  ) %>%
   select(wet_mass_total_g = wet_mass_g,
          leaf_area_total_cm2 = leafarea_cm2,
          dry_mass_total_g = dry_mass_g,
-         nr_leaves = leaf_nr,
+         # correction - this is now the number of leafs
+         nr_leaves = bulk_nr_leaves,
+         #this is leaf neumber per an individual
+         leaf_nr = leaf_nr,
          dry_flag = drymassflag,
          wet_flag = wetflag,
          treatment = experiment,
@@ -475,13 +479,17 @@ trait_pftc5 <- trait_pftc5 %>%
          everything(),
          -c(genus, species)) %>%
   mutate(genus = sub("[[:space:]].*", "", name_2020),
-       species = str_remove(name_2020, paste0(genus, " "))) %>%
-# Cleaning trait values
-mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
-                                                    "Lycopodium thyoides",
-                                                    "Lycopodium clavatum",
-                                                    "Hypericum andinum" ), 1,
-                                   nr_leaves)) %>%
+         species = str_remove(name_2020, paste0(genus, " "))) %>%
+  # Cleaning trait values
+  #these species are bulk species so number of leaves 'standardised to 1
+  mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
+                                             "Lycopodium thyoides",
+                                             "Lycopodium clavatum",
+                                             "Hypericum andinum"), 1,
+                            nr_leaves)) %>%
+  # TODO - each indiv needs at least 1 leaf
+  mutate(nr_leaves = ifelse(is.na(nr_leaves),
+                            1, nr_leaves)) %>%
   # Sisyrinchium: leaves are folded: area needs to be doubled and leaf thickness halfed
   mutate(leaf_area_total_cm2= ifelse(genus == "Sisyrinchium", leaf_area_total_cm2 * 2, leaf_area_total_cm2),
          leaf_thickness_1_mm = ifelse(genus == "Sisyrinchium", leaf_thickness_1_mm / 2, leaf_thickness_1_mm),
@@ -500,8 +508,14 @@ mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
   # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g) %>%
-  # rename a variable
-  rename(bulk = bulk_nr_leaves) %>%
+  # TODO
+  #Create a 'binary' bulk column - assuming these were the bulk spp. but CHECK
+  mutate(bulk = ifelse(name_2020 %in% c("Baccharis genistelloides",
+                                        "Lycopodium thyoides",
+                                        "Lycopodium clavatum",
+                                        "Hypericum andinum"),
+                       "bulk",
+                       NA)) %>%
   # build date
   mutate(date = paste0("2020-03-", day),
          plot_id = as.character(plot_id),
@@ -520,6 +534,7 @@ mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
 trait_data_peru <- bind_rows(trait_pftc3,
                              trait_puna,
                              trait_pftc5) %>%
+  #TODO
   mutate(treatment = case_when(
     year == 2020 & site == "ACJ" & treatment == "BB" ~ "NB",
     year == 2020 & site == "WAY" & treatment == "BB" ~ "B",
