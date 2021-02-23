@@ -1,0 +1,411 @@
+"site","year","month","day","plot","taxon","real_species_name","cover","fertile","seedling","observer","comment","habit","sampled"
+"QUE",2020,3,12,"BB1","Agrostis_mertensii",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Antennaria_linearifolia",NA,"3",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Aphanactis_villosa",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Baccharis_caespitosa",NA,"4",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Gamochaeta_coarctata",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Calamagrostis_sp8",NA,"25",1,NA,"LVB, VV","Calamagrostis beauty",NA,1
+"QUE",2020,3,12,"BB1","Carex_pichinchensis",NA,"8",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Cerastium_arvense",NA,"+",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Chaptalia_cordata",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Gentiana_sedifolia",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Geranium_filipes",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Hypericum_andinum",NA,"2",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Hypochaeris_taraxacoides",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Luzula_racemosa",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Calamagrostis_tarmensis",NA,NA,0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Oreomyrrhis_andicola",NA,"4",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Oxalis_oreocharis",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Paspalum_bonplandianum",NA,"20",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Perezia_pungens",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Pernettya_prostrata",NA,NA,0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Agrostis_foliata",NA,"4",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Viola_pymaea",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Werneria_nubigena",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Werneria_villosa",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Acaena_cylindristachya",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Bidens_triplinervia",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Bromus_lanatus",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Euphorbia_huanchahana",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Festuca_sp3",NA,NA,0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Galium_corymbosum",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Hieracium_cf_mandonii",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Festuca_sp4",NA,"2",1,NA,"LVB, VV","Black and sharp",NA,0
+"QUE",2020,3,12,"BB1","Pterichis_sp1",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB1","Vaccinium_floribundum",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB1","Poa_spicigera",NA,"2",0,NA,"LVB, VV","Not sure if this is the correct name. On form it looks like 'spialena'",NA,1
+"QUE",2020,3,12,"BB2","Agrostis_trichoides",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Agrostis_breviculmis",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Poa_sp2",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Antennaria_linearifolia",NA,"6",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Aphanactis_villosa",NA,"1",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Baccharis_caespitosa",NA,"4",0,NA,"LVB, VV","Calamagrostis beauty",NA,1
+"QUE",2020,3,12,"BB2","Belonanthus_hispidus",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Bromus_lanatus",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Festuca_cf_andina",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Calamagrostis_rigida",NA,"5",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Festuca_sp4",NA,"3",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Calamagrostis_sp7",NA,"20",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Carex_pichinchensis",NA,"20",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Hypochaeris_taraxacoides",NA,"4",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Luzula_racemosa",NA,"3",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Poa_spicigera",NA,"1",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Oritrophium_hieracioides",NA,"6",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Oxalis_oreocharis",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Perezia_pungens",NA,"1",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Pernettya_prostrata",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Agrostis_foliata",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Viola_pymaea",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Werneria_villosa",NA,"1",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Lachemilla_jamesonii",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Carex_pygmaea",NA,"3",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Euphorbia_huanchahana",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Gentiana_sedifolia",NA,"0",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Geranium_filipes",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Oreobolus_sp1",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Vaccinium_floribundum",NA,"4",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Werneria_nubigena",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Pterichis_sp1",NA,"+",0,NA,"LVB, VV","Black and sharp",NA,0
+"QUE",2020,3,12,"BB2","Carex_boliviensis",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB2","Festuca_3_sharp",NA,"3",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB2","Gamochaeta_coarctata",NA,"+",0,NA,"LVB, VV","Not sure if this is the correct name. On form it looks like 'spialena'",NA,0
+"QUE",2020,3,12,"BB3","Antennaria_linearifolia",NA,"3",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Aphanactis_villosa",NA,"4",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Baccharis_caespitosa",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Belonanthus_hispidus",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Carex_pichinchensis",NA,"15",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Carex_pygmaea",NA,"5",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Euphorbia_huanchahana",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Gentiana_sedifolia",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Geranium_filipes",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Hypericum_andinum",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Luzula_racemosa",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Lysipomia_glanulifera",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Poa_spicigera",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Calamagrostis_tarmensis",NA,"25",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Oreithales_integrifolia",NA,"5",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Oritrophium_hieracioides",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Pernettya_prostrata",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Agrostis_foliata",NA,"2",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Vaccinium_floribundum",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Werneria_nubigena",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB3","Acaena_cylindristachya",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Lachemilla_cf_vulcanica",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Bromus_lanatus",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Calamagrostis_sp8",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Poa_sp2",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Calamagrostis_sp7",NA,"4",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Gaultheria_glomerata",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Oreobolus_sp1",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Carex_sp7",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Agrostis_breviculmis",NA,"1",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Bartsia_inaequalis",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB3","Oxalis_oreocharis",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Poa_sp2",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Antennaria_linearifolia",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Bromus_lanatus",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Calamagrostis_sp7",NA,"2",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Carex_pichinchensis",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Carex_pygmaea",NA,"25",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Gentiana_sedifolia",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Geranium_filipes",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Hypericum_andinum",NA,"+",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Hypochaeris_taraxacoides",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Luzula_racemosa",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Poa_spicigera",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Calamagrostis_rigida",NA,"5",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Oritrophium_hieracioides",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Oxalis_oreocharis",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Agrostis_foliata",NA,"1",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Rhynchospora_macrochaeta",NA,"8",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Werneria_nubigena",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Werneria_villosa",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Agrostis_breviculmis",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Lachemilla_cf_vulcanica",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Lachemilla_jamesonii",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Baccharis_caespitosa",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Bartsia_inaequalis",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Pernettya_prostrata",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Azorella_biloba",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Belonanthus_hispidus",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Euphorbia_huanchahana",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Gamochaeta_coarctata",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Huperzia_weberbaueri",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Trifolium_amabile",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB4","Carex_boliviensis",NA,"5",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB4","Calamagrostis_tarmensis",NA,"10",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Agrostis_trichoides",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Antennaria_linearifolia",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Aphanactis_villosa",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Baccharis_caespitosa",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Gamochaeta_coarctata",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Bromus_lanatus",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Anatherostipa hans-meyeri",NA,"10",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Carex_pichinchensis",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Carex_pygmaea",NA,"1",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Euphorbia_huanchahana",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Galium_corymbosum",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Gaultheria_glomerata",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Gentiana_sedifolia",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Gentianella_ernestii",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Huperzia_weberbaueri",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Hypericum_andinum",NA,"4",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Hypochaeris_taraxacoides",NA,"4",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Luzula_racemosa",NA,"2",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Lysipomia_glanulifera",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Poa_spicigera",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Calamagrostis_tarmensis",NA,"10",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Calamagrostis_rigida",NA,"5",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Oritrophium_hieracioides",NA,"1",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Oreobolus_sp1",NA,"1",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Paspalum_bonplandianum",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Pernettya_prostrata",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Agrostis_foliata",NA,"2",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Vaccinium_floribundum",NA,"10",1,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Viola_pymaea",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Werneria_nubigena",NA,"2",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Lachemilla_cf_vulcanica",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Calamagrostis_sp7",NA,"2",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Geranium_filipes",NA,"+",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Oreithales_integrifolia",NA,"8",0,NA,"LVB, VV",NA,NA,1
+"QUE",2020,3,12,"BB5","Bartsia_inaequalis",NA,"+",1,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Carex_sp7",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"QUE",2020,3,12,"BB5","Pterichis_sp1",NA,"0",0,NA,"LVB, VV",NA,NA,0
+"TRE",2020,3,15,"C1","Agrostis_sp1",NA,"0",0,0,"LVB,KOZ","dead",NA,0
+"TRE",2020,3,15,"C1","Agrostis_mertensii",NA,"1",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Calamagrostis_cf._macrophylla",NA,"15",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C1","Lachemilla_orbiculata",NA,"0",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C1","Bromus_lanatus",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Carex_pichinchensis",NA,"35",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C1","Euphorbia_huanchahana",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Gaultheria_glomerata",NA,"+",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C1","Gentiana_sedifolia",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Halenia_umbellata",NA,"+",1,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C1","Hypericum_andinum",NA,"25",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C1","Hypochaeris_taraxacoides",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Lycopodium_clavatum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Calamagrostis_tarmensis",NA,"4",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C1","Paspalum_bonplandianum",NA,"4",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C1","Perezia_pungens",NA,"1",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Pernettya_prostrata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Pterichis_sp1",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Vaccinium_floribundum",NA,"+",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C1","Viola_pygmaea",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Baccharis_caespitosa",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Carex_pygmaea",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Festuca_dolichophylla",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C1","Rhynchospora_macrochaeta",NA,"1",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C2","Agrostis_mertensii",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Lachemilla_orbiculata",NA,"1",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C2","Baccharis_genistelloides",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Calamagrostis_cf._macrophylla",NA,"1",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Carex_bonplandii",NA,"2",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C2","Carex_pichinchensis",NA,"2",1,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C2","Festuca_dolichophylla",NA,"2",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C2","Halenia_umbellata",NA,"+",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C2","Hypericum_andinum",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Trichophorum_rigidum",NA,"4",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C2","Luzula_racemosa",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Calamagrostis_tarmensis",NA,"50",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C2","Oreithales_integrifolia",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Oritrophium_hieracioides",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Paspalum_bonplandianum",NA,"+",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C2","Pernettya_prostrata",NA,"0",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Rhynchospora_macrochaeta",NA,"1",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C2","Vaccinium_floribundum",NA,"2",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C2","Carex_sp7",NA,"0",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Gentiana_sedifolia",NA,"0",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Hypochaeris_taraxacoides",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C2","Viola_pygmaea",NA,"0",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C3","Lachemilla_jamesonii",NA,"2",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Baccharis_caespitosa",NA,"+",0,1,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Bidens_triplinervia",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Calamagrostis_cf._macrophylla",NA,"30",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Carex_bonplandii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Carex_pichinchensis",NA,"25",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Chusquea_intipacarina",NA,"10",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Euphorbia_huanchahana",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Gentiana_sedifolia",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Halenia_umbellata",NA,"3",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C3","Hypericum_andinum",NA,"10",0,1,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Hypochaeris_taraxacoides",NA,"4",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Trichophorum_rigidum",NA,"4",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Oritrophium_hieracioides",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Paspalum_bonplandianum",NA,"1",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C3","Pernettya_prostrata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Vaccinium_floribundum",NA,"3",1,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C3","Viola_pygmaea",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Acaena_cylindristachya",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Lachemilla_orbiculata",NA,"1",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C3","Carex_pygmaea",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Calamagrostis_tarmensis",NA,"20",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C3","Oreithales_integrifolia",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Rhynchospora_macrochaeta",NA,"2",1,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C3","Festuca_dolichophylla",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C3","Pterichis_sp1",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C4","Lachemilla_cf_vulcanica",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Baccharis_genistelloides",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Carex_pichinchensis",NA,"12",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C4","Carex_pygmaea",NA,"10",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C4","Festuca_dolichophylla",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Gaultheria_glomerata",NA,"4",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C4","Halenia_umbellata",NA,"+",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C4","Hypochaeris_taraxacoides",NA,"1",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Lycopodium_clavatum",NA,"0",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Calamagrostis_tarmensis",NA,"35",0,0,"PSA,AP",NA,NA,1
+"TRE",2020,3,15,"C4","Perezia_pungens",NA,"2",0,0,"PSA,AP","was difficult to find",NA,0
+"TRE",2020,3,15,"C4","Pernettya_prostrata",NA,"1",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Rhynchospora_macrochaeta",NA,"10",1,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C4","Vaccinium_floribundum",NA,"16",0,0,"PSA,AP","2 samples + 1",NA,1
+"TRE",2020,3,15,"C4","Viola_pygmaea",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C4","Pterichis_sp1",NA,"+",0,0,"PSA,AP",NA,NA,0
+"TRE",2020,3,15,"C5","Baccharis_genistelloides",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C5","Bromus_lanatus",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C5","Calamagrostis_cf._macrophylla",NA,"25",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C5","Festuca_dolichophylla",NA,"5",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C5","Gaultheria_glomerata",NA,"10",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C5","Halenia_umbellata",NA,"1",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C5","Hypericum_andinum",NA,"2",0,1,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C5","Trichophorum_rigidum",NA,"8",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C5","Luzula_racemosa",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C5","Lycopodium_clavatum",NA,"5",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,15,"C5","Paspalum_bonplandianum",NA,"5",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C5","Pernettya_prostrata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C5","Rhynchospora_macrochaeta",NA,"12",0,0,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C5","Vaccinium_floribundum",NA,"25",0,1,"LVB,KOZ","2 samples + 1",NA,1
+"TRE",2020,3,15,"C5","Werneria_nubigena",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C5","Lachemilla_jamesonii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C5","Euphorbia_huanchahana",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,15,"C5","Viola_pygmaea",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Blechnum_auratum",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","seedling_unknown",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Rhynchospora_seedlings",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Carex_pygmaea",NA,"16",1,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB1","Cortaderia_bifida",NA,"35",1,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB1","Eriosorus_cheilanthoides",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Festuca_dolichophylla",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB1","Hypericum_andinum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Jamesonia_alstonii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Lycopodium_clavatum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Calamagrostis_tarmensis",NA,"35",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB1","Niphogeton_dissecta",NA,"5",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Eriocaulon_microcephalum",NA,"1",1,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Rhynchospora_macrochaeta",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Lachemilla_cf_vulcanica",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB1","Oreobolus_sp1",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Carex_pygmaea",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Rhynchospora_seedlings",NA,"4",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Eriosorus_cheilanthoides",NA,"2",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB2","Festuca_dolichophylla",NA,"20",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB2","Agrostis_perenans",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Jamesonia_alstonii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Lycopodium_clavatum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Miconia_rotundifolia",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Calamagrostis_tarmensis",NA,"30",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB2","Rhynchospora_macrochaeta",NA,"15",1,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB2","Elaphoglossum_amphioxys",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Niphogeton_dissecta",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB2","Agrostis_mertensii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB3","Cortaderia_bifida",NA,"40",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB3","Rhynchospora_seedlings",NA,"2",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB3","Jamesonia_alstonii",NA,"2",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB3","Lycopodium_clavatum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB3","Melpomene_moniliformis",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB3","Calamagrostis_tarmensis",NA,"20",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB3","Rhynchospora_macrochaeta",NA,"3",1,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB3","Hieracium_cf._mandonii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB3","Carex_pygmaea",NA,"+",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB4","Cortaderia_bifida",NA,"70",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB4","Rhynchospora_seedlings",NA,"6",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB4","Lycopodium_clavatum",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB4","Calamagrostis_tarmensis",NA,"16",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB4","Pernettya_prostrata",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB4","Rhynchospora_macrochaeta",NA,"4",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB4","Miconia_rotundifolia",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB4","Danthonia_secundiflora",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB5","Sisyrinchium_cf_jamesonii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB5","Cortaderia_hapalotricha",NA,"40",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB5","Cortaderia_bifida",NA,"20",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB5","Diplostephium_cf._haenkei",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB5","Gaultheria_glomerata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB5","Jamesonia_alstonii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"ACJ",2020,3,15,"BB5","Lycopodium_clavatum",NA,"1",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB5","Calamagrostis_tarmensis",NA,"15",0,0,"LVB,KOZ",NA,NA,1
+"ACJ",2020,3,15,"BB5","Vaccinium_floribundum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB1","Lachemilla_jamesonii",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB1","Carex_bonplandii",NA,"6",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB1","Carex_pygmaea",NA,"1",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB1","Calamagrostis_tarmensis",NA,"50",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB1","Rhynchospora_macrochaeta",NA,"5",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB1","Lachemilla_cf_vulcanica",NA,"2",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB1","Agrostis_foliata",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB1","Bartsia_inaequalis",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB1","Agrostis_sedlings",NA,"10",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB1","Laestadia_muscicola",NA,NA,0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Lachemilla_jamesonii",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Aphanactis_villosa",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Carex_bonplandii",NA,"8",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Carex_pygmaea",NA,"20",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Luzula_racemosa",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Nertera_granadensis",NA,"2",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Calamagrostis_tarmensis",NA,"40",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Rhynchospora_macrochaeta",NA,"20",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Vaccinium_floribundum",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Lachemilla_cf_vulcanica",NA,"3",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Agrostis_sp1",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Pernettya_prostrata",NA,"2",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Agrostis_foliata",NA,"5",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB2","Senecio_burkartii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Baccharis_caespitosa",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Agrostis_sedlings",NA,"15",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB2","Gaultheria_glomerata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Agrostis_mertensii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Lachemilla_cf_vulcanica",NA,"3",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB3","Aphanactis_villosa",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Carex_bonplandii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Carex_pichinchensis",NA,"15",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB3","Carex_pygmaea",NA,"5",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB3","Luzula_racemosa",NA,"1",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Calamagrostis_tarmensis",NA,"55",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB3","Pernettya_prostrata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Gamochaeta_coarctata",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Agrostis_foliata",NA,"3",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB3","Rhynchospora_macrochaeta",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB3","Vaccinium_floribundum",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Agrostis_sedlings",NA,"10",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Gaultheria_glomerata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Laestadia_muscicola",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB3","Eriosorus_cheilanthoides",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Agrostis_mertensii",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Lachemilla_cf_vulcanica",NA,"5",1,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB4","Antennaria_linearifolia",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Calamagrostis_tricophylla",NA,"5",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB4","Carex_pygmaea",NA,"5",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB4","Eriosorus_cheilanthoides",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Festuca_dolichophylla",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB4","Calamagrostis_tarmensis",NA,"50",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB4","Rhynchospora_macrochaeta",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Agrostis_sp1",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Gamochaeta_coarctata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Agrostis_foliata",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Carex_bonplandii",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Agrostis_sedlings",NA,"5",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Laestadia_muscicola",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB4","Lachemilla_jamesonii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Agrostis_mertensii",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Lachemilla_jamesonii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Antennaria_linearifolia",NA,"0",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Calamagrostis_tricophylla",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Carex_pygmaea",NA,"10",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB5","Festuca_dolichophylla",NA,"2",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB5","Luzula_racemosa",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB5","Calamagrostis_tarmensis",NA,"55",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Lachemilla_cf_vulcanica",NA,"10",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB5","Gamochaeta_coarctata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Agrostis_foliata",NA,"+",1,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Rhynchospora_macrochaeta",NA,"3",0,0,"LVB,KOZ",NA,NA,1
+"TRE",2020,3,14,"BB5","Agrostis_sedlings",NA,"5",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Hypericum_andinum",NA,"1",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Carex_bomplandii",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Agrostis_sp1",NA,"+",0,0,"LVB,KOZ",NA,NA,0
+"TRE",2020,3,14,"BB5","Pernettya_prostrata",NA,"+",0,0,"LVB,KOZ",NA,NA,0
