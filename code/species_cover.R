@@ -262,6 +262,10 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
   # REMOVE WHERE COVER = 0 i.e. absent
   filter(cover > 0)
 
+#Adding 2020 species
+
+species_cover <- bind_rows(species_cover, spp_cover_2020)
+
 # Export ------------------------------------------------------------------
 
 
@@ -280,4 +284,15 @@ spp_clean_2019 %>%
 spp_cover_2020 %>%
   write_csv("clean_data/PFTC5_Peru_2020_CommunityCover_clean.csv")
 
+# End of Script ----
 
+
+ggplot(species_cover %>%
+         group_by(project, site, treatment) %>%
+         count()) +
+  geom_col(aes(x = site,
+               y = n,
+               group = treatment,
+               fill = treatment),
+           position = "dodge") +
+  facet_wrap(vars(project))
