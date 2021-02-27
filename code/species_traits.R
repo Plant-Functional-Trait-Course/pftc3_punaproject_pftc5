@@ -158,7 +158,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
          project = case_when(
            project == "t" ~ "trait",
            project == "s" ~ "sean",
-           project == "r" ~ "trait" # R its for Rangil project intraspecific variability?
+           project == "r" ~ "trait" # R its for Rangild project intraspecific variability?
          ),
          id = str_to_upper(str_trim(id, side = "both")),
          site = str_to_upper(str_trim(site, side = "both")),
@@ -226,7 +226,17 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
   mutate(wet_mass_g = if_else(id == "BXD6709", 0.109, wet_mass_g),
          wet_mass_g = if_else(id == "BEF1022", 0.281, wet_mass_g)) %>%
   # Wet mass flags
-  mutate(wetflag = if_else(id %in% c("BDN3235", "CXX4125"), "Outlier_very_large_leaf", NA_character_))
+  mutate(wetflag = if_else(id %in% c("BDN3235", "CXX4125"), "Outlier_very_large_leaf", NA_character_)) %>%
+  # add treatment (C, B, BB) for samples
+  mutate(experiment = case_when(# QUE should be BB
+                                id == "AQA0121" ~ "BB",
+                                id == "BJT8862" ~ "BB",
+                                #WAY sites - all should be C
+                                id == 'CWD5069' ~ "C",
+                                id == 'CML0422' ~ "C",
+                                id == 'CMP2483' ~ "C",
+                                str_detect(project,"sean") ~ "OFF-PLOT",
+                                TRUE ~ experiment))
 
 # Check dupes
 
@@ -570,3 +580,6 @@ trait_pftc5 %>%
 # PFTC3 - Puna Project - PFTC5
 trait_data_peru %>%
   distinct(project)
+
+
+# End of Script ----
