@@ -130,15 +130,7 @@ trait_puna <- trait_2019 %>%
   #       Leaf_Area_cm2 = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Leaf_Area_cm2)) %>%
   # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
-         ldmc = dry_mass_g / wet_mass_g) %>%
-  # Reordering columns for matching with the other dataset
-  select(country, project, id, year, month, date, site, treatment, plot_id,
-         functional_group, family, taxon, genus, species,
-         individual_nr, plant_height_cm, nr_leaves, bulk, wet_mass_total_g,
-         leaf_thickness_1_mm, leaf_thickness_2_mm, leaf_thickness_3_mm,
-         dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2,
-         wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
-         leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag  ) %>%
+         ldmc = dry_mass_g / wet_mass_g)  %>%
   #Some of these species were not in the dictionary thus now have NA's
   mutate(functional_group = case_when(taxon == "Carex pichinchensis" ~ "Gramminoid",
                                       taxon == "Rinchospora machrochaeta fina" ~ "Gramminoid",
@@ -155,7 +147,19 @@ trait_puna <- trait_2019 %>%
          genus = case_when(taxon == "Carex pichinchensis" ~ "Carex",
                            taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora",
                            taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora",
-                           TRUE ~ genus))
+                           TRUE ~ genus),
+         name_2020 = case_when(taxon == "Carex pichinchensis" ~ "Carex pichinchensis",
+                               taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora machrochaeta fina",
+                               taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora machrochaeta fina",
+                               TRUE ~ name_2020)) %>%
+  # Reordering columns for matching with the other dataset
+  select(country, project, id, year, month, date, site, treatment, plot_id,
+         functional_group, family, name_2020, genus, species,
+         individual_nr, plant_height_cm, nr_leaves, bulk, wet_mass_total_g,
+         leaf_thickness_1_mm, leaf_thickness_2_mm, leaf_thickness_3_mm,
+         dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2,
+         wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
+         leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag  )
 
 ########################################################################################
 # PFTC5 2020 PERU
