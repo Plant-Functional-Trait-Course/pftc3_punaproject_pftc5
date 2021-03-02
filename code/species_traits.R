@@ -179,9 +179,15 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
   clean_names() %>%
   mutate(project = str_to_lower(project),
          project = case_when(
+           project == "T" ~ "trait",
+           project == "S" ~ "sean",
+           project == "R" ~ "trait", # R its for Rangild project intraspecific variability?
            project == "t" ~ "trait",
            project == "s" ~ "sean",
-           project == "r" ~ "trait" # R its for Rangild project intraspecific variability?
+           project == "r" ~ "trait", # R its for Rangild project intraspecific variability?
+           project == "Sean" ~ "sean",
+           project == "Trait" ~ "trait",
+           TRUE ~ project
          ),
          id = str_to_upper(str_trim(id, side = "both")),
          site = str_to_upper(str_trim(site, side = "both")),
@@ -250,6 +256,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
          wet_mass_g = if_else(id == "BEF1022", 0.281, wet_mass_g)) %>%
   # Wet mass flags
   mutate(wetflag = if_else(id %in% c("BDN3235", "CXX4125"), "Outlier_very_large_leaf", NA_character_)) %>%
+  #TODO
   # add treatment (C, B, BB) for samples
   mutate(experiment = case_when(# QUE should be BB
                                 id == "AQA0121" ~ "BB",
@@ -259,6 +266,8 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
                                 id == 'CML0422' ~ "C",
                                 id == 'CMP2483' ~ "C",
                                 str_detect(project,"sean") ~ "OFF-PLOT",
+                                #all B were BB according to data doc...
+                                experiment == "B" ~ "BB",
                                 TRUE ~ experiment))
 
 # Check dupes
@@ -561,6 +570,7 @@ trait_pftc5 <- trait_pftc5 %>%
          dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )
+
 
 # Join all data -----------------------------------------------------------
 
