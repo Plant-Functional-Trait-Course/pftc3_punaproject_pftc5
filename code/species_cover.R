@@ -290,13 +290,3 @@ spp_cover_2020 %>%
 
 # End of Script ----
 
-
-ggplot(species_cover %>%
-         group_by(project, site, treatment) %>%
-         count()) +
-  geom_col(aes(x = site,
-               y = n,
-               group = treatment,
-               fill = treatment),
-           position = "dodge") +
-  facet_wrap(vars(project))
