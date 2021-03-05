@@ -113,6 +113,11 @@ trait_puna <- trait_2019 %>%
          dry_flag = NA_character_,          #
          wet_flag = NA_character_,          #
          date = as.character(date)) %>%
+  #TODO
+  # Drymass was zero changed to NA to avoid problems
+  mutate(dry_mass_g = if_else(id == "AZJ4672",
+                              NA,
+                              dry_mass_g)) %>%
   # Cleaning trait values
   mutate(number_leaves_scan = ifelse(name_2020 %in% c("Baccharis genistelloides",
                                                       "Lycopodium thyoides",
@@ -506,7 +511,6 @@ trait_pftc5 <- trait_2020 %>%
 
 spp_trait_dictionary_2020 <- read_csv("data/PFTC5_Peru_2020_TaxonomicDictionary.csv")
 
-
 trait_pftc5 <- trait_pftc5 %>%
   left_join(spp_trait_dictionary_2020, by = "taxon") %>%
   mutate(country = "PE",
@@ -522,7 +526,7 @@ trait_pftc5 <- trait_pftc5 %>%
          # correction - this is now the number of leafs
          nr_leaves = bulk_nr_leaves,
          #this is leaf number per an individual
-         leaf_nr = leaf_nr,
+         leaf_id = leaf_nr,
          dry_flag = drymassflag,
          wet_flag = wetflag,
          treatment = experiment,
@@ -541,9 +545,11 @@ trait_pftc5 <- trait_pftc5 %>%
                                              "Lycopodium clavatum",
                                              "Hypericum andinum"), 1,
                             nr_leaves)) %>%
-  # TODO - each indiv needs at least 1 leaf
-  mutate(nr_leaves = ifelse(is.na(nr_leaves),
-                            1, nr_leaves)) %>%
+  #TODO
+  # each indiv needs at least 1 leaf
+  mutate(nr_leaves = if_else(is.na(nr_leaves),
+                            1,
+                            nr_leaves)) %>%
   # Sisyrinchium: leaves are folded: area needs to be doubled and leaf thickness halfed
   mutate(leaf_area_total_cm2= ifelse(genus == "Sisyrinchium", leaf_area_total_cm2 * 2, leaf_area_total_cm2),
          leaf_thickness_1_mm = ifelse(genus == "Sisyrinchium", leaf_thickness_1_mm / 2, leaf_thickness_1_mm),
@@ -588,15 +594,7 @@ trait_pftc5 <- trait_pftc5 %>%
 
 trait_data_peru <- bind_rows(trait_pftc3,
                              trait_puna,
-                             trait_pftc5) %>%
-  #TODO
-  mutate(treatment = case_when(
-    year == 2020 & site == "ACJ" & treatment == "BB" ~ "NB",
-    year == 2020 & site == "WAY" & treatment == "BB" ~ "B",
-    year == 2020 & site == "TRE" & treatment == "BB" ~ "B",
-    year == 2020 & site == "QUE" & treatment == "BB" ~ "B",
-    TRUE ~ treatment
-  ))
+                             trait_pftc5)
 
 
 # Export data -------------------------------------------------------------
@@ -613,6 +611,10 @@ trait_puna %>%
   distinct(project)
 
 trait_puna %>%
+  filter(id == "AZJ4672") %>%
+  pull(dry_mass_g)
+
+trait_puna %>%
   write_csv("clean_data/PunaProject_Peru_2019_LeafTraits_clean.csv")
 
 #PFTC5
@@ -620,11 +622,17 @@ trait_pftc5 %>%
   distinct(project)
 
 trait_pftc5 %>%
+  filter(treatment != "OFF-PLOT")
   write_csv("clean_data/PFTC5_Peru_2020_LeafTraits_clean.csv")
 
 # PFTC3 - Puna Project - PFTC5
 trait_data_peru %>%
   distinct(project)
 
+#Sean...
+
+trait_pftc5 %>%
+  filter(treatment == "OFF-PLOT")
+write_csv("clean_data/PFTC5_Peru_2020_Seans_LeafTraits_clean.csv")
 
 # End of Script ----
