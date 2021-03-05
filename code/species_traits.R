@@ -158,6 +158,10 @@ trait_puna <- trait_2019 %>%
                                taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora machrochaeta fina",
                                taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora machrochaeta fina",
                                TRUE ~ name_2020)) %>%
+  #Rename NB to BB
+  mutate(treatment = if_else(treatment == "NB",
+                             "BB",
+                             treatment)) %>%
   # Reordering columns for matching with the other dataset
   select(country, project, id, year, month, date, site, treatment, plot_id,
          functional_group, family, name_2020, genus, species,
@@ -166,6 +170,7 @@ trait_puna <- trait_2019 %>%
          dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag  )
+
 
 ########################################################################################
 # PFTC5 2020 PERU
