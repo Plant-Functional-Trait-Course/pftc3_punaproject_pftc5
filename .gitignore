@@ -17,8 +17,3 @@ data/*
 
 # MacOS nonsense
 .DS_Store
-data/LeafArea.raw_exodus.csv
-data/LeafArea.raw_20-03-15.csv
-data/LeafArea.raw_20-03-14.csv
-data/LeafArea.raw_20-03-13.csv
-data/LeafArea.raw_20-03-12.csv
