@@ -139,7 +139,11 @@ spp_clean_2019 <- spp_clean_2019 %>%
                              TRUE ~ species),
          genus = case_when(str_detect(genus,
                                       "alstonii") == TRUE ~ "Jamesonia",
-                           TRUE ~ genus))
+                           TRUE ~ genus)) %>%
+  #Change NB to BB
+  mutate(treatment = if_else(treatment == "NB",
+                             "BB",
+                             treatment))
 
 # Here is the data for PFTC3 and PunaProject, merged
 
