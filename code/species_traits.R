@@ -79,7 +79,12 @@ trait_pftc3 <- trait_2018 %>%
          taxon_puna = NA_character_,
          date=as.character(date),
          dry_mass_total_g = as.numeric(dry_mass_total_g),
-         number_leaves_scan = as.numeric(number_leaves_scan)) %>%
+         number_leaves_scan = as.numeric(number_leaves_scan),
+         wet_mass_g = wet_mass_g / nr_leaves,
+         dry_mass_g = dry_mass_total_g / nr_leaves) %>%
+  mutate(leaf_area_cm2 = leaf_area_total_cm2 / nr_leaves,
+         sla_cm2_g = leaf_area_cm2/dry_mass_g,
+         ldmc = dry_mass_g/wet_mass_g) %>%
   select(country, project, id, year, month, date, site, treatment, plot_id,
          functional_group, family, name_2020, genus, species,
          individual_nr, plant_height_cm, nr_leaves, bulk, wet_mass_total_g,
@@ -87,6 +92,7 @@ trait_pftc3 <- trait_2018 %>%
          dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2 ,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag, -c(7:10))
+
 
 
 # Trait from Puna Project
@@ -278,6 +284,7 @@ trait_2020 %>%
 trait_2020 %>%
   add_count(id) %>%
   distinct(n)
+
 
 # Check valid IDs ---------------------------------------------------------
 
