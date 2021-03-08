@@ -2,15 +2,8 @@
 
 # Load libraries ----------------------------------------------------------
 
-library("readxl")
-library("writexl")
-library("tidyverse")
-library("lubridate")
-library("tpl")
-library("PFTCFunctions")
-library("janitor")
-library("osfr")
-library("here")
+# source this file if needed
+#source("code/load_libraries.R")
 
 # Helpers -----------------------------------------------------------------
 

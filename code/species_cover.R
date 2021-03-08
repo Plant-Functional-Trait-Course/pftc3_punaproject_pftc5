@@ -1,13 +1,5 @@
 # Load libraries ----------------------------------------------------------
-
-library("here")
-library("readxl")
-library("writexl")
-library("tidyverse")
-library("lubridate")
-library("tpl")
-library("PFTCFunctions")
-library("janitor")
+source("code/load_libraries.R")
 
 #'
 #' Reading data species dictionary

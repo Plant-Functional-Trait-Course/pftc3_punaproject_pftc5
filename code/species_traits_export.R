@@ -1,5 +1,7 @@
-## Read scripts for the three traits datasets ----
+# load libraries
+source("code/load_libraries.R")
 
+## Read scripts for the three traits datasets ----
 source(here::here("code/species_traits_pftc3.R")) #PFTC3 import and clean
 source(here::here("code/species_traits_punaproject.R")) #Puna Project import and clean
 source(here::here("code/species_traits_pftc5.R")) #PFTC5 import and clean
