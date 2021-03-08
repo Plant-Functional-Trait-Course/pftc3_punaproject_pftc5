@@ -139,7 +139,11 @@ spp_clean_2019 <- spp_clean_2019 %>%
                              TRUE ~ species),
          genus = case_when(str_detect(genus,
                                       "alstonii") == TRUE ~ "Jamesonia",
-                           TRUE ~ genus))
+                           TRUE ~ genus)) %>%
+  #Change NB to BB
+  mutate(treatment = if_else(treatment == "NB",
+                             "BB",
+                             treatment))
 
 # Here is the data for PFTC3 and PunaProject, merged
 
@@ -262,6 +266,10 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
   # REMOVE WHERE COVER = 0 i.e. absent
   filter(cover > 0)
 
+#Adding 2020 species
+
+species_cover <- bind_rows(species_cover, spp_cover_2020)
+
 # Export ------------------------------------------------------------------
 
 
@@ -280,4 +288,5 @@ spp_clean_2019 %>%
 spp_cover_2020 %>%
   write_csv("clean_data/PFTC5_Peru_2020_CommunityCover_clean.csv")
 
+# End of Script ----
 
