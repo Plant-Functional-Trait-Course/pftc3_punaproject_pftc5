@@ -492,9 +492,5 @@ trait_pftc3 <- traits %>%
 
 
 # End of Script ----
-trait_2018 <- read_csv("data/PFTC3_Peru_2018_LeafTraits.csv") %>%
-  clean_names() %>%
-  mutate_if(is.character, ~str_trim(.)) %>%
-  as_tibble()
 
 ###############################################################
