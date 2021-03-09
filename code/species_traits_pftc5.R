@@ -387,10 +387,6 @@ trait_pftc5 <- trait_pftc5 %>%
   mutate(wet_mass_g = wet_mass_total_g / nr_leaves,
          dry_mass_g = dry_mass_total_g / nr_leaves,
          leaf_area_cm2 = leaf_area_total_cm2 / nr_leaves) %>%
-  # Wet and dry mass do not make sense for these species
-  # mutate(Dry_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Dry_Mass_g),
-  #       Wet_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Wet_Mass_g),
-  #       Leaf_Area_cm2 = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Leaf_Area_cm2)) %>%
   # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g) %>%
