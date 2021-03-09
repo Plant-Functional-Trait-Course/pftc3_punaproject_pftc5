@@ -426,6 +426,11 @@ traits <- traits %>%
 
   # Taxon
   mutate(Taxon = paste(Genus, Species, sep = " ")) %>%
+
+  #these species are bulk species so number of leaves 'standardised to 1
+  mutate(NrLeaves = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"),
+                           1,
+                           NrLeaves)) %>%
   # Sort
   select(ID, Country, Year, Project, Treatment, Site, Elevation, Latitude, Longitude, Gradient, PlotID, Taxon, Genus, Species, Date, Individual_nr, Plant_Height_cm, Wet_Mass_g, Leaf_Thickness_Ave_mm, Leaf_Area_cm2, Leaf_Thickness_1_mm, Leaf_Thickness_2_mm, Leaf_Thickness_3_mm, Bulk, NrLeaves, NumberLeavesScan, AreaFlag, DryFlag, WetFlag, Comment)
 
@@ -446,7 +451,7 @@ trait_pftc3 <- traits %>%
   mutate(Wet_Mass_g = Wet_Mass_Total_g / NrLeaves,
          Dry_Mass_g = Dry_Mass_Total_g / NrLeaves,
          Leaf_Area_cm2 = Leaf_Area_Total_cm2 / NrLeaves) %>%
-  # Wet and dry mass do not make sense for these species
+  # # Wet and dry mass do not make sense for these species
   mutate(Dry_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Dry_Mass_g),
          Wet_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Wet_Mass_g),
          Leaf_Area_cm2 = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Leaf_Area_cm2)) %>%
@@ -470,17 +475,7 @@ trait_pftc3 <- traits %>%
          genus = str_replace(name_2020, "(?s) .*", ""),
          species = str_remove(name_2020, paste0(genus, " ")),
          plot_id = as.character(plot_id),
-         #number_leaves_scan = as.character(number_leaves_scan),
-         taxon_puna = NA_character_#,
-         #date=as.character(date)#,
-         # dry_mass_total_g = as.numeric(dry_mass_total_g),
-         # number_leaves_scan = as.numeric(number_leaves_scan),
-         # wet_mass_g = wet_mass_g / nr_leaves,
-         # dry_mass_g = dry_mass_total_g / nr_leaves
-         ) %>%
-  # mutate(leaf_area_cm2 = leaf_area_total_cm2 / nr_leaves,
-  #        sla_cm2_g = leaf_area_cm2/dry_mass_g,
-  #        ldmc = dry_mass_g/wet_mass_g) %>%
+         taxon_puna = NA_character_) %>%
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon = name_2020, genus, species,
          individual_nr, plant_height_cm, nr_leaves, number_leaves_scan,

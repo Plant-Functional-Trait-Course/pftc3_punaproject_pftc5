@@ -76,6 +76,10 @@ trait_puna <- trait_2019 %>%
   mutate(wet_mass_g = wet_mass_total_g / number_leaves_scan,
          dry_mass_g = dry_mass_total_g / number_leaves_scan,
          leaf_area_cm2 = leaf_area_total_cm2 / number_leaves_scan) %>%
+  # Wet and dry mass do not make sense for these species
+  mutate(dry_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, dry_mass_g),
+         wet_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, wet_mass_g),
+         leaf_area_cm2 = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, leaf_area_cm2)) %>%
 
     # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
