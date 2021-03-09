@@ -12,7 +12,8 @@ source(here::here("code/species_traits_pftc5.R")) #PFTC5 import and clean
 
 trait_data_peru <- bind_rows(trait_pftc3,
                              trait_puna,
-                             trait_pftc5)
+                             trait_pftc5) %>%
+  pivot_longer(cols = plant_height_cm:leaf_thickness_mm, names_to = "trait", values_to = "value")
 
 ## Export data ----
 
