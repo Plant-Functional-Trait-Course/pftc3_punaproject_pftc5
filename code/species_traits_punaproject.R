@@ -40,8 +40,10 @@ trait_puna <- trait_2019 %>%
   mutate(plot_id = as.character(plot_id)) %>%
   left_join(spp_trait_dictionary_2019,
             by = c("month", "site", "treatment", "plot_id", "taxon")) %>%
-  mutate(project = "Puna",
+  mutate(course = "Puna",
          country = "PE",
+         project = "T",
+         gradient = 1,
          genus = str_replace(name_2020, "(?s) .*", ""),
          species = str_remove(name_2020, paste0(genus, " ")),
          plot_id = as.character(plot_id),
@@ -54,9 +56,9 @@ trait_puna <- trait_2019 %>%
          date = as.character(date)) %>%
   #TODO
   # Drymass was zero changed to NA to avoid problems
-  mutate(dry_mass_g = if_else(id == "AZJ4672",
-                              NA,
-                              dry_mass_g)) %>%
+  mutate(dry_mass_total_g = if_else(id == "AZJ4672",
+                              NA_real_,
+                              dry_mass_total_g)) %>%
   # Cleaning trait values
   mutate(number_leaves_scan = ifelse(name_2020 %in% c("Baccharis genistelloides",
                                                       "Lycopodium thyoides",
@@ -74,11 +76,8 @@ trait_puna <- trait_2019 %>%
   mutate(wet_mass_g = wet_mass_total_g / number_leaves_scan,
          dry_mass_g = dry_mass_total_g / number_leaves_scan,
          leaf_area_cm2 = leaf_area_total_cm2 / number_leaves_scan) %>%
-  # Wet and dry mass do not make sense for these species
-  # mutate(Dry_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Dry_Mass_g),
-  #       Wet_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Wet_Mass_g),
-  #       Leaf_Area_cm2 = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Leaf_Area_cm2)) %>%
-  # Calculate SLA and LDMC
+
+    # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g)  %>%
   #Some of these species were not in the dictionary thus now have NA's
@@ -107,7 +106,7 @@ trait_puna <- trait_2019 %>%
                              "BB",
                              treatment)) %>%
   # Reordering columns for matching with the other dataset
-  select(country, project, id, year, month, date, site, treatment, plot_id,
+  select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, name_2020, genus, species,
          individual_nr, plant_height_cm, nr_leaves, bulk, wet_mass_total_g,
          leaf_thickness_1_mm, leaf_thickness_2_mm, leaf_thickness_3_mm,
