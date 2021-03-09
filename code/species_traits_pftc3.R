@@ -73,7 +73,6 @@ LeafArea2018 <- LeafArea.raw %>%
   add_row(ID = "FDF1809", Area_cm2 = NA)
 
 
-
 #### LEAF TRAITS ####
 files <- dir(path = "data/raw_traits_2018/", pattern = "\\.xlsx$", full.names = TRUE)
 traits.raw <- files[grepl("^(?!~)", basename(files), perl = TRUE)] %>%
@@ -82,7 +81,7 @@ traits.raw <- files[grepl("^(?!~)", basename(files), perl = TRUE)] %>%
 
 #' Review unique IDs
 traits.raw %>%
-  count(id) %>%
+  count(ID) %>%
   distinct(n)
 
 # Merge traits and LeafArea  and clean data
@@ -471,7 +470,7 @@ trait_pftc3 <- traits %>%
          genus = str_replace(name_2020, "(?s) .*", ""),
          species = str_remove(name_2020, paste0(genus, " ")),
          plot_id = as.character(plot_id),
-         number_leaves_scan = as.character(number_leaves_scan),
+         #number_leaves_scan = as.character(number_leaves_scan),
          taxon_puna = NA_character_#,
          #date=as.character(date)#,
          # dry_mass_total_g = as.numeric(dry_mass_total_g),
