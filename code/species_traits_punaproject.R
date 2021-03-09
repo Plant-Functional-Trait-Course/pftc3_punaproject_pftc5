@@ -58,7 +58,11 @@ trait_puna <- trait_2019 %>%
   # Drymass was zero changed to NA to avoid problems
   mutate(dry_mass_total_g = if_else(id == "AZJ4672",
                               NA_real_,
-                              dry_mass_total_g)) %>%
+                              dry_mass_total_g),
+         # decimal problem
+         dry_mass_total_g = if_else(id == "HUF7310",
+                                    0.246,
+                                    dry_mass_total_g)) %>%
   # Cleaning trait values
   mutate(number_leaves_scan = ifelse(name_2020 %in% c("Baccharis genistelloides",
                                                       "Lycopodium thyoides",
@@ -111,8 +115,8 @@ trait_puna <- trait_2019 %>%
                              treatment)) %>%
   # Reordering columns for matching with the other dataset
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
-         functional_group, family, name_2020, genus, species,
-         individual_nr, plant_height_cm, nr_leaves, number_leaves_scan,
+         functional_group, family, taxon = name_2020, genus, species,
+         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag)
 
