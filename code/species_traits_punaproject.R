@@ -53,7 +53,7 @@ trait_puna <- trait_2019 %>%
          area_flag = NA_character_,
          dry_flag = NA_character_,          #
          wet_flag = NA_character_,          #
-         date = as.character(date)) %>%
+         date = ymd(date)) %>%
   #TODO
   # Drymass was zero changed to NA to avoid problems
   mutate(dry_mass_total_g = if_else(id == "AZJ4672",

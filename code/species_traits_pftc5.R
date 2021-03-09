@@ -399,7 +399,7 @@ trait_pftc5 <- trait_pftc5 %>%
                        "bulk",
                        NA)) %>%
   # build date
-  mutate(date = paste0("2020-03-", day),
+  mutate(date = ymd(paste0("2020-03-", day)),
          plot_id = as.character(plot_id),
          bulk = as.character(bulk)) %>%
   #reordering columns
