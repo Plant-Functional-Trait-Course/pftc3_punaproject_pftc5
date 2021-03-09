@@ -5,9 +5,8 @@
 # source this file if needed
 #source("code/load_libraries.R")
 
-# Helpers -----------------------------------------------------------------
+# Dictionary -----------------------------------------------------------------
 
-pn <- . %>% print(n = Inf)
 source("code/taxon_correction.R")
 
 # Get valid IDs -----------------------------------------------------------
@@ -133,7 +132,7 @@ read_plus <- function(flnm) {
     mutate(filename = flnm)
 }
 
-leafarea.raw  <- list.files(path = "data/",
+leafarea.raw  <- list.files(path = "data/raw_area_2020/",
                             pattern = "LeafArea",
                             full.names = T) %>%
   map_df(~read_plus(.)) %>%
@@ -327,7 +326,7 @@ trait_pftc5 <- trait_2020 %>%
   left_join(dry_mass, by = "id") %>%
   select(id, day, project, site, experiment, plot_id, elevation, taxon, genus, species,
          individual_nr, leaf_nr, plant_height_cm, plant_length_cm, length_cm, bulk_nr_leaves,
-         wet_mass_g, dry_mass_g, dry_weight_g, leaf_thickness_1_mm, leaf_thickness_2_mm,
+         wet_mass_g, dry_mass_g = dry_weight_g, leaf_thickness_1_mm, leaf_thickness_2_mm,
          leaf_thickness_3_mm, leafarea_cm2, nleafscan, remark, notes1, notes2, wetflag,
          areaflag, drymassflag)
 
@@ -339,7 +338,9 @@ spp_trait_dictionary_2020 <- read_csv("data/PFTC5_Peru_2020_TaxonomicDictionary.
 trait_pftc5 <- trait_pftc5 %>%
   left_join(spp_trait_dictionary_2020, by = "taxon") %>%
   mutate(country = "PE",
-         project = "PFTC5",
+         course = "PFTC5",
+         project = "T",
+         gradient = 1,
          month = "March",
          year = 2020,
          leaf_thickness_ave_mm = rowMeans(select(., matches("leaf_thickness_\\d_mm")),
@@ -406,8 +407,8 @@ trait_pftc5 <- trait_pftc5 %>%
          plot_id = as.character(plot_id),
          bulk = as.character(bulk)) %>%
   #reordering columns
-  select(country, project, id, year, month, date, site, treatment, plot_id,
-         functional_group, family, name_2020, genus, species,
+  select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
+         functional_group, family, taxon = name_2020, genus, species,
          individual_nr, plant_height_cm, nr_leaves, bulk, wet_mass_total_g,
          leaf_thickness_1_mm, leaf_thickness_2_mm, leaf_thickness_3_mm,
          dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2,
