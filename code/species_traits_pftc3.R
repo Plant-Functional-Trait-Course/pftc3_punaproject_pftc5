@@ -459,7 +459,6 @@ trait_pftc3 <- traits %>%
   mutate(SLA_cm2_g = Leaf_Area_cm2 / Dry_Mass_g,
          LDMC = Dry_Mass_g / Wet_Mass_g) %>%
 
-
   ### ADD DRY MASS FLAGS
   # Dry mas > Wet mass
   mutate(DryFlag = ifelse(Dry_Mass_g > Wet_Mass_g, paste(DryFlag, "Dry_larger_Wet", "_"), DryFlag),
@@ -478,7 +477,7 @@ trait_pftc3 <- traits %>%
          taxon_puna = NA_character_) %>%
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon = name_2020, genus, species,
-         individual_nr, plant_height_cm, nr_leaves, number_leaves_scan,
+         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag)
 

@@ -409,7 +409,7 @@ trait_pftc5 <- trait_pftc5 %>%
   #reordering columns
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon = name_2020, genus, species,
-         individual_nr, plant_height_cm, nr_leaves, number_leaves_scan,
+         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )
 
