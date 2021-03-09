@@ -8,3 +8,6 @@ library("lubridate")
 library("tpl")
 library("janitor")
 library("writexl")
+
+# little Helper
+pn <- . %>% print(n = Inf)
