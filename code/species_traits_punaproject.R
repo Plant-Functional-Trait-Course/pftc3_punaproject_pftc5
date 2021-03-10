@@ -16,7 +16,17 @@ all_codes <- get_PFTC_envelope_codes(seed = 1)
 
 spp_trait_dictionary_2019 <- read_csv("data/PunaProject_Peru_2019_TaxonomicDictionary.csv") %>%
   clean_names() %>%
-  mutate_if(is.character, ~str_trim(.))
+  mutate_if(is.character, ~str_trim(.)) %>%
+  # add missing combinations to dictionary
+  bind_rows(tibble(month = c("April", "April", "July", "July"),
+       site = c("QUE", "QUE", "ACJ", "ACJ"),
+       treatment = c("B", "B", "NB", "NB"),
+       plot_id = c("4", "5", NA_character_, NA_character_),
+       functional_group = c(rep("Gramminoid", 4)),
+       family = c(rep("Poaceae", 4)),
+       taxon = c("Carex pichinchensis", "Carex pichinchensis", "Rinchospora machrochaeta fina", "Rinchospora machrochaeta gruesa"),
+       name_2020 = c("Carex pichinchensis", "Carex pichinchensis", "Rinchospora machrochaeta fina", "Rinchospora machrochaeta gruesa"),
+       notes = NA_character_))
 
 #'
 #' Trait data from 2019 Puna Project
@@ -44,6 +54,7 @@ trait_puna <- trait_2019 %>%
          country = "PE",
          project = "T",
          gradient = 1,
+         # all combos are in the species dictionary, so this works!
          genus = str_replace(name_2020, "(?s) .*", ""),
          species = str_remove(name_2020, paste0(genus, " ")),
          taxon = paste(genus, species, sep = " "),
@@ -82,34 +93,34 @@ trait_puna <- trait_2019 %>%
          dry_mass_g = dry_mass_total_g / number_leaves_scan,
          leaf_area_cm2 = leaf_area_total_cm2 / number_leaves_scan) %>%
   # Wet and dry mass do not make sense for these species
-  mutate(dry_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, dry_mass_g),
-         wet_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, wet_mass_g),
-         leaf_area_cm2 = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, leaf_area_cm2)) %>%
+  mutate(dry_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, dry_mass_g),
+         wet_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, wet_mass_g),
+         leaf_area_cm2 = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, leaf_area_cm2)) %>%
 
     # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g)  %>%
   #Some of these species were not in the dictionary thus now have NA's
-  mutate(functional_group = case_when(taxon == "Carex pichinchensis" ~ "Gramminoid",
-                                      taxon == "Rinchospora machrochaeta fina" ~ "Gramminoid",
-                                      taxon == "Rinchospora machrochaeta gruesa" ~ "Gramminoid",
-                                      TRUE ~ functional_group),
-         family = case_when(taxon == "Carex pichinchensis" ~ "Cyperaceae",
-                            taxon == "Rinchospora machrochaeta fina" ~ "Cyperaceae",
-                            taxon == "Rinchospora machrochaeta gruesa" ~ "Cyperaceae",
-                            TRUE ~ family),
-         species = case_when(taxon == "Carex pichinchensis" ~ "pichinchensis",
-                             taxon == "Rinchospora machrochaeta fina" ~ "machrochaeta fina",
-                             taxon == "Rinchospora machrochaeta gruesa" ~ "machrochaeta gruesa",
-                             TRUE ~ species),
-         genus = case_when(taxon == "Carex pichinchensis" ~ "Carex",
-                           taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora",
-                           taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora",
-                           TRUE ~ genus),
-         name_2020 = case_when(taxon == "Carex pichinchensis" ~ "Carex pichinchensis",
-                               taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora machrochaeta fina",
-                               taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora machrochaeta fina",
-                               TRUE ~ name_2020)) %>%
+  # mutate(functional_group = case_when(taxon == "Carex pichinchensis" ~ "Gramminoid",
+  #                                     taxon == "Rinchospora machrochaeta fina" ~ "Gramminoid",
+  #                                     taxon == "Rinchospora machrochaeta gruesa" ~ "Gramminoid",
+  #                                     TRUE ~ functional_group),
+  #        family = case_when(taxon == "Carex pichinchensis" ~ "Cyperaceae",
+  #                           taxon == "Rinchospora machrochaeta fina" ~ "Cyperaceae",
+  #                           taxon == "Rinchospora machrochaeta gruesa" ~ "Cyperaceae",
+  #                           TRUE ~ family),
+  #        species = case_when(taxon == "Carex pichinchensis" ~ "pichinchensis",
+  #                            taxon == "Rinchospora machrochaeta fina" ~ "machrochaeta fina",
+  #                            taxon == "Rinchospora machrochaeta gruesa" ~ "machrochaeta gruesa",
+  #                            TRUE ~ species),
+  #        genus = case_when(taxon == "Carex pichinchensis" ~ "Carex",
+  #                          taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora",
+  #                          taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora",
+  #                          TRUE ~ genus),
+  #        name_2020 = case_when(taxon == "Carex pichinchensis" ~ "Carex pichinchensis",
+  #                              taxon == "Rinchospora machrochaeta fina" ~ "Rinchospora machrochaeta fina",
+  #                              taxon == "Rinchospora machrochaeta gruesa" ~ "Rinchospora machrochaeta fina",
+  #                              TRUE ~ name_2020)) %>%
   #Rename NB to BB
   mutate(treatment = if_else(treatment == "NB",
                              "BB",
