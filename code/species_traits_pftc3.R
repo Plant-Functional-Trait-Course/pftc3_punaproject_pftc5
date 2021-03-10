@@ -423,6 +423,8 @@ traits <- traits %>%
   ) %>%
 
   mutate(Species = ifelse(ID == "CHL7402", "sp", Species)) %>%
+  mutate(Genus = ifelse(ID %in% c("CYC1709", "AMT5064", "AMS7010", "AMR3145", "AMV4004", "AMU6887", "EDH4767", "DVJ9425", "DUX6052", "DUQ4771", "DVN0309", "CYD2957"), "Pernettya", Genus)) %>%
+  mutate(Species = ifelse(ID %in% c("CYC1709", "AMT5064", "AMS7010", "AMR3145", "AMV4004", "AMU6887", "EDH4767", "DVJ9425", "DUX6052", "DUQ4771", "DVN0309", "CYD2957"), "prostrata", Species)) %>%
 
   # Taxon
   mutate(Taxon = paste(Genus, Species, sep = " ")) %>%
@@ -442,7 +444,7 @@ dryweigth <- read_csv(file = "data/PFTC3_Peru_2018_DryWeight.csv") %>%
 # Check if dryweight join
 #dryweigth %>% anti_join(traits, by = "ID") %>% as.data.frame()
 
-trait_pftc3 <-traits %>%
+trait_pftc3 <- traits %>%
   left_join(dryweigth, by = "ID") %>%
   # Calculate values on the leaf level (mostly bulk samples)
   rename(Wet_Mass_Total_g = Wet_Mass_g,
@@ -471,8 +473,14 @@ trait_pftc3 <-traits %>%
   left_join(spp_trait_dictionary_2018, by = c("treatment", "site", "plot_id", "taxon")) %>%
   mutate(course = "PFTC3",
          month = "March",
-         genus = str_replace(name_2020, "(?s) .*", ""),
-         species = str_remove(name_2020, paste0(genus, " ")),
+         genus = if_else(is.na(name_2020),
+                         genus,
+                         str_replace(name_2020, "(?s) .*", "")),
+         #genus = str_replace(name_2020, "(?s) .*", ""),
+         species = if_else(is.na(name_2020),
+                           species,
+                           str_remove(name_2020, paste0(genus, " "))),
+         #species = str_remove(name_2020, paste0(genus, " ")),
          taxon = paste(genus, species, sep = " "),
          plot_id = as.character(plot_id),
          taxon_puna = NA_character_) %>%
