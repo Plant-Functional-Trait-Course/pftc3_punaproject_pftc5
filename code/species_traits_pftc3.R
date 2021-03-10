@@ -442,7 +442,7 @@ dryweigth <- read_csv(file = "data/PFTC3_Peru_2018_DryWeight.csv") %>%
 # Check if dryweight join
 #dryweigth %>% anti_join(traits, by = "ID") %>% as.data.frame()
 
-trait_pftc3 <- traits %>%
+trait_pftc3 <-traits %>%
   left_join(dryweigth, by = "ID") %>%
   # Calculate values on the leaf level (mostly bulk samples)
   rename(Wet_Mass_Total_g = Wet_Mass_g,
@@ -473,10 +473,11 @@ trait_pftc3 <- traits %>%
          month = "March",
          genus = str_replace(name_2020, "(?s) .*", ""),
          species = str_remove(name_2020, paste0(genus, " ")),
+         taxon = paste(genus, species, sep = " "),
          plot_id = as.character(plot_id),
          taxon_puna = NA_character_) %>%
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
-         functional_group, family, taxon = name_2020, genus, species,
+         functional_group, family, taxon, genus, species,
          individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag)

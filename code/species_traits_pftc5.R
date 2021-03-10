@@ -363,7 +363,8 @@ trait_pftc5 <- trait_pftc5 %>%
          everything(),
          -c(genus, species)) %>%
   mutate(genus = sub("[[:space:]].*", "", name_2020),
-         species = str_remove(name_2020, paste0(genus, " "))) %>%
+         species = str_remove(name_2020, paste0(genus, " ")),
+         taxon = paste(genus, species, sep = " ")) %>%
   # Cleaning trait values
   #these species are bulk species so number of leaves 'standardised to 1
   mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
@@ -408,7 +409,7 @@ trait_pftc5 <- trait_pftc5 %>%
          bulk = as.character(bulk)) %>%
   #reordering columns
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
-         functional_group, family, taxon = name_2020, genus, species,
+         functional_group, family, taxon, genus, species,
          individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )

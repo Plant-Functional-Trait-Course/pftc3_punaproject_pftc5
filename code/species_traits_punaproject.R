@@ -46,6 +46,7 @@ trait_puna <- trait_2019 %>%
          gradient = 1,
          genus = str_replace(name_2020, "(?s) .*", ""),
          species = str_remove(name_2020, paste0(genus, " ")),
+         taxon = paste(genus, species, sep = " "),
          plot_id = as.character(plot_id),
          treatment = if_else(site == 'QUE', "B", treatment),
          treatment = str_to_upper(treatment),
@@ -115,7 +116,7 @@ trait_puna <- trait_2019 %>%
                              treatment)) %>%
   # Reordering columns for matching with the other dataset
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
-         functional_group, family, taxon = name_2020, genus, species,
+         functional_group, family, taxon, genus, species,
          individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag)
