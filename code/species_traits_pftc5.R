@@ -407,6 +407,8 @@ trait_pftc5 <- trait_pftc5 %>%
   mutate(date = ymd(paste0("2020-03-", day)),
          plot_id = as.character(plot_id),
          bulk = as.character(bulk)) %>%
+  # remove Seans leaves (no more patience for this!)
+  filter(treatment != "OFF-PLOT") %>%
   #reordering columns
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
