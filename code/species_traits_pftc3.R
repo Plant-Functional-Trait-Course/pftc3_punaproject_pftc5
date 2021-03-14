@@ -392,7 +392,7 @@ traits <- traits %>%
          Species = ifelse((Genus == "Viola" & Species == "pygmae|pygmaeaa"), "pygmaea", Species),
          Species = ifelse((Genus == "Unknown" & Species == "hairy leaves"), "hairy leaf", Species),
 
-         # Second round of changes in Island
+         # Second round of changes in Iceland
          Species = gsub("cylindistachya", "cylindristachya", Species),
          Species = gsub("hispdus", "hispidus", Species),
          Species = gsub("cheilantoides", "cheilanthoides", Species),
@@ -444,32 +444,55 @@ dryweigth <- read_csv(file = "data/PFTC3_Peru_2018_DryWeight.csv") %>%
 # Check if dryweight join
 #dryweigth %>% anti_join(traits, by = "ID") %>% as.data.frame()
 
+# trait corrections
+trait_correction <- read_excel(path = "trait_pftc_and_puna_corregido_LVB.xlsx") %>%
+  select(id, wet_mass_corr = wet_mass_total_g, dry_mass_corr = dry_mass_total_g, leaf_area_corr = leaf_area_total_cm2, leaf_thickness_1_corr = leaf_thickness_1_mm, leaf_thickness_2_corr = leaf_thickness_2_mm, leaf_thickness_3_corr = leaf_thickness_3_mm, number_leaves_scan_paul)
+
+
 trait_pftc3 <- traits %>%
   left_join(dryweigth, by = "ID") %>%
-  # Calculate values on the leaf level (mostly bulk samples)
-  rename(Wet_Mass_Total_g = Wet_Mass_g,
-         Dry_Mass_Total_g = Dry_Mass_g,
-         Leaf_Area_Total_cm2 = Leaf_Area_cm2) %>%
-  mutate(Wet_Mass_g = Wet_Mass_Total_g / NrLeaves,
-         Dry_Mass_g = Dry_Mass_Total_g / NrLeaves,
-         Leaf_Area_cm2 = Leaf_Area_Total_cm2 / NrLeaves) %>%
-  # # Wet and dry mass do not make sense for these species
-  mutate(Dry_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Dry_Mass_g),
-         Wet_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Wet_Mass_g),
-         Leaf_Area_cm2 = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Leaf_Area_cm2)) %>%
-  # Calculate SLA and LDMC
-  mutate(SLA_cm2_g = Leaf_Area_cm2 / Dry_Mass_g,
-         LDMC = Dry_Mass_g / Wet_Mass_g) %>%
+  clean_names() %>%
+  # join corrections
+  left_join(trait_correction, by = c("id")) %>%
+  mutate(number_leaves_scan_paul = as.numeric(ifelse(number_leaves_scan_paul == "no se encontro" | is.na(number_leaves_scan_paul), number_leaves_scan, number_leaves_scan_paul))) %>%
 
-  ### ADD DRY MASS FLAGS
-  # Dry mas > Wet mass
-  mutate(DryFlag = ifelse(Dry_Mass_g > Wet_Mass_g, paste(DryFlag, "Dry_larger_Wet", "_"), DryFlag),
-         DryFlag = ifelse(Dry_Mass_g == 0, paste(DryFlag, "too_small_exceed_scale", "_"), DryFlag)) %>%
+  mutate(wet_mass_total_g = wet_mass_corr,
+         dry_mass_total_g = dry_mass_corr,
+         leaf_area_total_cm2 = leaf_area_corr,
+         leaf_thickness_1_mm = leaf_thickness_1_corr,
+         leaf_thickness_2_mm = leaf_thickness_2_corr,
+         leaf_thickness_3_mm = leaf_thickness_3_corr) %>%
+
+  # # Calculate values on the leaf level (mostly bulk samples)
+  # rename(wet_mass_total_g = wet_mass_g,
+  #        dry_mass_total_g = dry_mass_g,
+  #        leaf_area_total_cm2 = leaf_area_cm2) %>%
+  mutate(wet_mass_g = wet_mass_total_g / number_leaves_scan_paul,
+         dry_mass_g = dry_mass_total_g / number_leaves_scan_paul,
+         leaf_area_cm2 = leaf_area_total_cm2 / number_leaves_scan_paul) %>%
+
+  # make wet and dry mass NA if 0
+  mutate(wet_mass_g = if_else(wet_mass_g == 0, NA_real_, wet_mass_g),
+         dry_mass_g = if_else(dry_mass_g == 0, NA_real_, dry_mass_g)) %>%
+
+  # Calculate SLA and LDMC
+  mutate(sla_cm2_g = leaf_area_cm2 / wet_mass_g,
+         ldmc = dry_mass_g / wet_mass_g,
+         leaf_thickness_mm = rowMeans(select(., matches("leaf_thickness_\\d_mm")), na.rm = TRUE)) %>%
+
+  # fix special cases
+  mutate(sla_cm2_g = if_else(id == "HFW6441", NA_real_, sla_cm2_g)) %>%
+
+  # # Wet and dry mass do not make sense for these species
+  mutate(dry_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, dry_mass_g),
+         wet_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, wet_mass_g),
+         leaf_area_cm2 = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, leaf_area_cm2)) %>%
+
   #remove final duplicates
   distinct() %>%
-  filter(Project != "Sean") %>%
-  clean_names() %>%
+  filter(project != "Sean") %>%
 
+  # fix taxonomy
   left_join(spp_trait_dictionary_2018, by = c("treatment", "site", "plot_id", "taxon")) %>%
   mutate(course = "PFTC3",
          month = "March",
@@ -486,10 +509,9 @@ trait_pftc3 <- traits %>%
          taxon_puna = NA_character_) %>%
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
-         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
+         individual_nr, nr_leaves = number_leaves_scan_paul, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
-         leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag)
-
+         leaf_thickness_mm, area_flag, dry_flag, wet_flag)
 
 # End of Script ----
 
