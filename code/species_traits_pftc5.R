@@ -406,7 +406,9 @@ trait_pftc5 <- trait_pftc5 %>%
   # build date
   mutate(date = ymd(paste0("2020-03-", day)),
          plot_id = as.character(plot_id),
-         bulk = as.character(bulk)) %>%
+         bulk = as.character(bulk),
+
+         treatment = if_else(treatment == "BB", "NB", treatment)) %>%
   # remove Seans leaves (no more patience for this!)
   filter(treatment != "OFF-PLOT") %>%
   #reordering columns
