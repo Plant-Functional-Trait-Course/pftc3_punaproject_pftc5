@@ -1,14 +1,6 @@
 # Load libraries ----------------------------------------------------------
-
-library("here")
-library("readxl")
-library("writexl")
-library("tidyverse")
-library("lubridate")
-library("tpl")
-library("PFTCFunctions")
+source("code/load_libraries.R")
 library("janitor")
-
 #'
 #' Reading data species dictionary
 #'
@@ -49,6 +41,7 @@ spp_cover_2018 <- read_csv("data/PFTC3_Peru_2018_CommunityCover.csv") %>%
   mutate_if(is.character, ~str_trim(.)) %>%
   mutate(taxon = str_to_sentence(taxon)) %>%
   select(-c(family, genus, species, functional_group))
+
 
 
 ##########################################################################
@@ -102,14 +95,36 @@ spp_clean_2019 <- spp_clean_2019 %>%
   select(month, site, treatment, plot_id, functional_group, family, genus, species,
          taxon = name_2020, cover)
 
+
+
 ###################################################################################
 # Merging PFTC3 and Puna Project
 
 spp_clean_2018 <- spp_clean_2018 %>%
   mutate(year = 2018,
          project = "PFTC3",
-         month = "March") %>%
-  select(year, project, month, everything()) %>%
+         month = "March",
+         treatment = if_else(site == "QUE", "C", treatment)) %>%
+  select(year, project, month, everything())
+
+
+spp_clean_2019 <- spp_clean_2019 %>%
+  mutate(year = 2019,
+         project = "Puna",
+         treatment = if_else(site == "QUE", "C", treatment)) %>%
+  select(year, project, everything())
+
+# Here is the data for PFTC3 and PunaProject, merged
+
+#import new corrections
+new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_LVB.xlsx")
+
+# check corrections
+new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "taxon", "cover")) %>% as.data.frame()
+species_cover %>% anti_join(new_corrections, by = c("year", "project", "month", "site", "plot_id", "functional_group", "family", "genus", "taxon", "cover"))
+
+species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
+  mutate(cover = if_else(project == "Puna" & month == "April" & site == "WAY" & treatment == "C" & plot_id == 1 & genus == "Gnaphalium", 1, cover)) %>%
   #some punctuation tweaks
   mutate(taxon = case_when(taxon == "Lachemilla cf vulcanica" ~ "Lachemilla cf. vulcanica",
                            str_detect(taxon,
@@ -123,31 +138,6 @@ spp_clean_2018 <- spp_clean_2018 %>%
                                       "alstonii") == TRUE ~ "Jamesonia",
                            TRUE ~ genus))
 
-
-spp_clean_2019 <- spp_clean_2019 %>%
-  mutate(year = 2019,
-         project = "Puna") %>%
-  select(year, project, everything()) %>%
-  #some punctuation tweaks
-  mutate(taxon = case_when(taxon == "Lachemilla cf vulcanica" ~ "Lachemilla cf. vulcanica",
-                           str_detect(taxon,
-                                      "alstonii") == TRUE ~ "Jamesonia alstonii",
-                           TRUE ~ taxon),
-         species = case_when(species == "cf vulcanica" ~ "cf. vulcanica",
-                             str_detect(taxon,
-                                        "alstonii") == TRUE ~ "alstonii",
-                             TRUE ~ species),
-         genus = case_when(str_detect(genus,
-                                      "alstonii") == TRUE ~ "Jamesonia",
-                           TRUE ~ genus)) %>%
-  #Change NB to BB
-  mutate(treatment = if_else(treatment == "NB",
-                             "BB",
-                             treatment))
-
-# Here is the data for PFTC3 and PunaProject, merged
-
-species_cover <- bind_rows(spp_clean_2018, spp_clean_2019)
 
 # Convert to wide format for comparing species cover side by side by month
 
@@ -260,6 +250,9 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
       TRUE ~ family
     )) %>%
 
+  # fix treatment
+  mutate(treatment = if_else(treatment == "BB", "NB", treatment)) %>%
+
   ##SELECT ONLY COLUMNS THAT ARE IN THE osf DATA
   select(year, project, month, site, treatment, plot_id, functional_group, family, genus, species, taxon, cover) %>%
 
@@ -268,25 +261,18 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
 
 #Adding 2020 species
 
-species_cover <- bind_rows(species_cover, spp_cover_2020)
+species_cover <- bind_rows(species_cover, spp_cover_2020) %>%
+  rename(course = project)
 
 # Export ------------------------------------------------------------------
 
+# make new folder
+dir.create("clean_data")
 
-#PFTC3
+species_cover %>%
+  write_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_CommunityCover_clean.csv")
 
-spp_clean_2018 %>%
-  write_csv("clean_data/PFTC3_Peru_2018_CommunityCover_clean.csv")
 
-# Puna Project
-
-spp_clean_2019 %>%
-  write_csv("clean_data/PunaProject_Peru_2019_CommunityCover_clean.csv")
-
-# PFTC5
-
-spp_cover_2020 %>%
-  write_csv("clean_data/PFTC5_Peru_2020_CommunityCover_clean.csv")
 
 # End of Script ----
 

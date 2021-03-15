@@ -2,19 +2,11 @@
 
 # Load libraries ----------------------------------------------------------
 
-library("readxl")
-library("writexl")
-library("tidyverse")
-library("lubridate")
-library("tpl")
-library("PFTCFunctions")
-library("janitor")
-library("osfr")
-library("here")
+# source this file if needed
+#source("code/load_libraries.R")
 
-# Helpers -----------------------------------------------------------------
+# Dictionary -----------------------------------------------------------------
 
-pn <- . %>% print(n = Inf)
 source("code/taxon_correction.R")
 
 # Get valid IDs -----------------------------------------------------------
@@ -140,7 +132,7 @@ read_plus <- function(flnm) {
     mutate(filename = flnm)
 }
 
-leafarea.raw  <- list.files(path = "data/",
+leafarea.raw  <- list.files(path = "data/raw_area_2020/",
                             pattern = "LeafArea",
                             full.names = T) %>%
   map_df(~read_plus(.)) %>%
@@ -334,7 +326,7 @@ trait_pftc5 <- trait_2020 %>%
   left_join(dry_mass, by = "id") %>%
   select(id, day, project, site, experiment, plot_id, elevation, taxon, genus, species,
          individual_nr, leaf_nr, plant_height_cm, plant_length_cm, length_cm, bulk_nr_leaves,
-         wet_mass_g, dry_mass_g, dry_weight_g, leaf_thickness_1_mm, leaf_thickness_2_mm,
+         wet_mass_g, dry_mass_g = dry_weight_g, leaf_thickness_1_mm, leaf_thickness_2_mm,
          leaf_thickness_3_mm, leafarea_cm2, nleafscan, remark, notes1, notes2, wetflag,
          areaflag, drymassflag)
 
@@ -346,7 +338,9 @@ spp_trait_dictionary_2020 <- read_csv("data/PFTC5_Peru_2020_TaxonomicDictionary.
 trait_pftc5 <- trait_pftc5 %>%
   left_join(spp_trait_dictionary_2020, by = "taxon") %>%
   mutate(country = "PE",
-         project = "PFTC5",
+         course = "PFTC5",
+         project = "T",
+         gradient = 1,
          month = "March",
          year = 2020,
          leaf_thickness_ave_mm = rowMeans(select(., matches("leaf_thickness_\\d_mm")),
@@ -369,7 +363,8 @@ trait_pftc5 <- trait_pftc5 %>%
          everything(),
          -c(genus, species)) %>%
   mutate(genus = sub("[[:space:]].*", "", name_2020),
-         species = str_remove(name_2020, paste0(genus, " "))) %>%
+         species = str_remove(name_2020, paste0(genus, " ")),
+         taxon = paste(genus, species, sep = " ")) %>%
   # Cleaning trait values
   #these species are bulk species so number of leaves 'standardised to 1
   mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
@@ -394,9 +389,9 @@ trait_pftc5 <- trait_pftc5 %>%
          dry_mass_g = dry_mass_total_g / nr_leaves,
          leaf_area_cm2 = leaf_area_total_cm2 / nr_leaves) %>%
   # Wet and dry mass do not make sense for these species
-  # mutate(Dry_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Dry_Mass_g),
-  #       Wet_Mass_g = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Wet_Mass_g),
-  #       Leaf_Area_cm2 = ifelse(Genus %in% c("Baccharis", "Lycopodiella", "Lycopodium"), NA_real_, Leaf_Area_cm2)) %>%
+  mutate(dry_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, dry_mass_g),
+         wet_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, wet_mass_g),
+         leaf_area_cm2 = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, leaf_area_cm2)) %>%
   # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g) %>%
@@ -409,16 +404,18 @@ trait_pftc5 <- trait_pftc5 %>%
                        "bulk",
                        NA)) %>%
   # build date
-  mutate(date = paste0("2020-03-", day),
+  mutate(date = ymd(paste0("2020-03-", day)),
          plot_id = as.character(plot_id),
-         bulk = as.character(bulk)) %>%
+         bulk = as.character(bulk),
+
+         treatment = if_else(treatment == "BB", "NB", treatment)) %>%
+  # remove Seans leaves (no more patience for this!)
+  filter(treatment != "OFF-PLOT") %>%
   #reordering columns
-  select(country, project, id, year, month, date, site, treatment, plot_id,
-         functional_group, family, name_2020, genus, species,
-         individual_nr, plant_height_cm, nr_leaves, bulk, wet_mass_total_g,
-         leaf_thickness_1_mm, leaf_thickness_2_mm, leaf_thickness_3_mm,
-         dry_mass_total_g, number_leaves_scan, leaf_area_total_cm2,
+  select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
+         functional_group, family, taxon, genus, species,
+         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
-         leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )
+         leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )
 
 # End of Script ---
