@@ -445,7 +445,7 @@ dryweigth <- read_csv(file = "data/PFTC3_Peru_2018_DryWeight.csv") %>%
 #dryweigth %>% anti_join(traits, by = "ID") %>% as.data.frame()
 
 # trait corrections
-trait_correction <- read_excel(path = "trait_pftc_and_puna_corregido_LVB.xlsx") %>%
+trait_correction <- read_excel(path = "data/trait_pftc_and_puna_corregido_LVB.xlsx") %>%
   select(id, wet_mass_corr = wet_mass_total_g, dry_mass_corr = dry_mass_total_g, leaf_area_corr = leaf_area_total_cm2, leaf_thickness_1_corr = leaf_thickness_1_mm, leaf_thickness_2_corr = leaf_thickness_2_mm, leaf_thickness_3_corr = leaf_thickness_3_mm, number_leaves_scan_paul)
 
 
