@@ -103,15 +103,14 @@ spp_clean_2019 <- spp_clean_2019 %>%
 spp_clean_2018 <- spp_clean_2018 %>%
   mutate(year = 2018,
          project = "PFTC3",
-         month = "March",
-         treatment = if_else(site == "QUE", "C", treatment)) %>%
+         month = "March") %>%
   select(year, project, month, everything())
 
 
 spp_clean_2019 <- spp_clean_2019 %>%
   mutate(year = 2019,
          project = "Puna",
-         treatment = if_else(site == "QUE", "C", treatment)) %>%
+         treatment = if_else(site == "TRE" & treatment == "B", "NB", treatment)) %>%
   select(year, project, everything())
 
 # Here is the data for PFTC3 and PunaProject, merged
