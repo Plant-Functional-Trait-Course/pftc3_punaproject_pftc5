@@ -115,13 +115,6 @@ spp_clean_2019 <- spp_clean_2019 %>%
 
 # Here is the data for PFTC3 and PunaProject, merged
 
-#import new corrections
-new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_LVB.xlsx")
-
-# check corrections
-new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "taxon", "cover")) %>% as.data.frame()
-species_cover %>% anti_join(new_corrections, by = c("year", "project", "month", "site", "plot_id", "functional_group", "family", "genus", "taxon", "cover"))
-
 species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
   mutate(cover = if_else(project == "Puna" & month == "April" & site == "WAY" & treatment == "C" & plot_id == 1 & genus == "Gnaphalium", 1, cover)) %>%
   #some punctuation tweaks
@@ -136,6 +129,25 @@ species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
          genus = case_when(str_detect(genus,
                                       "alstonii") == TRUE ~ "Jamesonia",
                            TRUE ~ genus))
+
+#import new corrections
+new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_LVB.xlsx") %>%
+  rename(species = specie) %>%
+  mutate(taxon = case_when(taxon == "Lachemilla cf vulcanica" ~ "Lachemilla cf. vulcanica",
+                           TRUE ~ taxon),
+         species = case_when(species == "cf vulcanica" ~ "cf. vulcanica",
+                             TRUE ~ species))
+
+# check corrections
+new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "species", "taxon"))
+# 665 species that are not in species_cover. Should those be added?
+
+species_cover %>% anti_join(new_corrections, by = c("year", "project", "month", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
+# 2 species that are different in corrections. Should those be deleted?
+# Achyrocline ramosissima not there instead a Gnaphalium dombeyanum
+# Carex sp8 is that Carex boliviensis, but cover is different
+
+# species_cover %>% filter(project == "Puna", month == "April", site == "WAY", treatment == "C", plot_id == 1, family == "Asteraceae") %>% as.data.frame()
 
 
 # Convert to wide format for comparing species cover side by side by month
