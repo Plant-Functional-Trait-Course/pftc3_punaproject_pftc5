@@ -47,7 +47,7 @@ trait_2019 %>%
 # Trait from Puna Project
 
 # trait corrections
-trait_correction <- read_excel(path = "trait_pftc_and_puna_corregido_LVB.xlsx") %>%
+trait_correction <- read_excel(path = "data/trait_pftc_and_puna_corregido_LVB.xlsx") %>%
   select(id, wet_mass_corr = wet_mass_total_g, dry_mass_corr = dry_mass_total_g, leaf_area_corr = leaf_area_total_cm2, leaf_thickness_1_corr = leaf_thickness_1_mm, leaf_thickness_2_corr = leaf_thickness_2_mm, leaf_thickness_3_corr = leaf_thickness_3_mm, number_leaves_scan_paul)
 
 trait_puna <- trait_2019 %>%
@@ -64,6 +64,7 @@ trait_puna <- trait_2019 %>%
          taxon = paste(genus, species, sep = " "),
          plot_id = as.character(plot_id),
          treatment = if_else(site == 'QUE', "B", treatment),
+         treatment = if_else(site == 'TRE' & treatment == "B", "NB", treatment),
          treatment = str_to_upper(treatment),
          # All this data need to be cheeked  by Aud
          area_flag = NA_character_,
@@ -110,11 +111,12 @@ trait_puna <- trait_2019 %>%
     # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g)  %>%
+  distinct() %>%
 
   # Reordering columns for matching with the other dataset
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
-         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
+         individual_nr, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag)
 
