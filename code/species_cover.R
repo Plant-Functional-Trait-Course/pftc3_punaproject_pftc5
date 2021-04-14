@@ -1,6 +1,8 @@
 # Load libraries ----------------------------------------------------------
 source("code/load_libraries.R")
 library("janitor")
+
+source("code/coordinates.R")
 #'
 #' Reading data species dictionary
 #'
@@ -273,7 +275,11 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
 #Adding 2020 species
 
 species_cover <- bind_rows(species_cover, spp_cover_2020) %>%
-  rename(course = project)
+  rename(course = project) %>%
+  mutate(plot_id = as.character(plot_id)) %>%
+  left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
+  select(-comment)
+
 
 # Export ------------------------------------------------------------------
 

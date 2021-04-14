@@ -6,6 +6,7 @@ library("janitor")
 source(here::here("code/species_traits_pftc3.R")) #PFTC3 import and clean
 source(here::here("code/species_traits_punaproject.R")) #Puna Project import and clean
 source(here::here("code/species_traits_pftc5.R")) #PFTC5 import and clean
+source("code/coordinates.R")
 
 ## Join all data ----
 
@@ -21,9 +22,14 @@ trait_data_peru <- bind_rows(trait_pftc3,
                           area_flag == "Outlier_very_large_leaf" ~ "outlier",
                           area_flag == "Leaf too white_Area missing" ~ "scanning_too_white",
                           area_flag == "Area estimated" ~ "area_estimated")) %>%
-  select(-area_flag, -dry_flag, -wet_flag)
+  select(-area_flag, -dry_flag, -wet_flag) %>%
+  left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
+  select(-comment)
 
-
+# problems to fix (have checked first two. the others will be checked)
+trait_data_peru %>%
+  anti_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
+  distinct(course, site, treatment, plot_id)
 
 
 #trait_data_peru %>% distinct(course, dry_flag)
