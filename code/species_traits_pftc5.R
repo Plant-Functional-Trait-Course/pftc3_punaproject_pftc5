@@ -328,7 +328,9 @@ trait_pftc5 <- trait_2020 %>%
          individual_nr, leaf_nr, plant_height_cm, plant_length_cm, length_cm, bulk_nr_leaves,
          wet_mass_g, dry_mass_g = dry_weight_g, leaf_thickness_1_mm, leaf_thickness_2_mm,
          leaf_thickness_3_mm, leafarea_cm2, nleafscan, remark, notes1, notes2, wetflag,
-         areaflag, drymassflag)
+         areaflag, drymassflag) %>%
+  # remove Seans leaves (no more patience for this!)
+  filter(project == "trait" | is.na(project))
 
 
 # Clean species names
@@ -409,8 +411,7 @@ trait_pftc5 <- trait_pftc5 %>%
          bulk = as.character(bulk),
 
          treatment = if_else(treatment == "BB", "NB", treatment)) %>%
-  # remove Seans leaves (no more patience for this!)
-  filter(treatment != "OFF-PLOT") %>%
+
   #reordering columns
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
