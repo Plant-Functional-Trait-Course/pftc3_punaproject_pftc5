@@ -48,6 +48,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
            TRUE ~ id
          ),
          experiment = if_else(id == "AIR7210", "BB", experiment),
+         experiment = if_else(id == "BMP6395", "C", experiment),
          leaf_thickness_1_mm = if_else(id == "AVH1607", 0.277, leaf_thickness_1_mm),
          leaf_thickness_1_mm = if_else(id == "BIX3249", 0.289, leaf_thickness_1_mm),
          leaf_thickness_2_mm = if_else(id == "BIX3249", 0.296, leaf_thickness_2_mm),
@@ -56,7 +57,10 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
          leaf_thickness_3_mm = if_else(id == "CFN6705", 0.181, leaf_thickness_3_mm),
          leaf_thickness_2_mm = if_else(leaf_thickness_2_mm == -0.545, 0.545,
                                        leaf_thickness_2_mm),
-         site = if_else(id == "BEA0992", "ACJ", site)) %>%
+         site = if_else(id == "BEA0992", "ACJ", site),
+         site = if_else(id %in% c("AKP1497", "AYS4952"), "QUE", site),
+
+         plot_id = if_else(id == "BMP6395", 1, plot_id)) %>%
   # Check species and genus
   mutate(genus = plyr::mapvalues(genus, from = GenusDictionary2020$wrong,
                                  to = GenusDictionary2020$right, warn_missing = FALSE)) %>%
