@@ -15,7 +15,7 @@ all_codes2 <- get_PFTC_envelope_codes(seed = 6)
 
 # Leaf traits -------------------------------------------------------------
 
-trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
+trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
   clean_names() %>%
   mutate(project = str_to_lower(project),
          project = case_when(
@@ -334,9 +334,19 @@ trait_pftc5 <- trait_2020 %>%
          leaf_thickness_3_mm, leafarea_cm2, nleafscan, remark, notes1, notes2, wetflag,
          areaflag, drymassflag) %>%
   # remove Seans leaves (no more patience for this!)
-  filter(project == "trait" | is.na(project))
+  filter(project == "trait" | is.na(project)) %>%
+  # fix wrong wet mass
+  mutate(wet_mass_g = if_else(id == "BVM5909", 0.075, wet_mass_g),
+         wet_mass_g = if_else(id == "BUJ1931", 0.069, wet_mass_g),
+         wet_mass_g = if_else(id == "AKC4237", 0.063, wet_mass_g))
 
 
+
+
+#   # fix wrong wet mass values
+#   left_join(wet_mass_correction, by = "id") %>%
+#   mutate(wet_mass_g = if_else(!is.na(wet_mass_envelope), wet_mass_envelope, wet_mass_g))
+# filter(id == "AIS5021") %>% as.data.frame()
 # Clean species names
 
 spp_trait_dictionary_2020 <- read_csv("data/PFTC5_Peru_2020_TaxonomicDictionary.csv")
