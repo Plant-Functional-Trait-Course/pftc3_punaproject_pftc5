@@ -113,6 +113,18 @@ trait_puna <- trait_2019 %>%
          ldmc = dry_mass_g / wet_mass_g)  %>%
   distinct() %>%
 
+  # remove problematic leaves
+  mutate(wet_mass_g = if_else(ldmc > 1, NA_real_, wet_mass_g),
+         dry_mass_g = if_else(ldmc > 1, NA_real_, dry_mass_g),
+         ldmc = if_else(ldmc > 1, NA_real_, ldmc,),
+         sla_cm2_g = if_else(ldmc > 1, NA_real_, sla_cm2_g),
+
+         wet_mass_g = if_else(sla_cm2_g > 1000, NA_real_, wet_mass_g),
+         dry_mass_g = if_else(sla_cm2_g > 1000, NA_real_, dry_mass_g),
+         ldmc = if_else(sla_cm2_g > 1000, NA_real_, ldmc),
+         leaf_area_cm2 = if_else(sla_cm2_g > 1000, NA_real_, leaf_area_cm2),
+         sla_cm2_g = if_else(sla_cm2_g > 1000, NA_real_, sla_cm2_g)) %>%
+
   # Reordering columns for matching with the other dataset
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
