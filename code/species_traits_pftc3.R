@@ -495,6 +495,9 @@ trait_pftc3 <- traits %>%
   # remove 5 leaves with wrong ldmc/sla values because of problems in wet/dry mass
   filter(!id %in% c("ASI4769", "AVO1141", "DSP7480", "BTW3395", "AVL0846")) %>%
 
+  # remove because only height data
+  filter(id != c("DXJ2730")) %>%
+
   # fix taxonomy
   left_join(spp_trait_dictionary_2018, by = c("treatment", "site", "plot_id", "taxon")) %>%
   mutate(course = "PFTC3",
@@ -519,3 +522,5 @@ trait_pftc3 <- traits %>%
 # End of Script ----
 
 ###############################################################
+
+
