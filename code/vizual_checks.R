@@ -34,3 +34,23 @@ trait_data_peru %>%
   facet_wrap(~ trait, scales = "free") +
   theme_minimal()
 
+# Check traits
+trait_data_peru %>%
+  filter(trait %in% c("wet_mass_g", "dry_mass_g")) %>%
+  pivot_wider(names_from = trait, values_from = value) %>%
+  ggplot(aes(x = log(wet_mass_g), y = log(dry_mass_g), colour = treatment)) +
+  geom_point(colour = "lightblue", alpha = 0.5) +
+  scale_colour_viridis_d(option = "plasma", end = 0.8) +
+  facet_wrap(~ course) +
+  theme_minimal()
+
+
+trait_data_peru %>%
+  filter(trait %in% c("leaf_area_cm2", "dry_mass_g")) %>%
+  pivot_wider(names_from = trait, values_from = value) %>%
+  ggplot(aes(x = log(leaf_area_cm2), y = log(dry_mass_g), colour = treatment)) +
+  geom_point(alpha = 0.5) +
+  scale_colour_viridis_d(option = "plasma", end = 0.8) +
+  facet_wrap(~ course) +
+  theme_minimal()
+
