@@ -226,6 +226,12 @@ leafarea <- leafarea %>%
                                              double area", "Rolled - take double area",
                                              "Rolled leaf multiple leaf area"),
                                leafarea_cm2*2, leafarea_cm2)) %>%
+
+  # re-calculate area for leaves with large white area
+  mutate(leafarea_cm2 = if_else(id == "BHQ5433", 29.24, leafarea_cm2),
+         leafarea_cm2 = if_else(id == "BHU0841", 21.72, leafarea_cm2),
+         leafarea_cm2 = if_else(id == "BCZ3166", 5.35, leafarea_cm2)) %>%
+
   # Flag data
   mutate(areaflag = if_else(id %in% c("AFH6927", "AUV5625", "AVZ7947", "AJT3939", "AVX8706", "AWA4195", "BCP9007"), "Area estimated", NA_character_),
          areaflag = if_else(id %in% c("AFL3747", "AJS0144", "AJZ6728", "AZE5327", "BBT3329"), "Leaf too white_Area missing", areaflag),
@@ -419,6 +425,19 @@ trait_pftc5 <- trait_pftc5 %>%
                                         "Hypericum andinum"),
                        "bulk",
                        NA)) %>%
+
+  # fix problematic leaves
+  tidylog::mutate(wet_mass_g = if_else(ldmc > 1, NA_real_, wet_mass_g),
+                  dry_mass_g = if_else(ldmc > 1, NA_real_, dry_mass_g),
+                  ldmc = if_else(ldmc > 1, NA_real_, ldmc),
+
+                  wet_mass_g = if_else(sla_cm2_g > 500, NA_real_, wet_mass_g),
+                  dry_mass_g = if_else(sla_cm2_g > 500, NA_real_, dry_mass_g),
+                  ldmc = if_else(sla_cm2_g > 500, NA_real_, ldmc),
+                  leaf_area_cm2 = if_else(sla_cm2_g > 500, NA_real_, leaf_area_cm2),
+                  sla_cm2_g = if_else(sla_cm2_g > 500, NA_real_, sla_cm2_g)) %>%
+
+
   # build date
   mutate(date = ymd(paste0("2020-03-", day)),
          plot_id = as.character(plot_id),
