@@ -431,11 +431,11 @@ trait_pftc5 <- trait_pftc5 %>%
                   dry_mass_g = if_else(ldmc > 1, NA_real_, dry_mass_g),
                   ldmc = if_else(ldmc > 1, NA_real_, ldmc),
 
-                  wet_mass_g = if_else(sla_cm2_g > 500, NA_real_, wet_mass_g),
-                  dry_mass_g = if_else(sla_cm2_g > 500, NA_real_, dry_mass_g),
-                  ldmc = if_else(sla_cm2_g > 500, NA_real_, ldmc),
-                  leaf_area_cm2 = if_else(sla_cm2_g > 500, NA_real_, leaf_area_cm2),
-                  sla_cm2_g = if_else(sla_cm2_g > 500, NA_real_, sla_cm2_g)) %>%
+                  wet_mass_g = if_else(sla_cm2_g > 600, NA_real_, wet_mass_g),
+                  dry_mass_g = if_else(sla_cm2_g > 600, NA_real_, dry_mass_g),
+                  ldmc = if_else(sla_cm2_g > 600, NA_real_, ldmc),
+                  leaf_area_cm2 = if_else(sla_cm2_g > 600, NA_real_, leaf_area_cm2),
+                  sla_cm2_g = if_else(sla_cm2_g > 600, NA_real_, sla_cm2_g)) %>%
 
 
   # build date
