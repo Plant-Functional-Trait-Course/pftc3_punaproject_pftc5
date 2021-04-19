@@ -28,6 +28,10 @@ clean_data/*
 *.md
 *2.bib
 *.ai
+!image/PeruMountain2.png
+!README_files/figure-gfm/DiversityPlot-1.png
+!README_files/figure-gfm/TraitChecks-1.png
+!README_files/figure-gfm/TraitDistribution-1.png
 
 # MacOS nonsense
 .DS_Store

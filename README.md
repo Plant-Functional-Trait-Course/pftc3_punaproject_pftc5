@@ -81,6 +81,9 @@ data("location", package = "PFTCFunctions")
 | Peru    | flux          |        |
 | Peru    | meta          |        |
 
+Note that the raw data and the code to clean the raw data is also
+available on OSF and the GitHub repository.
+
 ### Functional leaf trait dataset
 
 #### Leaf traits measurements
@@ -158,7 +161,7 @@ the whole leaf (measured with the scanner), divided by the dry mass
 LDMC was measured with the leaf dry mass divided by the leaf wet mass.
 LDMC = Leaf dry mass (g)/ leaf wet mass (g).
 
-To download the clean database use: `XXX/Download_Data.R`
+To download the clean data use: `data_paper/1_download_clean_data.R`
 
 #### Traits Distributions and Values
 
@@ -187,9 +190,8 @@ values greater than 600 cm<sup>2</sup> /g.
 
 ##### General checking, cleaning and flagging data
 
-  - Leaves that have white on the leave scan
-  - outlier?
-  - area estimated?
+TBA \* Leaves that have white on the leave scan \* outlier? \* area
+estimated?
 
 ### Community Dataset
 
@@ -201,7 +203,7 @@ Note that the total coverage in each plot can exceed 100 due to layering
 of the vegetation. Mean vegetation height for each plot was measured, at
 five points per plot.
 
-To download the clean database use: `XXX/Download_Data.R`
+To download the clean data use: `data_paper/1_download_clean_data.R`
 
 #### Data cleaning steps
 
@@ -232,12 +234,16 @@ because biomass accumulates inside the fence over time (no grazing).
 After 2014 the vegetation inside the fence was clipped at the end of the
 field season to remove this fence effect.
 
+### Carbon flux data
+
+TBA
+
 ### Climate data
 
   - Air (15 cm), ground (0 cm) and soil temperature (-6 cm) and
     volumetirc soil moisture from Tomst loggers betwee X and Y.
 
-To download the clean data use: `XXX/Download_Data.R`
+To download the clean data use: `data_paper/1_download_clean_data.R`
 
 #### Data processing
 
