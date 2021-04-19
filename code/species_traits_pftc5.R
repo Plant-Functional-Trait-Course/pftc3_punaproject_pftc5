@@ -15,7 +15,7 @@ all_codes2 <- get_PFTC_envelope_codes(seed = 6)
 
 # Leaf traits -------------------------------------------------------------
 
-trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
+trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
   clean_names() %>%
   mutate(project = str_to_lower(project),
          project = case_when(
@@ -48,6 +48,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
            TRUE ~ id
          ),
          experiment = if_else(id == "AIR7210", "BB", experiment),
+         experiment = if_else(id == "BMP6395", "C", experiment),
          leaf_thickness_1_mm = if_else(id == "AVH1607", 0.277, leaf_thickness_1_mm),
          leaf_thickness_1_mm = if_else(id == "BIX3249", 0.289, leaf_thickness_1_mm),
          leaf_thickness_2_mm = if_else(id == "BIX3249", 0.296, leaf_thickness_2_mm),
@@ -56,7 +57,10 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv")  %>%
          leaf_thickness_3_mm = if_else(id == "CFN6705", 0.181, leaf_thickness_3_mm),
          leaf_thickness_2_mm = if_else(leaf_thickness_2_mm == -0.545, 0.545,
                                        leaf_thickness_2_mm),
-         site = if_else(id == "BEA0992", "ACJ", site)) %>%
+         site = if_else(id == "BEA0992", "ACJ", site),
+         site = if_else(id %in% c("AKP1497", "AYS4952"), "QUE", site),
+
+         plot_id = if_else(id == "BMP6395", 1, plot_id)) %>%
   # Check species and genus
   mutate(genus = plyr::mapvalues(genus, from = GenusDictionary2020$wrong,
                                  to = GenusDictionary2020$right, warn_missing = FALSE)) %>%
@@ -222,6 +226,12 @@ leafarea <- leafarea %>%
                                              double area", "Rolled - take double area",
                                              "Rolled leaf multiple leaf area"),
                                leafarea_cm2*2, leafarea_cm2)) %>%
+
+  # re-calculate area for leaves with large white area
+  mutate(leafarea_cm2 = if_else(id == "BHQ5433", 29.24, leafarea_cm2),
+         leafarea_cm2 = if_else(id == "BHU0841", 21.72, leafarea_cm2),
+         leafarea_cm2 = if_else(id == "BCZ3166", 5.35, leafarea_cm2)) %>%
+
   # Flag data
   mutate(areaflag = if_else(id %in% c("AFH6927", "AUV5625", "AVZ7947", "AJT3939", "AVX8706", "AWA4195", "BCP9007"), "Area estimated", NA_character_),
          areaflag = if_else(id %in% c("AFL3747", "AJS0144", "AJZ6728", "AZE5327", "BBT3329"), "Leaf too white_Area missing", areaflag),
@@ -328,9 +338,21 @@ trait_pftc5 <- trait_2020 %>%
          individual_nr, leaf_nr, plant_height_cm, plant_length_cm, length_cm, bulk_nr_leaves,
          wet_mass_g, dry_mass_g = dry_weight_g, leaf_thickness_1_mm, leaf_thickness_2_mm,
          leaf_thickness_3_mm, leafarea_cm2, nleafscan, remark, notes1, notes2, wetflag,
-         areaflag, drymassflag)
+         areaflag, drymassflag) %>%
+  # remove Seans leaves (no more patience for this!)
+  filter(project == "trait" | is.na(project)) %>%
+  # fix wrong wet mass
+  mutate(wet_mass_g = if_else(id == "BVM5909", 0.075, wet_mass_g),
+         wet_mass_g = if_else(id == "BUJ1931", 0.069, wet_mass_g),
+         wet_mass_g = if_else(id == "AKC4237", 0.063, wet_mass_g))
 
 
+
+
+#   # fix wrong wet mass values
+#   left_join(wet_mass_correction, by = "id") %>%
+#   mutate(wet_mass_g = if_else(!is.na(wet_mass_envelope), wet_mass_envelope, wet_mass_g))
+# filter(id == "AIS5021") %>% as.data.frame()
 # Clean species names
 
 spp_trait_dictionary_2020 <- read_csv("data/PFTC5_Peru_2020_TaxonomicDictionary.csv")
@@ -403,18 +425,30 @@ trait_pftc5 <- trait_pftc5 %>%
                                         "Hypericum andinum"),
                        "bulk",
                        NA)) %>%
+
+  # fix problematic leaves
+  mutate(wet_mass_g = if_else(ldmc > 1, NA_real_, wet_mass_g),
+                  dry_mass_g = if_else(ldmc > 1, NA_real_, dry_mass_g),
+                  ldmc = if_else(ldmc > 1, NA_real_, ldmc),
+
+                  wet_mass_g = if_else(sla_cm2_g > 600, NA_real_, wet_mass_g),
+                  dry_mass_g = if_else(sla_cm2_g > 600, NA_real_, dry_mass_g),
+                  ldmc = if_else(sla_cm2_g > 600, NA_real_, ldmc),
+                  leaf_area_cm2 = if_else(sla_cm2_g > 600, NA_real_, leaf_area_cm2),
+                  sla_cm2_g = if_else(sla_cm2_g > 600, NA_real_, sla_cm2_g)) %>%
+
+
   # build date
   mutate(date = ymd(paste0("2020-03-", day)),
          plot_id = as.character(plot_id),
          bulk = as.character(bulk),
 
          treatment = if_else(treatment == "BB", "NB", treatment)) %>%
-  # remove Seans leaves (no more patience for this!)
-  filter(treatment != "OFF-PLOT") %>%
+
   #reordering columns
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
-         individual_nr, nr_leaves, number_leaves_scan, plant_height_cm,
+         individual_nr, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )
 

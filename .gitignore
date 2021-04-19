@@ -14,9 +14,20 @@
 
 #data (excludes everything in the folder data)
 data/*
-.csv
-.xls
-.xlsx
+clean_data/*
+*.csv
+*.xls
+*.xlsx
+
+#figures & output
+*.png
+*.html
+*.pdf
+*.jpeg
+*.jpg
+*.md
+*2.bib
+*.ai
 
 # MacOS nonsense
 .DS_Store

@@ -492,6 +492,12 @@ trait_pftc3 <- traits %>%
   distinct() %>%
   filter(project != "Sean") %>%
 
+  # remove 5 leaves with wrong ldmc/sla values because of problems in wet/dry mass
+  filter(!id %in% c("ASI4769", "AVO1141", "DSP7480", "BTW3395", "AVL0846")) %>%
+
+  # remove because only height data
+  filter(id != c("DXJ2730")) %>%
+
   # fix taxonomy
   left_join(spp_trait_dictionary_2018, by = c("treatment", "site", "plot_id", "taxon")) %>%
   mutate(course = "PFTC3",
@@ -509,10 +515,12 @@ trait_pftc3 <- traits %>%
          taxon_puna = NA_character_) %>%
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
-         individual_nr, nr_leaves = number_leaves_scan_paul, plant_height_cm,
+         individual_nr, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm, area_flag, dry_flag, wet_flag)
 
 # End of Script ----
 
 ###############################################################
+
+
