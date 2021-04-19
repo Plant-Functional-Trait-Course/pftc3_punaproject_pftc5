@@ -141,10 +141,10 @@ new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_L
                              TRUE ~ species))
 
 # check corrections
-new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "species", "taxon"))
+new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% count(project, month, site, treatment, plot_id) %>% print(n = Inf)
 # 665 species that are not in species_cover. Should those be added?
 
-species_cover %>% anti_join(new_corrections, by = c("year", "project", "month", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
+species_cover %>% anti_join(new_corrections, by = c("year", "month", "project", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
 # 2 species that are different in corrections. Should those be deleted?
 # Achyrocline ramosissima not there instead a Gnaphalium dombeyanum
 # Carex sp8 is that Carex boliviensis, but cover is different
