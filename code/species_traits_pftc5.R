@@ -100,7 +100,6 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          wet_mass_g = if_else(id == "BEF1022", 0.281, wet_mass_g)) %>%
   # Wet mass flags
   mutate(wetflag = if_else(id %in% c("BDN3235", "CXX4125"), "Outlier_very_large_leaf", NA_character_)) %>%
-  #TODO
   # add treatment (C, B, BB) for samples
   mutate(experiment = case_when(# QUE should be BB
     id == "AQA0121" ~ "BB",
@@ -136,7 +135,7 @@ read_plus <- function(flnm) {
     mutate(filename = flnm)
 }
 
-leafarea.raw  <- list.files(path = "data/raw_area_2020/",
+leafarea.raw  <- list.files(path = "data/",
                             pattern = "LeafArea",
                             full.names = T) %>%
   map_df(~read_plus(.)) %>%

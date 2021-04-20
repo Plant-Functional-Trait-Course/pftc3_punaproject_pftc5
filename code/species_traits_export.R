@@ -22,13 +22,6 @@ trait_data_peru <- bind_rows(trait_pftc3,
                           area_flag == "Outlier_very_large_leaf" ~ "outlier",
                           area_flag == "Leaf too white_Area missing" ~ "scanning_too_white",
                           area_flag == "Area estimated" ~ "area_estimated")) %>%
-  # a few more taxon corrections
-  mutate(taxon = case_when(taxon == "Lachemilla cf vulcanica" ~ "Lachemilla cf. vulcanica",
-                           taxon == "Calamagrostis anemona" ~ "Calamagrostis cf. amoena",
-                           TRUE ~ taxon),
-         species = case_when(taxon == "Lachemilla cf vulcanica" ~ "cf. vulcanica",
-                             taxon == "Calamagrostis anemona" ~ "cf. amoena",
-                             TRUE ~ species)) %>%
   select(-area_flag, -dry_flag, -wet_flag) %>%
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
   select(-comment)
