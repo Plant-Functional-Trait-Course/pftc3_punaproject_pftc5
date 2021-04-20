@@ -3,10 +3,10 @@ source("code/load_libraries.R")
 library("janitor")
 
 ## Read scripts for the three traits datasets ----
+source("code/coordinates.R")
 source(here::here("code/species_traits_pftc3.R")) #PFTC3 import and clean
 source(here::here("code/species_traits_punaproject.R")) #Puna Project import and clean
 source(here::here("code/species_traits_pftc5.R")) #PFTC5 import and clean
-source("code/coordinates.R")
 
 ## Join all data ----
 

@@ -25,7 +25,7 @@ spp_trait_dictionary_2019 <- read_csv("data/PunaProject_Peru_2019_TaxonomicDicti
        functional_group = c(rep("Gramminoid", 4)),
        family = c(rep("Poaceae", 4)),
        taxon = c("Carex pichinchensis", "Carex pichinchensis", "Rinchospora machrochaeta fina", "Rinchospora machrochaeta gruesa"),
-       name_2020 = c("Carex pichinchensis", "Carex pichinchensis", "Rinchospora machrochaeta fina", "Rinchospora machrochaeta gruesa"),
+       name_2020 = c("Carex pichinchensis", "Carex pichinchensis", "Rhynchospora seedlings", "Rhynchospora seedlings"),
        notes = NA_character_))
 
 #'
