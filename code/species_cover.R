@@ -130,7 +130,8 @@ species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
                              TRUE ~ species),
          genus = case_when(str_detect(genus,
                                       "alstonii") == TRUE ~ "Jamesonia",
-                           TRUE ~ genus))
+                           TRUE ~ genus)) %>%
+  rename(course = project)
 
 
 #import new corrections
@@ -142,7 +143,7 @@ new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_L
                              TRUE ~ species))
 
 # check corrections
-new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% count(project, month, site, treatment, plot_id, taxon) %>% print(n = Inf)
+new_corrections %>% anti_join(species_cover, by = c("year", "project", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% count(project, month, site, treatment, plot_id) %>% print(n = Inf)
 # 665 species that are not in species_cover. Should those be added?
 
 species_cover %>% anti_join(new_corrections, by = c("year", "month", "project", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
@@ -234,7 +235,7 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
   mutate(month = rep("March",
                      nrow(.)),
          #add project
-         project = rep("PFTC5",
+         course = rep("PFTC5",
                        nrow(.))) %>%
   #change '+' in cover to 0.5 and make numeric
   mutate(cover = as.numeric(case_when(cover == "+" ~ "0.5",
@@ -264,11 +265,11 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
       TRUE ~ family
     )) %>%
 
-  # fix treatment
+  # fix treatment and stuff
   mutate(treatment = if_else(treatment == "BB", "NB", treatment)) %>%
 
   ##SELECT ONLY COLUMNS THAT ARE IN THE osf DATA
-  select(year, project, month, site, treatment, plot_id, functional_group, family, genus, species, taxon, cover) %>%
+  select(year, course, month, site, treatment, plot_id, functional_group, family, genus, species, taxon, cover) %>%
 
   # REMOVE WHERE COVER = 0 i.e. absent
   filter(cover > 0)
@@ -276,7 +277,6 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
 #Adding 2020 species
 
 species_cover <- bind_rows(species_cover, spp_cover_2020) %>%
-  rename(course = project) %>%
   mutate(plot_id = as.character(plot_id)) %>%
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
   select(-comment)
@@ -293,4 +293,10 @@ species_cover %>%
 
 
 # End of Script ----
+
+# Check
+# trait_data_peru %>%
+#   distinct(course, site, treatment, plot_id, taxon) %>%
+#   anti_join(species_cover %>% distinct(course, site, treatment, plot_id, taxon),
+#             by = c("treatment", "site", "taxon")) %>% View()
 
