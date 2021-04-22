@@ -4,16 +4,16 @@ library("dataDownloader")
 
 #Download community data from OSF
 get_file(node = "gs8u6",
-         file = "PFTC3-Puna-PFTC5_Peru_2018-2020_CommunityCover_clean.cs",
+         file = "PFTC3-Puna-PFTC5_Peru_2018-2020_CommunityCover_clean.csv",
          path = "clean_data",
-         remote_path = "Community")
+         remote_path = "community")
 
 
 #Download traits data from OSF
 get_file(node = "gs8u6",
          file = "PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv",
          path = "clean_data",
-         remote_path = "Traits")
+         remote_path = "traits")
 
 
 #Download climate data from OSF
