@@ -15,6 +15,11 @@ get_file(node = "gs8u6",
          path = "clean_data",
          remote_path = "traits")
 
+#Download traits data from OSF
+get_file(node = "gs8u6",
+         file = "Puna_Peru_2019_Biomass_clean.csv",
+         path = "clean_data",
+         remote_path = "biomass")
 
 #Download climate data from OSF
 # get_file(node = "gs8u6",
