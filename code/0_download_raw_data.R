@@ -15,7 +15,7 @@ download_PFTC_data(country = "Peru",
 
 # Unzip files
 zipFile <- "data/PFTC3_Peru_2018_Leaf_Traits.zip"
-outDir <- "data/raw_traits_2018"
+outDir <- "data/raw_traits_2018_2"
 unzip(zipFile, exdir = outDir)
 
 zipFile <- "data/PFTC5_Peru_2020_Raw_LeafArea.zip"
