@@ -21,19 +21,26 @@ biomass <- biomass_raw %>%
                      variable = str_remove(variable, "_\\d"))) %>%
   mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE")))
 
+# make new folder
+dir.create("clean_data")
+
+biomass %>%
+  write_csv("clean_data/Puna_Peru_2019_Biomass_clean.csv")
+
+
 # check
-ggplot(biomass, aes(x = site, y = value)) +
-  geom_boxplot() +
-  facet_wrap(~ variable, scales = "free")
-
-biomass %>%
-  filter(variable == "drymass") %>%
-  ggplot(aes(x = site, y = value)) +
-  geom_boxplot() +
-  facet_wrap(~ functional_group, scales = "free")
-
-biomass %>%
-  filter(variable == "cover") %>%
-  ggplot(aes(x = site, y = value)) +
-  geom_boxplot() +
-  facet_wrap(~ functional_group, scales = "free")
+# ggplot(biomass, aes(x = site, y = value)) +
+#   geom_boxplot() +
+#   facet_wrap(~ variable, scales = "free")
+#
+# biomass %>%
+#   filter(variable == "drymass") %>%
+#   ggplot(aes(x = site, y = value)) +
+#   geom_boxplot() +
+#   facet_wrap(~ functional_group, scales = "free")
+#
+# biomass %>%
+#   filter(variable == "cover") %>%
+#   ggplot(aes(x = site, y = value)) +
+#   geom_boxplot() +
+#   facet_wrap(~ functional_group, scales = "free")
