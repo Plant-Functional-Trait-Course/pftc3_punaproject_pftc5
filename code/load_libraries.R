@@ -1,6 +1,6 @@
 # load libraries
 library("here")
-remotes::install_github("Plant-Functional-Trait-Course/PFTCFunctions")
+#remotes::install_github("Plant-Functional-Trait-Course/PFTCFunctions")
 library("PFTCFunctions")
 library("osfr")
 library("readxl")
