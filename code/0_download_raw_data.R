@@ -37,10 +37,10 @@ download_PFTC_data(country = "Peru",
                    path = "data/climate")
 
 # Unzip files
-zipFile <- "data/climate/tomst_2019/"
+zipFile <- "data/climate/tomst_2019.zip"
 outDir <- "data/climate/tomst_2019/"
 unzip(zipFile, exdir = outDir)
 
-zipFile <- "data/climate/tomst_2020/"
+zipFile <- "data/climate/tomst_2020.zip"
 outDir <- "data/climate/tomst_2020/"
 unzip(zipFile, exdir = outDir)
