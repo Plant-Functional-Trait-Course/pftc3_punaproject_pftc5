@@ -121,42 +121,25 @@ spp_clean_2019 <- spp_clean_2019 %>%
 
 species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
   mutate(cover = if_else(project == "Puna" & month == "April" & site == "WAY" & treatment == "C" & plot_id == 1 & genus == "Gnaphalium", 1, cover)) %>%
-  #some punctuation tweaks
-  mutate(taxon = case_when(str_detect(taxon,
-                                      "alstonii") == TRUE ~ "Jamesonia alstonii",
-                           TRUE ~ taxon),
-         species = case_when(str_detect(taxon,
-                                        "alstonii") == TRUE ~ "alstonii",
-                             TRUE ~ species),
-         genus = case_when(str_detect(genus,
-                                      "alstonii") == TRUE ~ "Jamesonia",
-                           TRUE ~ genus)) %>%
   rename(course = project)
 
 
+
+# Checks
 #import new corrections
-new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_LVB.xlsx") %>%
-  rename(species = specie) %>%
-  mutate(taxon = case_when(taxon == "Lachemilla cf vulcanica" ~ "Lachemilla cf. vulcanica",
-                           TRUE ~ taxon),
-         species = case_when(species == "cf vulcanica" ~ "cf. vulcanica",
-                             TRUE ~ species)) %>%
-  rename(course = project)
+# new_corrections <- read_excel(path = "data/species_cover_pftc_puna - corregido_LVB.xlsx") %>%
+#   rename(course = project) %>%
+#   mutate(treatment = if_else(site == "QUE", "B", treatment))
 
-# check corrections
-new_corrections %>% anti_join(species_cover, by = c("year", "course", "month", "site", "treatment", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% count(course, month, site, treatment, plot_id) %>% print(n = Inf)
-# 665 species that are not in species_cover. Should those be added?
+# anti_join with species_cover
+# new_corrections %>% anti_join(species_cover, by = c("year", "course", "month", "site", "plot_id", "taxon", "cover"))
+#treatment is wrong for TRE in the new_corrections, but when excluding treatment from the anti_join, everything matches! this is ok.
 
-species_cover %>% anti_join(new_corrections, by = c("year", "month", "course", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
-# 2 species that are different in corrections. Should those be deleted?
-# Achyrocline ramosissima not there instead a Gnaphalium dombeyanum
-# Carex sp8 is that Carex boliviensis, but cover is different
-
-# species_cover %>% filter(project == "Puna", month == "April", site == "WAY", treatment == "C", plot_id == 1, family == "Asteraceae") %>% as.data.frame()
+# species_cover %>% anti_join(new_corrections, by = c("year", "month", "course", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
+# 2 species (Achyrocline ramosissima, Carex sp8) that are missing in the new corrections.
 
 
 # Convert to wide format for comparing species cover side by side by month
-
 presence_absence_peru <- species_cover %>%
   select(-c(year, project, family, genus, species)) %>%
   mutate(month = factor(month, levels = c("March", "April", "July", "November"))) %>%
@@ -296,8 +279,8 @@ species_cover %>%
 # End of Script ----
 
 # Check
-trait_data_peru %>%
-  distinct(course, site, treatment, plot_id, taxon) %>%
-  anti_join(species_cover %>% distinct(course, site, treatment, plot_id, taxon),
-            by = c("treatment", "site", "taxon")) %>% View()
+# trait_data_peru %>%
+#   distinct(course, site, treatment, plot_id, taxon) %>%
+#   anti_join(species_cover %>% distinct(course, site, treatment, plot_id, taxon),
+#             by = c("treatment", "site", "taxon")) %>% View()
 
