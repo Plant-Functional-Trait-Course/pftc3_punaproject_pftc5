@@ -13,6 +13,14 @@ source(here::here("code/species_traits_pftc5.R")) #PFTC5 import and clean
 trait_data_peru <- bind_rows(trait_pftc3,
                              trait_puna,
                              trait_pftc5) %>%
+  mutate(functional_group = if_else(functional_group == "Gramminoid", "Graminoid", functional_group)) %>%
+  #tnrs corrections across datasets
+  left_join(genus_tnrs, by = "genus") %>%
+  left_join(species_tnrs, by = "species") %>%
+  mutate(genus = if_else(!is.na(genus_new), genus_new, genus),
+         species = if_else(!is.na(species_new), species_new, species),
+         taxon = if_else(!is.na(genus_new), paste(genus_new, species_new, sep = " "), taxon)) %>%
+  select(-genus_new, -species_new) %>%
 
   # make data long
   pivot_longer(cols = plant_height_cm:leaf_thickness_mm, names_to = "trait", values_to = "value") %>%
@@ -36,3 +44,28 @@ trait_data_peru %>%
 
 
 # End of Script ----
+
+
+
+# # check TNRS
+# library("TNRS")
+# dat <- trait_data_peru %>%
+#   distinct(taxon) %>%
+#   arrange(taxon) %>%
+#   rownames_to_column()
+# results_t <- TNRS(taxonomic_names = dat)
+# results_t %>% View()
+# results_t %>%
+#   filter(Taxonomic_status == "Synonym")
+# # Agrostis haenkeana -> Polypogon exasperatus
+# # Cyrtochilum mystacinum -> Cyrtochilum aureum
+# # Lucilia kunthiana -> Belloa kunthiana
+# results %>%
+#   filter(Taxonomic_status == "") # not relevant
+#
+# # check the Plant List
+# library("Taxonstand")
+# sp_check_t <- TPL(dat$taxon)
+# sp_check_t %>% filter(Taxonomic.status == "Synonym")
+# sp_check_t %>% filter(Taxonomic.status == "Unresolved") # not relevant
+# sp_check_t %>% filter(Taxonomic.status == "") # not relevant

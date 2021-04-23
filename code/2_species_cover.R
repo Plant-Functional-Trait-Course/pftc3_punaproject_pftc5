@@ -3,6 +3,7 @@ source("code/load_libraries.R")
 library("janitor")
 
 source("code/coordinates.R")
+source("code/tnrs_corrections.R")
 #'
 #' Reading data species dictionary
 #'
@@ -141,7 +142,7 @@ species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
 
 # Convert to wide format for comparing species cover side by side by month
 presence_absence_peru <- species_cover %>%
-  select(-c(year, project, family, genus, species)) %>%
+  select(-c(year, course, family, genus, species)) %>%
   mutate(month = factor(month, levels = c("March", "April", "July", "November"))) %>%
   complete(month,
            nesting( site, treatment, plot_id, functional_group, taxon),
@@ -199,6 +200,9 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
     taxon == "Agrostis sp1" ~ "Agrostis trichodes",
     #species change - was checked with Lucely
     taxon == "Calamagrostis tricophylla" ~ "Calamagrostis cf. amoena",
+    # typo
+    taxon == "Agrostis sedlings" ~ "Agrostis seedling",
+    taxon == "Rhynchospora seedlings" ~ "Rhynchospora seedling",
     TRUE ~ taxon)) %>%
 
   ##TIDY COLUMNS TO MATCH osf COLUMNS
@@ -261,7 +265,16 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
 #Adding 2020 species
 
 species_cover <- bind_rows(species_cover, spp_cover_2020) %>%
-  mutate(plot_id = as.character(plot_id)) %>%
+  mutate(plot_id = as.character(plot_id),
+         functional_group = if_else(functional_group == "Gramminoid", "Graminoid", functional_group)) %>%
+  #tnrs corrections across datasets
+  left_join(genus_tnrs, by = "genus") %>%
+  left_join(species_tnrs, by = "species") %>%
+  mutate(genus = if_else(!is.na(genus_new), genus_new, genus),
+         species = if_else(!is.na(species_new), species_new, species),
+         taxon = if_else(!is.na(genus_new), paste(genus_new, species_new, sep = " "), taxon)) %>%
+  select(-genus_new, -species_new) %>%
+  # join coordinates
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
   select(-comment)
 
@@ -274,9 +287,32 @@ dir.create("clean_data")
 species_cover %>%
   write_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_CommunityCover_clean.csv")
 
-
-
 # End of Script ----
+
+
+# # check TNRS
+# library("TNRS")
+# dat <- species_cover %>%
+#   distinct(taxon) %>%
+#   arrange(taxon) %>%
+#   rownames_to_column()
+# results <- TNRS(taxonomic_names = dat)
+# results %>% View()
+# results %>%
+#   filter(Taxonomic_status == "Synonym")
+# # Agrostis haenkeana -> Polypogon exasperatus
+# # Cyrtochilum mystacinum -> Cyrtochilum aureum
+# # Lucilia kunthiana -> Belloa kunthiana
+# results %>%
+#   filter(Taxonomic_status == "") # not relevant
+#
+# # check the Plant List
+# library("Taxonstand")
+# TPL(c("Agrostis haenkeana", "Cyrtochilum mystacinum", "Lucilia kunthiana"))
+# sp_check <- TPL(dat$taxon)
+# sp_check %>% filter(Taxonomic.status == "Synonym")
+# sp_check %>% filter(Taxonomic.status == "Unresolved") # not relevant
+# sp_check %>% filter(Taxonomic.status == "") # not relevant
 
 # Check
 # trait_data_peru %>%
