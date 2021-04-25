@@ -120,7 +120,7 @@ spp_clean_2019 <- spp_clean_2019 %>%
 
 # Here is the data for PFTC3 and PunaProject, merged
 
-species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
+species_cover_2018_2019 <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
   mutate(cover = if_else(project == "Puna" & month == "April" & site == "WAY" & treatment == "C" & plot_id == 1 & genus == "Gnaphalium", 1, cover)) %>%
   rename(course = project)
 
@@ -133,15 +133,15 @@ species_cover <- bind_rows(spp_clean_2018, spp_clean_2019) %>%
 #   mutate(treatment = if_else(site == "QUE", "B", treatment))
 
 # anti_join with species_cover
-# new_corrections %>% anti_join(species_cover, by = c("year", "course", "month", "site", "plot_id", "taxon", "cover"))
+# new_corrections %>% anti_join(species_cover_2018_2019, by = c("year", "course", "month", "site", "plot_id", "taxon", "cover"))
 #treatment is wrong for TRE in the new_corrections, but when excluding treatment from the anti_join, everything matches! this is ok.
 
-# species_cover %>% anti_join(new_corrections, by = c("year", "month", "course", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
+# species_cover_2018_2019 %>% anti_join(new_corrections, by = c("year", "month", "course", "site", "plot_id", "functional_group", "family", "genus", "species", "taxon")) %>% as.data.frame()
 # 2 species (Achyrocline ramosissima, Carex sp8) that are missing in the new corrections.
 
 
 # Convert to wide format for comparing species cover side by side by month
-presence_absence_peru <- species_cover %>%
+presence_absence_peru <- species_cover_2018_2019 %>%
   select(-c(year, course, family, genus, species)) %>%
   mutate(month = factor(month, levels = c("March", "April", "July", "November"))) %>%
   complete(month,
@@ -260,11 +260,15 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
   select(year, course, month, site, treatment, plot_id, functional_group, family, genus, species, taxon, cover) %>%
 
   # REMOVE WHERE COVER = 0 i.e. absent
-  filter(cover > 0)
+  filter(cover > 0) %>%
+
+  # sum cover for the same species in the same plot
+  group_by(across(c(-cover))) %>%
+  summarise(cover = sum(cover, na.rm = TRUE))
 
 #Adding 2020 species
 
-species_cover <- bind_rows(species_cover, spp_cover_2020) %>%
+species_cover <- bind_rows(species_cover_2018_2019, spp_cover_2020) %>%
   mutate(plot_id = as.character(plot_id),
          functional_group = if_else(functional_group == "Gramminoid", "Graminoid", functional_group)) %>%
   #tnrs corrections across datasets
@@ -319,4 +323,16 @@ species_cover %>%
 #   distinct(course, site, treatment, plot_id, taxon) %>%
 #   anti_join(species_cover %>% distinct(course, site, treatment, plot_id, taxon),
 #             by = c("treatment", "site", "taxon")) %>% View()
+
+# Check turf maps
+species_cover %>%
+  mutate(month_year = paste(month, year, sep = "_")) %>%
+  filter(site == "ACJ", treatment == "C") %>%
+  ggplot(aes(x = month_year, y = 1, fill = cover)) +
+  geom_tile() +
+  labs(y = "") +
+  scale_fill_viridis_c() +
+  facet_grid(taxon ~ plot_id) +
+  theme(strip.text.y = element_text(angle = 360),
+        axis.text.y = element_blank())
 
