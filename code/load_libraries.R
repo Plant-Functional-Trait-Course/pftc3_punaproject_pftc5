@@ -9,6 +9,9 @@ library("lubridate")
 #library("tpl")
 library("janitor")
 library("writexl")
+library("vegan")
+library("ggvegan")
+library("broom")
 
 # little Helper
 pn <- . %>% print(n = Inf)
