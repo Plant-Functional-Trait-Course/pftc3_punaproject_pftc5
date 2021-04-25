@@ -272,16 +272,21 @@ species_cover <- bind_rows(species_cover_2018_2019, spp_cover_2020) %>%
   mutate(plot_id = as.character(plot_id),
          functional_group = if_else(functional_group == "Gramminoid", "Graminoid", functional_group)) %>%
   #tnrs corrections across datasets
-  left_join(genus_tnrs, by = "genus") %>%
-  left_join(species_tnrs, by = "species") %>%
-  mutate(genus = if_else(!is.na(genus_new), genus_new, genus),
-         species = if_else(!is.na(species_new), species_new, species),
-         taxon = if_else(!is.na(genus_new), paste(genus_new, species_new, sep = " "), taxon)) %>%
-  select(-genus_new, -species_new) %>%
+  mutate(genus = case_when(taxon == "Agrostis haenkeana" ~ "Polypogon",
+                           taxon == "Cyrtochilum mystacinum" ~ "Cyrtochilum",
+                           taxon == "Lucilia kunthiana" ~ "Belloa",
+                           TRUE ~ genus),
+         species = case_when(taxon == "Agrostis haenkeana" ~ "exasperatus",
+                             taxon == "Cyrtochilum mystacinum" ~ "aureum",
+                             taxon == "Lucilia kunthiana" ~ "kunthiana",
+                             TRUE ~ species),
+         taxon = case_when(taxon == "Agrostis haenkeana" ~ "Polypogon exasperatus",
+                           taxon == "Cyrtochilum mystacinum" ~ "Cyrtochilum aureum",
+                           taxon == "Lucilia kunthiana" ~ "Belloa kunthiana",
+                           TRUE ~ taxon)) %>%
   # join coordinates
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
   select(-comment)
-
 
 # Export ------------------------------------------------------------------
 
