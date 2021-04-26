@@ -305,7 +305,9 @@ species_cover %>%
 #   distinct(taxon) %>%
 #   arrange(taxon) %>%
 #   rownames_to_column()
-# results <- TNRS(taxonomic_names = dat)
+# results <- TNRS(taxonomic_names = dat, matches = "best")
+# metadata <- TNRS_metadata(bibtex_file = "data_paper/tnrs_citations.bib")
+# metadata$version
 # results %>% View()
 # results %>%
 #   filter(Taxonomic_status == "Synonym")
@@ -322,6 +324,9 @@ species_cover %>%
 # sp_check %>% filter(Taxonomic.status == "Synonym")
 # sp_check %>% filter(Taxonomic.status == "Unresolved") # not relevant
 # sp_check %>% filter(Taxonomic.status == "") # not relevant
+#
+# TNRS(taxonomic_names = "Carex crinalis",matches = "all")
+
 
 # Check
 # trait_data_peru %>%
