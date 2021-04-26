@@ -45,15 +45,18 @@ comm_structure_2018 <- comm_structure_raw_2018 %>%
 comm_structure_raw_2019 <- read_csv("data/PU.2_Community metadata_Dataset.csv") %>%
   clean_names() %>%
   filter(!is.na(site)) %>%
-  mutate(max_height_cm = rowMeans(select(., starts_with("max"))),
-         min_height_cm = rowMeans(select(., starts_with("min"))),
-         median_height_cm = rowMeans(select(., starts_with("median"))),
-         bryophyte_depth = rowMeans(select(., starts_with("bryophyte")))) %>%
+  # replace 0 in height/depth data with NA
+  mutate(across(max_height_1:bryophyte_depth_5, ~replace(., . == 0 , NA_real_))) %>%
+  mutate(max_height_cm = rowMeans(select(., starts_with("max")), na.rm = TRUE),
+         min_height_cm = rowMeans(select(., starts_with("min")), na.rm = TRUE),
+         median_height_cm = rowMeans(select(., starts_with("median")), na.rm = TRUE),
+         bryophyte_depth = rowMeans(select(., starts_with("bryophyte")), na.rm = TRUE)) %>%
   select(-c(max_height_1:bryophyte_depth_5)) %>%
   #change '+' in cover to 0.5 and make numeric
   mutate_all(funs(str_replace(., "\\+", "0.5"))) %>%
   mutate(across(c(cover_graminoids:cover_solid_litter, max_height_cm:bryophyte_depth), as.numeric),
          treatment = str_remove(plot, "\\d")) %>%
+  # add plot nr
   group_by(site, year, month, treatment) %>%
   arrange(site, year, month, treatment, plot) %>%
   mutate(plot_id = 1:n()) %>%
