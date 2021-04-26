@@ -1,3 +1,5 @@
+source("code/load_libraries.R")
+
 ## ----downloadData
 #devtools::install_github("Between-the-Fjords/dataDownloader")
 library("dataDownloader")
