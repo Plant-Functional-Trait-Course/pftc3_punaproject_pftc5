@@ -13,23 +13,30 @@ biomass <- biomass_raw %>%
   mutate_all(funs(str_replace(., "\\+", "0.5"))) %>%
   mutate(across(c(cover_graminoids:drymass_litter), as.numeric),
          date_of_harvest = dmy(date_of_harvest)) %>%
-  pivot_longer(cols = c(cover_graminoids:cover_open_soil, drymass_graminoids:drymass_litter), names_to = c("variable", "variable_class"), values_to = "value", names_sep = "_") %>%
+  # sum biomass
+  mutate(drymass_total = rowSums(select(., starts_with("drymass")), na.rm = TRUE)) %>%
+  pivot_longer(cols = c(cover_graminoids:cover_open_soil, drymass_graminoids:drymass_litter, drymass_total), names_to = c("variable", "variable_class"), values_to = "value", names_sep = "_") %>%
   filter(!is.na(value)) %>%
-  mutate(         variable_class = case_when(variable_class == "woody" ~ "shrub",
-                                             variable_class == "open" ~ "bare_ground",
-                                             TRUE ~ variable_class)) %>%
+  mutate(variable_class = case_when(variable_class == "woody" ~ "shrub",
+                                    variable_class == "open" ~ "bare_ground",
+                                    TRUE ~ variable_class),
+         variable = if_else(variable == "drymass", "biomass", variable)) %>%
   bind_rows(biomass_raw %>%
-              mutate(max_height_cm = rowMeans(select(., starts_with("max"))),
-                     min_height_cm = rowMeans(select(., starts_with("min"))),
-                     median_height_cm = rowMeans(select(., starts_with("median"))),
-                     bryophyte_depth = rowMeans(select(., starts_with("bryophyte")))) %>%
+              # replace zeros with NA. If there is no vegetation, then height is not available.
+              mutate(across(max_height_1:bryophyte_depth_5, ~replace(., . == 0 , NA_real_))) %>%
+              mutate(max_height_cm = rowMeans(select(., starts_with("mx")), na.rm = TRUE),
+                     min_height_cm = rowMeans(select(., starts_with("min")), na.rm = TRUE),
+                     median_height_cm = rowMeans(select(., starts_with("median")), na.rm = TRUE),
+                     bryophyte_depth = rowMeans(select(., starts_with("bryophyte")), na.rm = TRUE)) %>%
               select(site, treatment, max_height_cm:bryophyte_depth) %>%
               pivot_longer(cols = c(max_height_cm:bryophyte_depth), names_to = "variable", values_to = "value") %>%
               mutate(variable = str_remove(variable, "\\_cm"),
                      variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
                                                 TRUE ~ "vegetation"))) %>%
   select(site:date_of_harvest, variable:value, remark) %>%
-  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE")))
+  mutate(treatment = case_when(site == "TRE" & treatment == "B" ~ "NB",
+                               TRUE ~ treatment),
+         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE")))
 
 
 # make new folder
