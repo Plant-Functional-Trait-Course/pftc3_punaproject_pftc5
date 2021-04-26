@@ -4,7 +4,7 @@ library("janitor")
 
 source("code/coordinates.R")
 
-# 2018 data
+# 2018 data ------------------------------------------------------------------
 comm_structure_raw_2018 <- read_csv("data/PFTC3_rawmetaCommunity_2018_Peru.csv") %>%
   clean_names() %>%
   mutate(max_height_cm = rowMeans(select(., starts_with("max"))),
@@ -18,7 +18,8 @@ comm_structure_raw_2018 <- read_csv("data/PFTC3_rawmetaCommunity_2018_Peru.csv")
                                treatment == "burned" ~ "B",
                                treatment == "double_burned" ~ "BB",
                                TRUE ~ treatment),
-         month = "March") %>%
+         month = "March",
+         year = as.numeric(year)) %>%
   rename(plot_id = plot)
 
 comm_structure_2018 <- comm_structure_raw_2018 %>%
@@ -41,7 +42,7 @@ comm_structure_2018 <- comm_structure_raw_2018 %>%
   filter(!is.na(value))
 
 
-# 2019 data
+# 2019 data ------------------------------------------------------------------
 comm_structure_raw_2019 <- read_csv("data/PU.2_Community metadata_Dataset.csv") %>%
   clean_names() %>%
   filter(!is.na(site)) %>%
@@ -61,7 +62,6 @@ comm_structure_raw_2019 <- read_csv("data/PU.2_Community metadata_Dataset.csv") 
   arrange(site, year, month, treatment, plot) %>%
   mutate(plot_id = 1:n()) %>%
   #add plot_id
-
   select(-plot, -day) %>%
   mutate(site = case_when(site == "PILL" ~ "PIL",
                           TRUE ~ site),
@@ -70,7 +70,8 @@ comm_structure_raw_2019 <- read_csv("data/PU.2_Community metadata_Dataset.csv") 
                           TRUE ~ treatment),
          month = case_when(month == "4" ~ "April",
                            month == "7" ~ "July",
-                           TRUE ~ month))
+                           TRUE ~ month),
+         year = as.numeric(year))
 
 comm_structure_2019 <- comm_structure_raw_2019 %>%
   select(-c(max_height_cm:bryophyte_depth)) %>%
@@ -90,9 +91,46 @@ comm_structure_2019 <- comm_structure_raw_2019 %>%
          plot_id = as.character(plot_id)) %>%
   filter(!is.na(value))
 
-# combine datasets
-comm_structure <- bind_rows(comm_structure_2018, comm_structure_2019) %>%
+
+# 2020 data ------------------------------------------------------------------
+
+comm_structure_raw_2020 <- read_csv("data/PFTC5_QUE_Community_metadata_Dataset.csv") %>%
+  clean_names() %>%
+  mutate(max_height_cm = rowMeans(select(., starts_with("max")), na.rm = TRUE),
+         min_height_cm = rowMeans(select(., starts_with("min")), na.rm = TRUE),
+         median_height_cm = rowMeans(select(., starts_with("median")), na.rm = TRUE),
+         bryophyte_depth = rowMeans(select(., starts_with("bryophyte")), na.rm = TRUE)) %>%
+  select(-c(max_height_1:bryophyte_depth_5)) %>%
+  mutate(treatment = "NB",
+         plot_id = str_extract(plot, "\\d"),
+         month = "March") %>%
+  select(-plot, -day)
+
+
+comm_structure_2020 <- comm_structure_raw_2020 %>%
+  select(-c(max_height_cm:bryophyte_depth)) %>%
+  pivot_longer(cols = c(cover_graminoids:cover_solid_litter), names_to = c("variable" , "variable_class"), names_sep = "_", values_to = "value") %>%
+  # add height data
+  bind_rows(comm_structure_raw_2020 %>%
+              select(site, year, month, plot_id, treatment, max_height_cm:bryophyte_depth) %>%
+              pivot_longer(cols = c(max_height_cm:bryophyte_depth), names_to = "variable", values_to = "value") %>%
+              mutate(variable = str_remove(variable, "\\_cm"),
+                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
+                                                TRUE ~ "vegetation"))) %>%
+  mutate(variable_class = case_when(variable_class == "open" ~ "bare_ground",
+                                    variable_class == "woody" ~ "shrub",
+                                    variable_class == "solid" ~ "solid_litter",
+                                    TRUE ~ variable_class),
+         course = "Puna")
+
+
+# combine datasets ------------------------------------------------------------------
+
+comm_structure <- bind_rows(comm_structure_2018,
+                            comm_structure_2019,
+                            comm_structure_2020) %>%
   left_join(coordinates %>% select(-comment), by = c("site", "treatment", "plot_id")) %>%
+  select(site, year, month, treatment, plot_id, burn_year, variable:value, elevation, latitude, longitude, course, comments) %>%
   mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")))
 
 
@@ -101,7 +139,7 @@ comm_structure <- bind_rows(comm_structure_2018, comm_structure_2019) %>%
 # make new folder
 dir.create("clean_data")
 
-species_cover %>%
+comm_structure %>%
   write_csv("clean_data/PFTC3-Puna-Peru_2018-2019_CommunityStructure_clean.csv")
 
 
