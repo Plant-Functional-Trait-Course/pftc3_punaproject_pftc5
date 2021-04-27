@@ -286,7 +286,8 @@ species_cover <- bind_rows(species_cover_2018_2019, spp_cover_2020) %>%
                            TRUE ~ taxon)) %>%
   # join coordinates
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
-  select(-comment)
+  select(year, month, site, treatment, plot_id, family, functional_group, taxon, cover, burn_year:longitude, course) %>%
+  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")))
 
 # Export ------------------------------------------------------------------
 
@@ -299,40 +300,14 @@ species_cover %>%
 # End of Script ----
 
 
-# # check TNRS
-# library("TNRS")
-# dat <- species_cover %>%
-#   distinct(taxon) %>%
-#   arrange(taxon) %>%
-#   rownames_to_column()
-# results <- TNRS(taxonomic_names = dat, matches = "best")
-# metadata <- TNRS_metadata(bibtex_file = "data_paper/tnrs_citations.bib")
-# metadata$version
-# results %>% View()
-# results %>%
-#   filter(Taxonomic_status == "Synonym")
-# # Agrostis haenkeana -> Polypogon exasperatus
-# # Cyrtochilum mystacinum -> Cyrtochilum aureum
-# # Lucilia kunthiana -> Belloa kunthiana
-# results %>%
-#   filter(Taxonomic_status == "") # not relevant
-#
-# # check the Plant List
-# library("Taxonstand")
-# TPL(c("Agrostis haenkeana", "Cyrtochilum mystacinum", "Lucilia kunthiana"))
-# sp_check <- TPL(dat$taxon)
-# sp_check %>% filter(Taxonomic.status == "Synonym")
-# sp_check %>% filter(Taxonomic.status == "Unresolved") # not relevant
-# sp_check %>% filter(Taxonomic.status == "") # not relevant
-#
-# TNRS(taxonomic_names = "Carex crinalis",matches = "all")
-
 
 # Check
 # trait_data_peru %>%
 #   distinct(course, site, treatment, plot_id, taxon) %>%
 #   anti_join(species_cover %>% distinct(course, site, treatment, plot_id, taxon),
 #             by = c("treatment", "site", "taxon")) %>% View()
+
+
 
 # Check turf maps
 species_cover %>%
