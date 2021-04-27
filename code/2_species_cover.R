@@ -170,6 +170,7 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
     taxon == "Viola pymaea" ~ "Viola pygmaea",
     #misspelling
     taxon == "Agrostis trichoides" ~ "Agrostis trichodes",
+    taxon == "Agrostis perenans" ~ "Agrostis perennans",
     #misspelling - CHECK
     taxon == "Lysipomia glanulifera" ~ "Lysipomia glandulifera",
     #misspelling - CHECK
@@ -232,7 +233,7 @@ spp_cover_2020 <- read_csv("data/PFTC5_2020_CommunityCover_raw.csv")  %>%
   filter(!cover == "")  %>%
   #add other cols from osf dataset - taxon, functional group and family
   left_join(.,
-            species_cover  %>%
+            species_cover_2018_2019  %>%
               select(taxon, functional_group, family),
             by = 'taxon') %>%
 
