@@ -28,11 +28,12 @@ biomass <- biomass_raw %>%
                      min_height_cm = rowMeans(select(., starts_with("min")), na.rm = TRUE),
                      median_height_cm = rowMeans(select(., starts_with("median")), na.rm = TRUE),
                      bryophyte_depth = rowMeans(select(., starts_with("bryophyte")), na.rm = TRUE)) %>%
-              select(site, treatment, max_height_cm:bryophyte_depth) %>%
+              select(site, treatment, date_of_harvest, max_height_cm:bryophyte_depth) %>%
               pivot_longer(cols = c(max_height_cm:bryophyte_depth), names_to = "variable", values_to = "value") %>%
               mutate(variable = str_remove(variable, "\\_cm"),
                      variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
-                                                TRUE ~ "vegetation"))) %>%
+                                                TRUE ~ "vegetation"),
+                     date_of_harvest = dmy(date_of_harvest))) %>%
   select(date_of_harvest, site, treatment, variable:value) %>%
   mutate(treatment = case_when(site == "TRE" & treatment == "B" ~ "NB",
                                TRUE ~ treatment),
