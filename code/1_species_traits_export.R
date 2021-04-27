@@ -33,7 +33,7 @@ trait_data_peru <- bind_rows(trait_pftc3,
   select(-area_flag, -dry_flag, -wet_flag) %>%
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
   # not including flag, because the trait values are fine now, removed bad trait values
-  select(year, month, site, treatment, plot_id, individual_nr, id, functional_group, family, taxon, trait, value, burn_year:longitude)
+  select(year, month, site, treatment, plot_id, individual_nr, id, functional_group, family, taxon, trait, value, burn_year:longitude, course)
 
 ## Export data ----
 
