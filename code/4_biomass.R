@@ -2,6 +2,8 @@
 source("code/load_libraries.R")
 library("janitor")
 
+source("code/coordinates.R")
+
 
 biomass_raw <- read_csv("data/PU.6_Biomass_Dataset.csv") %>%
   clean_names()
@@ -31,13 +33,16 @@ biomass <- biomass_raw %>%
               select(site, treatment, date_of_harvest, max_height_cm:bryophyte_depth) %>%
               pivot_longer(cols = c(max_height_cm:bryophyte_depth), names_to = "variable", values_to = "value") %>%
               mutate(variable = str_remove(variable, "\\_cm"),
-                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
+                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophytes",
                                                 TRUE ~ "vegetation"),
                      date_of_harvest = dmy(date_of_harvest))) %>%
   select(date_of_harvest, site, treatment, variable:value) %>%
   mutate(treatment = case_when(site == "TRE" & treatment == "B" ~ "NB",
                                TRUE ~ treatment),
-         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE")))
+         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE"))) %>%
+  left_join(coordinates %>%
+              select(-comment),
+            by = c("site", "treatment"))
 
 
 # make new folder
