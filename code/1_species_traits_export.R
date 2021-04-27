@@ -32,7 +32,8 @@ trait_data_peru <- bind_rows(trait_pftc3,
                           area_flag == "Area estimated" ~ "area_estimated")) %>%
   select(-area_flag, -dry_flag, -wet_flag) %>%
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
-  select(-comment)
+  # not including flag, because the trait values are fine now, removed bad trait values
+  select(year, month, site, treatment, plot_id, individual_nr, id, functional_group, family, taxon, trait, value, burn_year:longitude)
 
 ## Export data ----
 
@@ -44,8 +45,6 @@ trait_data_peru %>%
 
 
 # End of Script ----
-
-
 
 # # check TNRS
 # library("TNRS")
