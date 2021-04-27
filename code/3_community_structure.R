@@ -56,11 +56,15 @@ comm_structure_raw_2019 <- read_csv("data/PU.2_Community metadata_Dataset.csv") 
   #change '+' in cover to 0.5 and make numeric
   mutate_all(funs(str_replace(., "\\+", "0.5"))) %>%
   mutate(across(c(cover_graminoids:cover_solid_litter, max_height_cm:bryophyte_depth), as.numeric),
+         # merge litter and solid litter because not available in pftc3 sampling
+         cover_litter = cover_litter + cover_solid_litter,
          treatment = str_remove(plot, "\\d")) %>%
+  select(-cover_solid_litter) %>%
   # add plot nr
   group_by(site, year, month, treatment) %>%
   arrange(site, year, month, treatment, plot) %>%
   mutate(plot_id = 1:n()) %>%
+  ungroup() %>%
   #add plot_id
   select(-plot, -day) %>%
   mutate(site = case_when(site == "PILL" ~ "PIL",
@@ -75,7 +79,7 @@ comm_structure_raw_2019 <- read_csv("data/PU.2_Community metadata_Dataset.csv") 
 
 comm_structure_2019 <- comm_structure_raw_2019 %>%
   select(-c(max_height_cm:bryophyte_depth)) %>%
-  pivot_longer(cols = c(cover_graminoids:cover_solid_litter), names_to = c("variable" , "variable_class"), names_sep = "_", values_to = "value") %>%
+  pivot_longer(cols = c(cover_graminoids:cover_litter), names_to = c("variable" , "variable_class"), names_sep = "_", values_to = "value") %>%
   # add height data
   bind_rows(comm_structure_raw_2019 %>%
               select(site, year, month, plot_id, treatment, max_height_cm:bryophyte_depth) %>%
@@ -85,7 +89,6 @@ comm_structure_2019 <- comm_structure_raw_2019 %>%
                                                   TRUE ~ "vegetation"))) %>%
   mutate(variable_class = case_when(variable_class == "open" ~ "bare_ground",
                                     variable_class == "woody" ~ "shrub",
-                                    variable_class == "solid" ~ "solid_litter",
                                       TRUE ~ variable_class),
          course = "Puna",
          plot_id = as.character(plot_id)) %>%
@@ -99,8 +102,10 @@ comm_structure_raw_2020 <- read_csv("data/PFTC5_QUE_Community_metadata_Dataset.c
   mutate(max_height_cm = rowMeans(select(., starts_with("max")), na.rm = TRUE),
          min_height_cm = rowMeans(select(., starts_with("min")), na.rm = TRUE),
          median_height_cm = rowMeans(select(., starts_with("median")), na.rm = TRUE),
-         bryophyte_depth = rowMeans(select(., starts_with("bryophyte")), na.rm = TRUE)) %>%
-  select(-c(max_height_1:bryophyte_depth_5)) %>%
+         bryophyte_depth = rowMeans(select(., starts_with("bryophyte")), na.rm = TRUE),
+         # merge litter and solid litter because not available in pftc3 sampling
+         cover_litter2 = cover_litter + cover_solid_litter) %>%
+  select(-c(max_height_1:bryophyte_depth_5, cover_solid_litter)) %>%
   mutate(treatment = "NB",
          plot_id = str_extract(plot, "\\d"),
          month = "March") %>%
@@ -109,7 +114,7 @@ comm_structure_raw_2020 <- read_csv("data/PFTC5_QUE_Community_metadata_Dataset.c
 
 comm_structure_2020 <- comm_structure_raw_2020 %>%
   select(-c(max_height_cm:bryophyte_depth)) %>%
-  pivot_longer(cols = c(cover_graminoids:cover_solid_litter), names_to = c("variable" , "variable_class"), names_sep = "_", values_to = "value") %>%
+  pivot_longer(cols = c(cover_graminoids:cover_litter), names_to = c("variable" , "variable_class"), names_sep = "_", values_to = "value") %>%
   # add height data
   bind_rows(comm_structure_raw_2020 %>%
               select(site, year, month, plot_id, treatment, max_height_cm:bryophyte_depth) %>%
@@ -117,11 +122,11 @@ comm_structure_2020 <- comm_structure_raw_2020 %>%
               mutate(variable = str_remove(variable, "\\_cm"),
                      variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
                                                 TRUE ~ "vegetation"))) %>%
-  mutate(variable_class = case_when(variable_class == "open" ~ "bare_ground",
+  mutate(variable_class = case_when(variable_class == "bare" ~ "rock",
+                                    variable_class == "open" ~ "bare_ground",
                                     variable_class == "woody" ~ "shrub",
-                                    variable_class == "solid" ~ "solid_litter",
                                     TRUE ~ variable_class),
-         course = "Puna")
+         course = "PFTC5")
 
 
 # combine datasets ------------------------------------------------------------------
@@ -130,7 +135,7 @@ comm_structure <- bind_rows(comm_structure_2018,
                             comm_structure_2019,
                             comm_structure_2020) %>%
   left_join(coordinates %>% select(-comment), by = c("site", "treatment", "plot_id")) %>%
-  select(site, year, month, treatment, plot_id, burn_year, variable:value, elevation, latitude, longitude, course, comments) %>%
+  select(year, month, site, treatment, plot_id, variable:value, burn_year, elevation, latitude, longitude, course) %>%
   mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")))
 
 
