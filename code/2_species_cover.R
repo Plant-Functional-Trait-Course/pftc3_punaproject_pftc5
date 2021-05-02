@@ -287,8 +287,8 @@ species_cover <- bind_rows(species_cover_2018_2019, spp_cover_2020) %>%
                            TRUE ~ taxon)) %>%
   # join coordinates
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
-  select(year, month, site, treatment, plot_id, family, functional_group, taxon, cover, burn_year:longitude, course) %>%
-  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")))
+  mutate(season = if_else(month %in% c("July", "November"), "dry season", "wet season")) %>%
+  select(year, season, month, site, treatment, plot_id, family, functional_group, taxon, cover, burn_year:longitude, course)
 
 # Export ------------------------------------------------------------------
 
