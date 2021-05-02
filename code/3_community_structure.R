@@ -85,7 +85,7 @@ comm_structure_2019 <- comm_structure_raw_2019 %>%
               select(site, year, month, plot_id, treatment, max_height_cm:bryophyte_depth) %>%
               pivot_longer(cols = c(max_height_cm:bryophyte_depth), names_to = "variable", values_to = "value") %>%
               mutate(variable = str_remove(variable, "\\_cm"),
-                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
+                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophytes",
                                                   TRUE ~ "vegetation"))) %>%
   mutate(variable_class = case_when(variable_class == "open" ~ "bare_ground",
                                     variable_class == "woody" ~ "shrub",
@@ -120,7 +120,7 @@ comm_structure_2020 <- comm_structure_raw_2020 %>%
               select(site, year, month, plot_id, treatment, max_height_cm:bryophyte_depth) %>%
               pivot_longer(cols = c(max_height_cm:bryophyte_depth), names_to = "variable", values_to = "value") %>%
               mutate(variable = str_remove(variable, "\\_cm"),
-                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophyte",
+                     variable_class = case_when(variable == "bryophyte_depth" ~ "bryophytes",
                                                 TRUE ~ "vegetation"))) %>%
   mutate(variable_class = case_when(variable_class == "bare" ~ "rock",
                                     variable_class == "open" ~ "bare_ground",
@@ -135,8 +135,8 @@ comm_structure <- bind_rows(comm_structure_2018,
                             comm_structure_2019,
                             comm_structure_2020) %>%
   left_join(coordinates %>% select(-comment), by = c("site", "treatment", "plot_id")) %>%
-  select(year, month, site, treatment, plot_id, variable:value, burn_year, elevation, latitude, longitude, course) %>%
-  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")))
+  mutate(season = if_else(month %in% c("July", "November"), "dry_season", "wet_season")) %>%
+  select(year, season, month, site, treatment, plot_id, variable:value, burn_year, elevation, latitude, longitude, course)
 
 
 # Export ------------------------------------------------------------------

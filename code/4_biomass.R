@@ -36,10 +36,10 @@ biomass <- biomass_raw %>%
                      variable_class = case_when(variable == "bryophyte_depth" ~ "bryophytes",
                                                 TRUE ~ "vegetation"),
                      date_of_harvest = dmy(date_of_harvest))) %>%
-  select(date_of_harvest, site, treatment, variable:value) %>%
+  mutate(season = "wet_season") %>%
+  select(date_of_harvest, season, site, treatment, variable:value) %>%
   mutate(treatment = case_when(site == "TRE" & treatment == "B" ~ "NB",
-                               TRUE ~ treatment),
-         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE"))) %>%
+                               TRUE ~ treatment)) %>%
   left_join(coordinates %>%
               select(-comment),
             by = c("site", "treatment"))
