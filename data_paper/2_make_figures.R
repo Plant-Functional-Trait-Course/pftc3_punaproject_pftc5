@@ -8,58 +8,105 @@ library("ggvegan")
 library("lubridate")
 library("patchwork")
 
+# colours
+source("data_paper/puna_colour_palette.R")
+
+# set theme
 theme_set(theme_bw())
 
 
 ## ----DiversityPlot
-# Richness, evenness etc.
-species_cover <- read_csv(file = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_CommunityCover_clean.csv")
+Gradient_plot_data <- diversity_index %>%
+  filter(index %in% c("richness", "evenness")) %>%
+  rename(variable = index) %>%
 
-## Calculate responses
-diversity_index <- species_cover %>%
-  group_by(year, month, site, elevation, treatment, plot_id) %>%
-  summarise(richness = n(),
-            diversity = diversity(cover),
-            evenness = diversity/log(richness),
-            sum_cover = sum(cover),
-            graminoid_prop = sum(cover[functional_group == "Gramminoid"])/sum_cover,
-            forb_prop = sum(cover[functional_group == "Forb"])/sum_cover,
-            wood_prop = sum(cover[functional_group == "Woody"])/sum_cover) %>%
-  pivot_longer(cols = c(richness:wood_prop), names_to = "index", values_to = "value")
+  # add community structure data
+  bind_rows(
+    comm_structure %>%
+      filter(variable %in% c("cover", "median_height", "bryophyte_depth"),
+             variable_class %in% c("forbs", "graminoids", "shrub", "litter", "vegetation", "bryophytes")) %>%
+      mutate(variable = paste(variable, variable_class, sep = "_")) %>%
+      select(-variable_class) %>%
+      filter(variable != "cover_bryophytes")
+  ) %>%
+  # add biomass data
+  bind_rows(
+    biomass %>%
+      filter(variable == "biomass",
+             variable_class == "total") %>%
+      select(-variable_class)
+  ) %>%
+  ungroup() %>%
+  filter(treatment %in% c("C", "B", "NB")) %>%
+  mutate(variable = case_when(variable == "cover_forbs" ~ "forb cover",
+                              variable == "cover_graminoids" ~ "graminoid cover",
+                              variable == "cover_shrub" ~ "shrub cover",
+                              variable == "cover_litter" ~ "litter cover",
+                              variable == "median_height_vegetation" ~ "vegetation height",
+                              variable == "bryophyte_depth_bryophytes" ~ "bryophyte depth",
+                              variable == "biomass" ~ "total biomass",
+                              TRUE ~ variable),
+         variable = factor(variable, levels = c("richness", "evenness", "forb cover", "graminoid cover", "shrub cover", "litter cover", "total biomass", "vegetation height", "bryophyte depth")),
+         treatment = factor(treatment, levels = c("C", "B", "NB")))
 
-diversity_index %>%
-  filter(treatment %in% c("C", "B")) %>%
-  ggplot(aes(x = elevation, y = index, colour = treatment)) +
-  geom_point() +
+
+res_GP <- Gradient_plot_data %>%
+  nest(data = -c(variable)) %>%
+  mutate(model = map(data, ~lm(value ~ elevation * treatment, data = .x)),
+         result = map(model, tidy)) %>%
+  unnest(result) %>%
+  select(variable, term:p.value) %>%
+  filter(term %in% c("elevation", "elevation:treatmentB", "elevation:treatmentNB")) %>%
+  mutate(treatment = case_when(term == "elevation" ~ "C",
+                               term == "elevation:treatmentB" ~ "B",
+                               term == "elevation:treatmentNB" ~ "NB"))
+
+Gradient_plot <- Gradient_plot_data %>%
+  left_join(res_GP %>%
+              select(variable, treatment, p.value),
+            by = c("variable", "treatment")) %>%
+  mutate(treatment = factor(treatment, levels = c("C", "B", "NB"))) %>%
+  ggplot(aes(x = elevation, y = value, colour = treatment, linetype = p.value < 0.05)) +
+  geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", formula = "y ~ x") +
-  facet_wrap( ~ index, scales = "free") +
-  theme_minimal()
+  scale_colour_manual(values = puna_treatment_colour$colour[1:3]) +
+  #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
+  scale_linetype_manual(values = c("dashed", "solid")) +
+  labs(x = "Elevation m a.s.l", y = "") +
+  guides(linetype = FALSE) +
+  facet_wrap( ~ variable, scales = "free_y") +
+  theme_minimal() +
+  theme(text = element_text(size = 12))
+Gradient_plot
+ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 150)
 
-
-
+## ----NMDSOrdination
+NMDS_ordination <- fNMDS %>%
+  as_tibble() %>%
+  mutate(treatment = factor(treatment, levels = c("C", "B", "NB", "BB")),
+         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC"))) %>%
+  ggplot(aes(x = NMDS1, y = NMDS2, colour = site, shape = treatment)) +
+  geom_point() +
+  scale_colour_manual(values = puna_site_colour$colour) +
+  #scale_colour_viridis_d(option = "plasma", end = 0.8) +
+  facet_wrap(~ season) +
+  theme_minimal() +
+  theme(text = element_text(size = 15))
+NMDS_ordination
+ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150)
 
 ## ----TraitDistribution
-# Trait distributions
-traits_leaf <- read_csv(file = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
-# traits_chem <- read_csv(file = "clean_data/")
-
-#trait_data <- traits_leaf %>% bind_rows(traits_chem)
-
-trait_data <- traits_leaf %>%
-  mutate(value_trans = if_else(trait %in% c("dry_mass_g", "leaf_area_cm2", "plant_height_cm", "wet_mass_g"), log(value), value),
-         trait_trans = case_when(trait == "dry_mass_g" ~ "dry_mass_g_log",
-                           trait == "wet_mass_g" ~ "wet_mass_g_log",
-                           trait == "leaf_area_cm2" ~ "leaf_area_cm2_log",
-                           trait == "plant_height_cm" ~ "plant_height_cm_log",
-                           TRUE ~ trait))
-
-
-trait_distibution <- ggplot(trait_data, aes(x = value_trans, fill = site)) +
-  geom_density(alpha = 0.4) +
-  scale_fill_viridis_d(option = "plasma") +
+trait_distibution <- trait_data %>%
+  mutate(trait = factor(trait, levels = c("plant_height_cm", "wet_mass_g", "dry_mass_g", "leaf_area_cm2", "leaf_thickness_mm", "ldmc", "sla_cm2_g"))) %>%
+  ggplot(aes(x = value_trans, fill = site)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = puna_site_colour$colour) +
+  #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free") +
+  labs(x = "", y = "Density") +
   theme_minimal()
 trait_distibution
+ggsave("Trait_distribution.jpeg", trait_distibution, dpi = 150)
 
 
 ## ----TraitChecks
@@ -69,8 +116,9 @@ wet_vs_dry <- trait_data %>%
   pivot_wider(names_from = trait_trans, values_from = value_trans) %>%
   ggplot(aes(x = wet_mass_g_log, y = dry_mass_g_log, colour = treatment)) +
   geom_point(alpha = 0.3) +
-  scale_colour_viridis_d(option = "plasma", end = 0.8) +
-  facet_wrap(~ course) +
+  scale_colour_manual(values = puna_treatment_colour$colour) +
+  #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
+  labs(x = "log(wet mass g)", y = "log(dry mass g)", tag = "a)") +
   theme_minimal()
 
 
@@ -80,12 +128,14 @@ area_vs_dry <- trait_data %>%
   pivot_wider(names_from = trait_trans, values_from = value_trans) %>%
   ggplot(aes(x = leaf_area_cm2_log, y = dry_mass_g_log, colour = treatment)) +
   geom_point(alpha = 0.3) +
-  scale_colour_viridis_d(option = "plasma", end = 0.8) +
-  facet_wrap(~ course) +
+  scale_colour_manual(values = puna_treatment_colour$colour) +
+  #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
+  labs(x = bquote('log(leaf area '*cm^2*')'), y = "", tag = "b)") +
   theme_minimal()
 
 trait_checks <- wet_vs_dry + area_vs_dry + patchwork::plot_layout(guides = "collect")
 trait_checks
+ggsave("Trait_checks.jpeg", trait_checks, dpi = 150)
 
 
 
