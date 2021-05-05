@@ -17,11 +17,17 @@ get_file(node = "gs8u6",
          path = "clean_data",
          remote_path = "traits")
 
-#Download traits data from OSF
+#Download biomass data from OSF
 get_file(node = "gs8u6",
          file = "Puna_Peru_2019_Biomass_clean.csv",
          path = "clean_data",
          remote_path = "biomass")
+
+#Download community structure data from OSF
+get_file(node = "gs8u6",
+         file = "PFTC3-Puna-Peru_2018-2019_CommunityStructure_clean.csv",
+         path = "clean_data",
+         remote_path = "community")
 
 #Download climate data from OSF
 # get_file(node = "gs8u6",

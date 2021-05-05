@@ -25,4 +25,9 @@ puna_treatment_colour = puna_colour %>%
          treatment == "BB") %>%
   select(-site)
 
+#To capitalise labels
+capitalise <- function(string) {
+  substr(string, 1, 1) <- toupper(substr(string, 1, 1))
+  string
+}
 

@@ -66,15 +66,19 @@ Gradient_plot <- Gradient_plot_data %>%
               select(variable, treatment, p.value),
             by = c("variable", "treatment")) %>%
   mutate(treatment = factor(treatment, levels = c("C", "B", "NB"))) %>%
-  ggplot(aes(x = elevation, y = value, colour = treatment, linetype = p.value < 0.05)) +
+  ggplot(aes(x = elevation, y = value, colour = treatment, linetype = p.value < 0.05, fill = treatment)) +
   geom_point(alpha = 0.4) +
-  geom_smooth(method = "lm", formula = "y ~ x") +
-  scale_colour_manual(values = puna_treatment_colour$colour[1:3]) +
+  geom_smooth(method = "lm", formula = "y ~ x", alpha = 0.2) +
+  scale_colour_manual("Treatment", values = puna_treatment_colour$colour[1:3]) +
+  scale_fill_manual("Treatment", values = puna_treatment_colour$colour[1:3]) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   scale_linetype_manual(values = c("dashed", "solid")) +
   labs(x = "Elevation m a.s.l", y = "") +
-  guides(linetype = FALSE) +
-  facet_wrap( ~ variable, scales = "free_y") +
+  guides(linetype = FALSE,
+         fill = FALSE,
+         colour = guide_legend(override.aes = list(fill = NA))) +
+  facet_wrap( ~ variable, scales = "free_y",
+              labeller = labeller(.default = capitalise)) +
   theme_minimal() +
   theme(text = element_text(size = 12))
 Gradient_plot
@@ -84,10 +88,14 @@ ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 150)
 NMDS_ordination <- fNMDS %>%
   as_tibble() %>%
   mutate(treatment = factor(treatment, levels = c("C", "B", "NB", "BB")),
-         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC"))) %>%
+         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")),
+         season = if_else(season == "dry_season",
+                          "Dry season",
+                          "Wet season")) %>%
   ggplot(aes(x = NMDS1, y = NMDS2, colour = site, shape = treatment)) +
   geom_point() +
   scale_colour_manual(values = puna_site_colour$colour) +
+  scale_shape_manual(values=c(16, 5, 6, 8)) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8) +
   facet_wrap(~ season) +
   theme_minimal() +
@@ -97,12 +105,27 @@ ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150)
 
 ## ----TraitDistribution
 trait_distibution <- trait_data %>%
-  mutate(trait = factor(trait, levels = c("plant_height_cm", "wet_mass_g", "dry_mass_g", "leaf_area_cm2", "leaf_thickness_mm", "ldmc", "sla_cm2_g"))) %>%
-  ggplot(aes(x = value_trans, fill = site)) +
+  mutate(trait = case_when(trait == "plant_height_cm" ~ "Plant~height~(cm)",
+                   trait == "sla_cm2_g" ~ "SLA~(cm^{2}/g)",
+                   trait == "ldmc" ~ "LDMC",
+                   trait == "leaf_thickness_mm" ~ "Leaf~thickness~(mm)",
+                   trait == "wet_mass_g" ~ "Wet~mass~(g)",
+                   trait == "dry_mass_g" ~ "Dry~mass~(g)",
+                   trait == "leaf_area_cm2" ~ "Leaf~area~(cm^{2})")) %>%
+  mutate(trait = factor(trait,
+                        levels = c("Plant~height~(cm)", "Wet~mass~(g)", "Dry~mass~(g)",
+                                   "Leaf~area~(cm^{2})", "Leaf~thickness~(mm)", "LDMC",
+                                   "SLA~(cm^{2}/g)"))) %>%
+  ggplot(aes(x = value_trans, fill = site, colour = site)) +
   geom_density(alpha = 0.5) +
-  scale_fill_manual(values = puna_site_colour$colour) +
+  geom_density(alpha = 0.5, fill = NA) +
+  scale_fill_manual("Site",
+                    values = puna_site_colour$colour) +
+  scale_colour_manual("Site",
+                      values = puna_site_colour$colour) +
   #scale_fill_viridis_d(option = "plasma") +
-  facet_wrap(~ trait, scales = "free") +
+  facet_wrap(~ trait, scales = "free",
+             labeller = label_parsed) +
   labs(x = "", y = "Density") +
   theme_minimal()
 trait_distibution
@@ -116,7 +139,8 @@ wet_vs_dry <- trait_data %>%
   pivot_wider(names_from = trait_trans, values_from = value_trans) %>%
   ggplot(aes(x = wet_mass_g_log, y = dry_mass_g_log, colour = treatment)) +
   geom_point(alpha = 0.3) +
-  scale_colour_manual(values = puna_treatment_colour$colour) +
+  scale_colour_manual("Treatment",
+                      values = puna_treatment_colour$colour) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   labs(x = "log(wet mass g)", y = "log(dry mass g)", tag = "a)") +
   theme_minimal()
@@ -128,7 +152,8 @@ area_vs_dry <- trait_data %>%
   pivot_wider(names_from = trait_trans, values_from = value_trans) %>%
   ggplot(aes(x = leaf_area_cm2_log, y = dry_mass_g_log, colour = treatment)) +
   geom_point(alpha = 0.3) +
-  scale_colour_manual(values = puna_treatment_colour$colour) +
+  scale_colour_manual("Treatment",
+                      values = puna_treatment_colour$colour) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   labs(x = bquote('log(leaf area '*cm^2*')'), y = "", tag = "b)") +
   theme_minimal()
