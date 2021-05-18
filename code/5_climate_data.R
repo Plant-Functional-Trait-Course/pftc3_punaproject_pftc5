@@ -50,8 +50,11 @@ climate$error_flag[Extend_flags] <- 1
 ## QUE treatment fix (all treatments at QUE are Burned, we just don't know the plotid for each loggerid)
 climate[climate$Site == "QUE", "Treatment"] <- "B"
 
+climate <- as_tibble(climate) %>%
+  select(date_time, site = Site, treatment = Treatment, plot_id = PlotID, air_temperature, ground_temperature, soil_temperature, raw_soilmoisture, elevaiton = Elevation, latitude = Latitude, longitude = Longitude, logger_id, error_flag)
+
 ## DATA SAVING
-write.csv(climate, file = "data/climate/Puna_Climate_clean.csv")
+write_csv(climate, file = "data/climate/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
 
 ## Plotting
 plot_temp <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], mean)
