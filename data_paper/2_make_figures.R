@@ -78,10 +78,8 @@ Gradient_plot <- Gradient_plot_data %>%
          fill = FALSE,
          colour = guide_legend(override.aes = list(fill = NA))) +
   facet_wrap( ~ variable, scales = "free_y",
-              labeller = labeller(.default = capitalise)) +
-  theme_minimal() +
-  theme(text = element_text(size = 12))
-Gradient_plot
+              labeller = labeller(.default = capitalise))
+Gradient_plot <- Gradient_plot + figure_theme
 ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 150)
 
 ## ----NMDSOrdination
@@ -94,14 +92,12 @@ NMDS_ordination <- fNMDS %>%
                           "Wet season")) %>%
   ggplot(aes(x = NMDS1, y = NMDS2, colour = site, shape = treatment)) +
   geom_point() +
-  scale_colour_manual(values = puna_site_colour$colour) +
-  scale_shape_manual(values=c(16, 5, 6, 8)) +
+  scale_colour_manual("Treatment", values = puna_site_colour$colour) +
+  scale_shape_manual("Site", values=c(16, 5, 6, 8)) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8) +
-  facet_wrap(~ season) +
-  theme_minimal() +
-  theme(text = element_text(size = 15))
-NMDS_ordination
-ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150)
+  facet_wrap(~ season)
+NMDS_ordination <- NMDS_ordination + figure_theme
+ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150, height = 5, width = 9)
 
 ## ----TraitDistribution
 trait_distibution <- trait_data %>%
@@ -126,9 +122,8 @@ trait_distibution <- trait_data %>%
   #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free",
              labeller = label_parsed) +
-  labs(x = "", y = "Density") +
-  theme_minimal()
-trait_distibution
+  labs(x = "", y = "Density")
+trait_distibution <- trait_distibution + figure_theme
 ggsave("Trait_distribution.jpeg", trait_distibution, dpi = 150)
 
 
@@ -143,7 +138,7 @@ wet_vs_dry <- trait_data %>%
                       values = puna_treatment_colour$colour) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   labs(x = "log(wet mass g)", y = "log(dry mass g)", tag = "a)") +
-  theme_minimal()
+  figure_theme
 
 
 area_vs_dry <- trait_data %>%
@@ -156,7 +151,7 @@ area_vs_dry <- trait_data %>%
                       values = puna_treatment_colour$colour) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   labs(x = bquote('log(leaf area '*cm^2*')'), y = "", tag = "b)") +
-  theme_minimal()
+  figure_theme
 
 trait_checks <- wet_vs_dry + area_vs_dry + patchwork::plot_layout(guides = "collect")
 trait_checks
