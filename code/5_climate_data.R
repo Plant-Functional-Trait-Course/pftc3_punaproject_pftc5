@@ -53,9 +53,9 @@ write_csv(climate, file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.c
 
 # checks
 # climate %>%
-#   filter(Site %in% c("QUE", "TRE"),
-#          #Treatment %in% c("C", "B"),
-#          date_time > "2020-03-11 01:00:00" & date_time < "2020-03-16 01:00:00"
+#   filter(site %in% c("ACJ"),
+#          treatment %in% c("NB"),
+#          date_time > "2020-07-01 01:00:00" & date_time < "2020-07-30 01:00:00"
 #          ) %>%
 #   ggplot(aes(x = date_time, y = air_temperature)) +
 #   geom_line() +
@@ -84,10 +84,17 @@ write_csv(climate, file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.c
 
 
 ## Plotting
-# plot_temp <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], mean)
-# plot_temp$sd <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
-# colnames(plot_temp)[1] <- "date"
-# plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
+plot_temp <- aggregate(air_temperature~date(date_time)+site+treatment, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$sd <- aggregate(air_temperature~date(date_time)+site+treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
+colnames(plot_temp)[1] <- "date"
+#plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
+ggplot(plot_temp, aes(x = date, y = air_temperature, fill = treatment)) +
+  geom_line(aes(col = treatment)) +
+  geom_ribbon(aes(ymin = air_temperature - sd/2, ymax = air_temperature + sd/2), col = NA, alpha = 0.3) +
+  labs(x = "", y = "Air Temperature [°C]") +
+  facet_wrap(~ site, scales = "free") +
+  theme_bw()
+
 
 dat <- climate %>%
   mutate(date = ymd(date_time)) %>%
@@ -97,7 +104,7 @@ dat <- climate %>%
 ggplot(dat, aes(x = date, y = mean, fill = treatment)) +
   geom_line(aes(col = treatment)) +
   geom_ribbon(aes(ymin = mean - sd/2, ymax = mean + sd/2), col = NA, alpha = 0.3) +
-  labs(x = "", y = "Air Temperature [Â°C]") +
+  labs(x = "", y = "Air Temperature [°C]") +
   facet_wrap(~ site, scales = "free") +
   theme_bw()
-ggsave(filename="data/climate/AirTemp.png", width = 16, height = 9)
+ggsave(filename="AirTemp.png", width = 16, height = 9)
