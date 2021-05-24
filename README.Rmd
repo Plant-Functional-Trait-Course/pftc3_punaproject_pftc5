@@ -26,6 +26,7 @@ library("vegan")
 library("ggvegan")
 library("patchwork")
 # knitr::read_chunk("data_paper/1_download_clean_data.R")
+knitr::read_chunk("data_paper/2_data.R")
 knitr::read_chunk("data_paper/2_make_figures.R")
 
 theme_set(theme_bw(base_size = 12))
@@ -37,16 +38,36 @@ theme_set(theme_bw(base_size = 12))
 This is the git repository for the paper:
 Vandvik et al. (prepring). Plant traits and vegetation data from climate warming experiments along an 1100 m elevation gradient in the alpine Puna grasslands, Wayquecha, Peru
 
-## PROJECT AND SITE INFORMATION
 This project reports on plant functional traits, vegetation, ecosystem, and climate data in response to fire treatments and along a 1000 m elevational gradient in Puna grasslands in southeastern Andes of Perú. Across six sites along the elevational gradient, we collected data in sites that differed in their fire history (i.e. recent vs. long time since burning). The data were collected between 2018 and 2020 as part of the international Plant Functional Traits Courses 3 and 5 (PFTC3 and PFTC5) and three master theses.
+
+
+## Project and site information
+
+Research site selection and basic site information. 
+The study was conducted in the puna grasslands of the southeastern Andes, in the buffer zone of the Manu National Park, belonging to the district of Challabamba, province of Paucartambo and department of Cusco in Perú. 
+The puna grasslands are located above the upper treeline limit of the cloud forest. At the border between the cloud forest and the puna grassland (c. 3000 m a.s.l. ), the annual rainfall is approximately 1560 mm and mean annual air temperature is 11.8 °C (Girardin et al. 2014). 
+The dry season in these systems is between May/June and August/September and although there is less rain, fog dynamics from the rainforest keep still certain moisture in the system. 
+The puna grasslands are dominated by tussock forming grasses and the dominant species are Calamagrostis, Stipa, and Festuca species (Oliveras et al. 2014). 
+The puna vegetation are cultural landscapes and are used for grazing by livestock. 
+There is no grazing inside the Manu National Park but the buffer area is commonly used by the surrounding local communities for extensive cattle grazing, and sometimes livestock do enter and graze within the Park (Oliveras et al. 2014). 
+The soils have deep organic layers (20 cm on average, but they can be as much as 110 cm deep, Oliveras pers. obs.) (Gibbon et al. 2010; Zimmermann et al. 2010).
+Six sites were selected along an elevational gradient above the cloud forest treeline (Table 1). In March 2019, five sites were established at Wayquecha (WAY; 3101 m a.s.l.), Acjanaco (ACJ; 3468 m a.s.l.), Pilco Grande (PIL; 3676 m a.s.l.), Tres Cruzes (TRE 3715 m a.s.l.) and Quello Casa (QUE; 3888 m a.s.l.). 
+WAY belongs to the Private Conservation Area Wayqecha managed by ACCA (Oliveras et al. 2014), while all the other sites are located within the protected area of Manu National park. 
+In April 2019, a sixth site Ocoruro (OCC; 4383 m a.s.l.) located in Calca province, outside of Manu National Park was established.
 
 
 ```{r echo=FALSE, out.width='60%', fig.cap= "Location of the six study sites along an elevational gradient"}
 knitr::include_graphics("image/PeruMountain2.png")
 ```
 
+
 ## The experimental set-up
-Something on fire, sites, plots etc.
+
+**Fire treatments** At each site we selected areas that differed in the timing since the last burning: No burning since last 20 years (C; control), 11-15 years since burning (B; old burn), and < 3 years since burning (NB; new burn) (Van der Eynden 2011; Román-Cuesta et al. 2011; Imma Oliveras, personal communication)(Figure 1). 
+All sites except QUE had control plots, while TRE and OCC lacked the burnt treatment. Recently burnt areas were only found at four sites (ACJ, PIL, TRE, QUE). 
+The QUE site burnt in November 2019 and therefore changed from a burnt to a recently burnt site. 
+At PIL, an area was experimentally burnt in 2006 and 2013 (BB; experimental burn).
+
 
 
 ## DATASETS, CODE AND ANALYSES
@@ -86,6 +107,37 @@ location %>%
 
 
 Note that the raw data and the code to clean the raw data is also available on OSF and the GitHub repository.
+
+
+### Community Dataset
+All vascular plant species in each plot were surveyed between 2018 and 2020. At each survey, vegetation was surveyed using a 1m x 1m square. We registered presence-absence of all species in 25 subplots (???) per plot and estimated the percentage coverage of each species in the whole plot. Note that the total coverage in each plot can exceed 100 due to layering of the vegetation. Mean vegetation height for each plot was measured, at five points per plot.
+
+To download the clean data use: `data_paper/1_download_clean_data.R`
+
+
+#### Data cleaning steps
+All data was manually entered from into digital worksheets, and manually proofread.
+
+All data cleaning and checking was done using code. The data was checked and corrected for spelling mistakes and mislabeled. Missing information (e.g. PlotID, Site) were added if possible. The data was then checked visually to detect apparent measurement errors.
+
+Explain problems with species identification.
+
+
+#### Diversity along elevational gradient
+
+```{r DiversityPlot, echo=FALSE, eval=FALSE, fig.cap="Figure 3 add fig legend."}
+```
+
+
+```{r OrdinationPlot, echo=FALSE, eval=FALSE, fig.cap="Figure 4 Community response to experimental temperature change including Open Top Chamber warming, transplantation to warmer sites, and transplantation to colder sites across the 4 study sites."}
+```
+
+
+### Vegetation height and structure dataset
+Vegetation height and structure data for each plot was recorded between 2018 and 2020. Mean vegetation height and bryophyte depth was measured at five evenly spaced points per plot using a ruler. The percent coverage of vascular plant vegetation was also recorded. Obvious outliers in the data were removed.
+
+Vegetation height increases in the first 3 years and then decreases, because biomass accumulates inside the fence over time (no grazing). After 2014 the vegetation inside the fence was clipped at the end of the field season to remove this fence effect. 
+
 
 
 ### Functional leaf trait dataset
@@ -140,10 +192,10 @@ To download the clean data use: `data_paper/1_download_clean_data.R`
 
 #### Traits Distributions and Values
 
-```{r TraitDistribution, echo=FALSE, eval=TRUE, fig.cap= "Distributions of trait data from all sampled leaves from the four sites along the 1000 altitudinal gradient in Mt Gongga, Sichuan, China."}
+```{r TraitDistribution, echo=FALSE, eval=FALSE, fig.cap= "Distributions of trait data from all sampled leaves from the six sites along the elevational gradient."}
 ```
 
-```{r TraitChecks, echo=FALSE, eval=TRUE, fig.cap= "Biplots of some of the trait measurements and traits from the four sites along the 1000 altitudinal gradient in Mt Gongga, Sichuan, China."}
+```{r TraitChecks, echo=FALSE, eval=FALSE, fig.cap= "Scatterplots of wet vs. dry mass and leaf area vs. dry mass."}
 ```
 
 #### Data processing and cleaning 
@@ -160,34 +212,6 @@ TBA
 * area estimated?
 
 
-### Community Dataset
-All vascular plant species in each plot were surveyed between 2018 and 2020. At each survey, vegetation was surveyed using a 1m x 1m square. We registered presence-absence of all species in 25 subplots (???) per plot and estimated the percentage coverage of each species in the whole plot. Note that the total coverage in each plot can exceed 100 due to layering of the vegetation. Mean vegetation height for each plot was measured, at five points per plot.
-
-To download the clean data use: `data_paper/1_download_clean_data.R`
-
-
-#### Data cleaning steps
-All data was manually entered from into digital worksheets, and manually proofread.
-
-All data cleaning and checking was done using code. The data was checked and corrected for spelling mistakes and mislabeled. Missing information (e.g. PlotID, Site) were added if possible. The data was then checked visually to detect apparent measurement errors.
-
-Explain problems with species identification.
-
-
-#### Diversity along elevational gradient
-
-```{r DiversityPlot, echo=FALSE, eval=TRUE, fig.cap="Figure 3 add fig legend."}
-```
-
-
-```{r OrdinationPlot, echo=FALSE, eval=FALSE, fig.cap="Figure 4 Community response to experimental temperature change including Open Top Chamber warming, transplantation to warmer sites, and transplantation to colder sites across the 4 study sites."}
-```
-
-
-### Vegetation height and structure dataset
-Vegetation height and structure data for each plot was recorded between 2018 and 2020. Mean vegetation height and bryophyte depth was measured at five evenly spaced points per plot using a ruler. The percent coverage of vascular plant vegetation was also recorded. Obvious outliers in the data were removed.
-
-Vegetation height increases in the first 3 years and then decreases, because biomass accumulates inside the fence over time (no grazing). After 2014 the vegetation inside the fence was clipped at the end of the field season to remove this fence effect. 
 
 
 
