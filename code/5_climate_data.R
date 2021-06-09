@@ -92,14 +92,61 @@ climate[climate$Site == "QUE", "Treatment"] <- "B"
 ## DATA SAVING
 write.csv(climate, file = "data/climate/Puna_Climate_clean.csv")
 
-## Plotting
+## Plotting Air Temp
 plot_temp <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], mean)
 plot_temp$sd <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
 colnames(plot_temp)[1] <- "date"
+Elev_mean <- aggregate(Elevation~Site, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$Elevation <- round(Elev_mean$Elevation[match(plot_temp$Site, Elev_mean$Site)], 0)
+plot_temp$Title <- paste0(plot_temp$Site, " (~", plot_temp$Elevation, "m)")
 plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
+
 
 ggplot(plot_temp, aes(x = date, y = air_temperature, fill = Treatment)) +
   geom_line(aes(col = Treatment)) +
   geom_ribbon(aes(ymin=air_temperature-sd/2, ymax=air_temperature+sd/2), col = NA, alpha=0.3) +
-  facet_wrap(~ Site, scales = "free") + theme_bw() + labs(x = "", y = "Air Temperature [Â°C]")
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Air Temperature [°C]")
 ggsave(filename="data/climate/AirTemp.png", width = 16, height = 9)
+
+
+ggplot(plot_temp, aes(y = air_temperature, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Mean Air Temperature [°C]")
+ggsave(filename="data/climate/AirTempBox.png", width = 16, height = 9)
+aggregate(air_temperature~Site+Treatment, data = plot_temp, mean)
+
+ggplot(plot_temp, aes(y = sd, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Standard Deviation of Air Temperature [°C]")
+ggsave(filename="data/climate/AirTempSD.png", width = 16, height = 9)
+aggregate(sd~Site+Treatment, data = plot_temp, mean)
+
+## Plotting SoilMoi
+plot_temp <- aggregate(volumetric_soilmoisture~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$sd <- aggregate(volumetric_soilmoisture~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
+colnames(plot_temp)[1] <- "date"
+Elev_mean <- aggregate(Elevation~Site, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$Elevation <- round(Elev_mean$Elevation[match(plot_temp$Site, Elev_mean$Site)], 0)
+plot_temp$Title <- paste0(plot_temp$Site, " (~", plot_temp$Elevation, "m)")
+plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
+
+
+ggplot(plot_temp, aes(x = date, y = volumetric_soilmoisture, fill = Treatment)) +
+  geom_line(aes(col = Treatment)) +
+  geom_ribbon(aes(ymin=volumetric_soilmoisture-sd/2, ymax=volumetric_soilmoisture+sd/2), col = NA, alpha=0.3) +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Soil Moisture [% vol.]")
+ggsave(filename="data/climate/VolMoi.png", width = 16, height = 9)
+
+
+ggplot(plot_temp, aes(y = volumetric_soilmoisture, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Mean Soil Moisture [% vol.]")
+ggsave(filename="data/climate/VolMoiBox.png", width = 16, height = 9)
+aggregate(volumetric_soilmoisture~Site+Treatment, data = plot_temp, mean)
+
+ggplot(plot_temp, aes(y = sd, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Standard Deviation of Soil Moisture [% vol.]")
+ggsave(filename="data/climate/VolMoiSD.png", width = 16, height = 9)
+aggregate(sd~Site+Treatment, data = plot_temp, mean)
+
