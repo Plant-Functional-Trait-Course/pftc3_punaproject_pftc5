@@ -68,7 +68,7 @@ climate <- temp_raw %>%
   mutate(date_time = ymd_hm(date_time)) %>%
   # extract logger id from filename
   mutate(logger_id = as.numeric(str_extract_all(filename, "\\d{8}")))  %>%
-  mutate(volumetric_soilmoisture = soil.moist(rawsoilmoist = raw_soilmoisture, soil_temp = soil_temperature, soilclass = "sand"))
+  mutate(volumetric_soilmoisture = soil.moist(rawsoilmoist = raw_soilmoisture, soil_temp = soil_temperature, soilclass = "peat")) # according to https://doi.org/10.1029/2010GB003787 the organic layer of the soil (which our loggers are measuring in) consists of peat in these regions
 
 ## attach all logger-specific, unchanging data descriptors to big climate data frame
 climate <- cbind(climate, id_map[match(climate$logger_id, id_map$.id), c(-1,-ncol(id_map))])
