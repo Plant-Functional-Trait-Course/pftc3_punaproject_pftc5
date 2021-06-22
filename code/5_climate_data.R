@@ -2,6 +2,44 @@
 source("code/load_libraries.R")
 source("code/coordinates.R")
 
+soil.moist <- function(rawsoilmoist, soil_temp, soilclass){
+  #based on appendix A of Wild 2019 (https://www-sciencedirect-com.pva.uib.no/science/article/pii/S0168192318304118#sec0095) and https://www.tomst.com/tms/tacr/TMS3calibr1-11.xlsm
+  # creating df with parameters for each soil type
+  soilclass.df <- tibble(
+    soil = c("sand", "loamy_sand_A", "loamy_sand_B", "sandy_loam_A", "sandy_loam_B", "loam", "silt_loam", "peat"),
+    a = c(-3E-9, -1.9e-8, -2.3e-8, -3.8e-8, -9e-10, -5.1e-8, 1.7e-8, 1.23e-7),
+    b = c(1.61192e-4, 2.6561e-4, 2.82473e-4, 3.39449e-4, 2.61847e-4, 3.97984e-4, 1.18119e-4, 1.44644e-4),
+    c = c(-0.109956505, -0.154089291, -0.167211156, -0.214921782, -0.158618303, 0.291046437, -0.101168511, 0.202927906),
+    AirCalib = rep(57.64530756, 8), # a constant across all soil types, don't know exactly what this does
+    AirPuls = rep(56.88867311, 8), # a constant across all soil types, don't know exactly what this does
+    DilVol = rep(-59.72975311, 8) # a constant across all soil types, don't know exactly what this does
+  )
+
+  #filtering soilclass.df based on which soilclass was entered in the function
+  soilclass.df <- soilclass.df %>%
+    filter(
+      soil == soilclass
+    )
+
+  #calculating the volumetric soil moisture with the parameters corresponding to the soil class and the raw soil moisture from the logger
+  volmoist = (soilclass.df$a * rawsoilmoist^2) + (soilclass.df$b * rawsoilmoist) + soilclass.df$c
+
+  #temperature correction
+  temp_ref <- 24
+  delta_air <- 1.91132689118083
+  delta_water <- 0.64108
+  delta_dil <- -1.270246891 # this is delta-water - delta_air
+  # we don't know what this does or what the variables do, but the result is the same as in excel
+  temp_corr <- rawsoilmoist + ((temp_ref-soil_temp) * (delta_air + delta_dil * volmoist))
+  # volumetric soil moisture with temperatue correction
+  volmoistcorr <- with(soilclass.df,
+                       ifelse(rawsoilmoist>AirCalib,
+                              (temp_corr+AirPuls+DilVol*volmoist)^2*a+(temp_corr+AirPuls+DilVol*volmoist)*b+c,
+                              NA))
+  return(volmoistcorr)
+  # return(volmoist) #let's just use the soil moisture without temperature correction for now
+}
+
 ## Read in files
 files <- dir(path = "data/climate/raw_climate", pattern = ".*\\.csv$", full.names = TRUE, recursive = TRUE)
 
@@ -83,28 +121,61 @@ write_csv(climate, file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.c
 
 
 
-## Plotting
-plot_temp <- aggregate(air_temperature~date(date_time)+site+treatment, data = climate[climate$error_flag == 0, ], mean)
-plot_temp$sd <- aggregate(air_temperature~date(date_time)+site+treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
+
+## Plotting Air Temp
+plot_temp <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$sd <- aggregate(air_temperature~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
 colnames(plot_temp)[1] <- "date"
-#plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
-ggplot(plot_temp, aes(x = date, y = air_temperature, fill = treatment)) +
-  geom_line(aes(col = treatment)) +
-  geom_ribbon(aes(ymin = air_temperature - sd/2, ymax = air_temperature + sd/2), col = NA, alpha = 0.3) +
-  labs(x = "", y = "Air Temperature [°C]") +
-  facet_wrap(~ site, scales = "free") +
-  theme_bw()
+Elev_mean <- aggregate(Elevation~Site, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$Elevation <- round(Elev_mean$Elevation[match(plot_temp$Site, Elev_mean$Site)], 0)
+plot_temp$Title <- paste0(plot_temp$Site, " (~", plot_temp$Elevation, "m)")
+plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
 
 
-dat <- climate %>%
-  mutate(date = ymd(date_time)) %>%
-  group_by(date, site, treatment) %>%
-  summarise(mean = mean(air_temperature),
-            sd = sd(air_temperature))
-ggplot(dat, aes(x = date, y = mean, fill = treatment)) +
-  geom_line(aes(col = treatment)) +
-  geom_ribbon(aes(ymin = mean - sd/2, ymax = mean + sd/2), col = NA, alpha = 0.3) +
-  labs(x = "", y = "Air Temperature [°C]") +
-  facet_wrap(~ site, scales = "free") +
-  theme_bw()
-ggsave(filename="AirTemp.png", width = 16, height = 9)
+ggplot(plot_temp, aes(x = date, y = air_temperature, fill = Treatment)) +
+  geom_line(aes(col = Treatment)) +
+  geom_ribbon(aes(ymin=air_temperature-sd/2, ymax=air_temperature+sd/2), col = NA, alpha=0.3) +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Air Temperature [°C]")
+ggsave(filename="data/climate/AirTemp.png", width = 16, height = 9)
+
+
+ggplot(plot_temp, aes(y = air_temperature, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Mean Air Temperature [°C]")
+ggsave(filename="data/climate/AirTempBox.png", width = 16, height = 9)
+aggregate(air_temperature~Site+Treatment, data = plot_temp, mean)
+
+ggplot(plot_temp, aes(y = sd, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Standard Deviation of Air Temperature [°C]")
+ggsave(filename="data/climate/AirTempSD.png", width = 16, height = 9)
+aggregate(sd~Site+Treatment, data = plot_temp, mean)
+
+## Plotting SoilMoi
+plot_temp <- aggregate(volumetric_soilmoisture~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$sd <- aggregate(volumetric_soilmoisture~date(date_time)+Site+Treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
+colnames(plot_temp)[1] <- "date"
+Elev_mean <- aggregate(Elevation~Site, data = climate[climate$error_flag == 0, ], mean)
+plot_temp$Elevation <- round(Elev_mean$Elevation[match(plot_temp$Site, Elev_mean$Site)], 0)
+plot_temp$Title <- paste0(plot_temp$Site, " (~", plot_temp$Elevation, "m)")
+plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
+
+
+ggplot(plot_temp, aes(x = date, y = volumetric_soilmoisture, fill = Treatment)) +
+  geom_line(aes(col = Treatment)) +
+  geom_ribbon(aes(ymin=volumetric_soilmoisture-sd/2, ymax=volumetric_soilmoisture+sd/2), col = NA, alpha=0.3) +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Soil Moisture [% vol.]")
+ggsave(filename="data/climate/VolMoi.png", width = 16, height = 9)
+
+
+ggplot(plot_temp, aes(y = volumetric_soilmoisture, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Mean Soil Moisture [% vol.]")
+ggsave(filename="data/climate/VolMoiBox.png", width = 16, height = 9)
+aggregate(volumetric_soilmoisture~Site+Treatment, data = plot_temp, mean)
+
+ggplot(plot_temp, aes(y = sd, x = Treatment, color = Treatment)) +
+  geom_boxplot() +
+  facet_wrap(~ Title, scales = "free_x") + theme_bw() + labs(x = "", y = "Daily Standard Deviation of Soil Moisture [% vol.]")
+ggsave(filename="data/climate/VolMoiSD.png", width = 16, height = 9)
+aggregate(sd~Site+Treatment, data = plot_temp, mean)
