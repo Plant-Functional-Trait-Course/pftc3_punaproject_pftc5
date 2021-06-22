@@ -78,11 +78,10 @@ Gradient_plot <- Gradient_plot_data %>%
          fill = FALSE,
          colour = guide_legend(override.aes = list(fill = NA))) +
   facet_wrap( ~ variable, scales = "free_y",
-              labeller = labeller(.default = capitalise)) +
-  theme_minimal() +
-  theme(text = element_text(size = 12))
+              labeller = labeller(.default = capitalise))
+Gradient_plot <- Gradient_plot + figure_theme
 Gradient_plot
-ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 150)
+#ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 150)
 
 ## ----NMDSOrdination
 NMDS_ordination <- fNMDS %>%
@@ -94,14 +93,13 @@ NMDS_ordination <- fNMDS %>%
                           "Wet season")) %>%
   ggplot(aes(x = NMDS1, y = NMDS2, colour = site, shape = treatment)) +
   geom_point() +
-  scale_colour_manual(values = puna_site_colour$colour) +
-  scale_shape_manual(values=c(16, 5, 6, 8)) +
+  scale_colour_manual("Treatment", values = puna_site_colour$colour) +
+  scale_shape_manual("Site", values=c(16, 5, 6, 8)) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8) +
-  facet_wrap(~ season) +
-  theme_minimal() +
-  theme(text = element_text(size = 15))
+  facet_wrap(~ season)
+NMDS_ordination <- NMDS_ordination + figure_theme
 NMDS_ordination
-ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150)
+#ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150, height = 5, width = 9)
 
 ## ----TraitDistribution
 trait_distibution <- trait_data %>%
@@ -126,10 +124,10 @@ trait_distibution <- trait_data %>%
   #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free",
              labeller = label_parsed) +
-  labs(x = "", y = "Density") +
-  theme_minimal()
+  labs(x = "", y = "Density")
+trait_distibution <- trait_distibution + figure_theme
 trait_distibution
-ggsave("Trait_distribution.jpeg", trait_distibution, dpi = 150)
+#ggsave("Trait_distribution.jpeg", trait_distibution, dpi = 150)
 
 
 ## ----TraitChecks
@@ -143,7 +141,7 @@ wet_vs_dry <- trait_data %>%
                       values = puna_treatment_colour$colour) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   labs(x = "log(wet mass g)", y = "log(dry mass g)", tag = "a)") +
-  theme_minimal()
+  figure_theme
 
 
 area_vs_dry <- trait_data %>%
@@ -156,11 +154,11 @@ area_vs_dry <- trait_data %>%
                       values = puna_treatment_colour$colour) +
   #scale_colour_viridis_d(option = "plasma", end = 0.8, direction = -1) +
   labs(x = bquote('log(leaf area '*cm^2*')'), y = "", tag = "b)") +
-  theme_minimal()
+  figure_theme
 
 trait_checks <- wet_vs_dry + area_vs_dry + patchwork::plot_layout(guides = "collect")
 trait_checks
-ggsave("Trait_checks.jpeg", trait_checks, dpi = 150)
+#ggsave("Trait_checks.jpeg", trait_checks, dpi = 150)
 
 
 
@@ -248,84 +246,99 @@ ClimatePlot
 
 ## ----SpList
 ### SPECIES TABLE
-biomass <- read_csv(file = "biomass/China_2016_Biomass_cleaned.csv")
-traitsLeaf <- read_csv(file = "traits/data_cleaned/PFTC1.2_China_2015_2016_LeafTraits.csv")
-
-
-spList <- cover_thin %>% distinct(speciesName) %>%
-  mutate(Dataset = "community") %>%
-  rbind(biomass %>% select(speciesName) %>%
-          distinct() %>%
-          mutate(Dataset = "biomass")) %>%
-  rbind(traitsLeaf %>% select(Taxon) %>%
-          rename("speciesName" = "Taxon") %>%
-          distinct() %>%
-          mutate(Dataset = "trait")) %>%
-  mutate(Presence = "x") %>%
-  pivot_wider(names_from = Dataset, values_from = Presence) %>%
-  arrange(speciesName) %>%
-  filter(!grepl("*Unkown|*mixed forb species|spp$|spp.$|sp$|sp1$|sp2$|sp4$", speciesName))
-spList
-#writexl::write_xlsx(spList, path = "China_FullSpeciesList.xlsx")
-
-taxa %>% select(speciesName) %>%
-  mutate(Dataset = "community") %>%
-  rbind(biomass %>% select(speciesName) %>%
-          distinct() %>%
-          mutate(Dataset = "biomass")) %>%
-  rbind(traitsLeaf %>% select(Taxon) %>%
-          rename("speciesName" = "Taxon") %>%
-          distinct() %>%
-          mutate(Dataset = "trait")) %>%
-  mutate(Presence = "x") %>%
-  pivot_wider(names_from = Dataset, values_from = Presence) %>%
-  arrange(speciesName) %>%
-  filter(grepl("*Unkown|*mixed forb species|spp$|spp.$|sp$|sp1$|sp2$|sp4$", speciesName)) %>%
-  gather(key = dataset, value = present, -speciesName) %>%
-  filter(present == "x") %>%
-  group_by(dataset) %>%
-  count()
-
-
-airtemp <- read_csv(file = "climate/data_cleaned/China_2013_2016_AirTemp.csv", col_names = TRUE)
-
-# GDD
-airtemp %>%
-  mutate(year = year(dateTime),
-         month = month(dateTime),
-         day = day(dateTime)) %>%
-  filter(year %in% c(2013)) %>%
-  group_by(site, year, month, day) %>%
-  summarise(mean = mean(Tair)) %>%
-  filter(mean >= 5) %>%
-  group_by(year, site) %>%
-  summarise(n = n())
-
-# Freezing days
-airtemp %>%
-  mutate(year = year(dateTime),
-         month = month(dateTime),
-         day = day(dateTime)) %>%
-  filter(year %in% c(2013)) %>%
-  group_by(site, year, month, day) %>%
-  summarise(mean = mean(Tair)) %>%
-  filter(mean < 0) %>%
-  group_by(year, site) %>%
-  summarise(n = n())
-
-
-# Table 4
-tbl(con, "turfEnvironment") %>%
-  collect() %>%
-  pivot_longer(cols = c(moss:litterThickness), names_to = "group", values_to = "value") %>%
-  group_by(group) %>%
-  summarise(min = min(value, na.rm = TRUE), max = max(value, na.rm = TRUE)) %>%
-  print(n = Inf)
-
-
-tbl(con, "turfEnvironment") %>%
-  collect() %>%
-  pivot_longer(cols = c(moss:litterThickness), names_to = "group", values_to = "value") %>%
-  ggplot(aes(x = factor(year), y = value)) +
-  geom_boxplot() +
-  facet_wrap(~ group, scales = "free")
+# biomass <- read_csv(file = "biomass/China_2016_Biomass_cleaned.csv")
+# traitsLeaf <- read_csv(file = "traits/data_cleaned/PFTC1.2_China_2015_2016_LeafTraits.csv")
+#
+#
+# spList <- cover_thin %>% distinct(speciesName) %>%
+#   mutate(Dataset = "community") %>%
+#   rbind(biomass %>% select(speciesName) %>%
+#           distinct() %>%
+#           mutate(Dataset = "biomass")) %>%
+#   rbind(traitsLeaf %>% select(Taxon) %>%
+#           rename("speciesName" = "Taxon") %>%
+#           distinct() %>%
+#           mutate(Dataset = "trait")) %>%
+#   mutate(Presence = "x") %>%
+#   pivot_wider(names_from = Dataset, values_from = Presence) %>%
+#   arrange(speciesName) %>%
+#   filter(!grepl("*Unkown|*mixed forb species|spp$|spp.$|sp$|sp1$|sp2$|sp4$", speciesName))
+# spList
+# #writexl::write_xlsx(spList, path = "China_FullSpeciesList.xlsx")
+#
+# taxa %>% select(speciesName) %>%
+#   mutate(Dataset = "community") %>%
+#   rbind(biomass %>% select(speciesName) %>%
+#           distinct() %>%
+#           mutate(Dataset = "biomass")) %>%
+#   rbind(traitsLeaf %>% select(Taxon) %>%
+#           rename("speciesName" = "Taxon") %>%
+#           distinct() %>%
+#           mutate(Dataset = "trait")) %>%
+#   mutate(Presence = "x") %>%
+#   pivot_wider(names_from = Dataset, values_from = Presence) %>%
+#   arrange(speciesName) %>%
+#   filter(grepl("*Unkown|*mixed forb species|spp$|spp.$|sp$|sp1$|sp2$|sp4$", speciesName)) %>%
+#   gather(key = dataset, value = present, -speciesName) %>%
+#   filter(present == "x") %>%
+#   group_by(dataset) %>%
+#   count()
+#
+#
+# airtemp <- read_csv(file = "climate/data_cleaned/China_2013_2016_AirTemp.csv", col_names = TRUE)
+#
+# # GDD
+# airtemp %>%
+#   mutate(year = year(dateTime),
+#          month = month(dateTime),
+#          day = day(dateTime)) %>%
+#   filter(year %in% c(2013)) %>%
+#   group_by(site, year, month, day) %>%
+#   summarise(mean = mean(Tair)) %>%
+#   filter(mean >= 5) %>%
+#   group_by(year, site) %>%
+#   summarise(n = n())
+#
+# # Freezing days
+# airtemp %>%
+#   mutate(year = year(dateTime),
+#          month = month(dateTime),
+#          day = day(dateTime)) %>%
+#   filter(year %in% c(2013)) %>%
+#   group_by(site, year, month, day) %>%
+#   summarise(mean = mean(Tair)) %>%
+#   filter(mean < 0) %>%
+#   group_by(year, site) %>%
+#   summarise(n = n())
+#
+#
+# # Table 4
+# tbl(con, "turfEnvironment") %>%
+#   collect() %>%
+#   pivot_longer(cols = c(moss:litterThickness), names_to = "group", values_to = "value") %>%
+#   group_by(group) %>%
+#   summarise(min = min(value, na.rm = TRUE), max = max(value, na.rm = TRUE)) %>%
+#   print(n = Inf)
+#
+#
+# tbl(con, "turfEnvironment") %>%
+#   collect() %>%
+#   pivot_longer(cols = c(moss:litterThickness), names_to = "group", values_to = "value") %>%
+#   ggplot(aes(x = factor(year), y = value)) +
+#   geom_boxplot() +
+#   facet_wrap(~ group, scales = "free")
+#
+#
+#
+# ## Plotting climate figure
+# climate <- read_csv(file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
+# plot_temp <- aggregate(air_temperature~date(date_time)+site+treatment, data = climate[climate$error_flag == 0, ], mean)
+# plot_temp$sd <- aggregate(air_temperature~date(date_time)+site+treatment, data = climate[climate$error_flag == 0, ], sd)[,4]
+# colnames(plot_temp)[1] <- "date"
+# #plot_temp <- plot_temp[(plot_temp$Site != "QUE"), ]
+# ggplot(plot_temp, aes(x = date, y = air_temperature, fill = treatment)) +
+#   geom_line(aes(col = treatment)) +
+#   geom_ribbon(aes(ymin = air_temperature - sd/2, ymax = air_temperature + sd/2), col = NA, alpha = 0.3) +
+#   labs(x = "", y = "Air Temperature [°C]") +
+#   facet_wrap(~ site, scales = "free") +
+#   theme_bw()

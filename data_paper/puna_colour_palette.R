@@ -31,3 +31,11 @@ capitalise <- function(string) {
   string
 }
 
+
+
+figure_theme <- theme_minimal() +
+  theme(axis.text = element_text(size = rel(1)),
+        axis.title= element_text(size = rel(1.3)),
+        legend.text = element_text(size = rel(0.9)),
+        legend.title = element_text(size = rel(1)))
+

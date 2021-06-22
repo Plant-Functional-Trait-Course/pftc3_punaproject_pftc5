@@ -24,9 +24,9 @@ get_file(node = "gs8u6",
          remote_path = "biomass")
 
 #Download climate data from OSF
-# get_file(node = "gs8u6",
-#          file = "China_2013_2016_AirTemp.csv",
-#          path = "clean_data",
-#          remote_path = "Climate")
+get_file(node = "gs8u6",
+         file = "PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv",
+         path = "clean_data",
+         remote_path = "Climate")
 
 ## ----

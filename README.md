@@ -165,14 +165,6 @@ To download the clean data use: `data_paper/1_download_clean_data.R`
 
 #### Traits Distributions and Values
 
-![Distributions of trait data from all sampled leaves from the four
-sites along the 1000 altitudinal gradient in Mt Gongga, Sichuan,
-China.](README_files/figure-gfm/TraitDistribution-1.png)
-
-![Biplots of some of the trait measurements and traits from the four
-sites along the 1000 altitudinal gradient in Mt Gongga, Sichuan,
-China.](README_files/figure-gfm/TraitChecks-1.png)
-
 #### Data processing and cleaning
 
 All data was manually entered from into digital worksheets, and manually
@@ -218,8 +210,6 @@ visually to detect apparent measurement errors.
 Explain problems with species identification.
 
 #### Diversity along elevational gradient
-
-![Figure 3 add fig legend.](README_files/figure-gfm/DiversityPlot-1.png)
 
 ### Vegetation height and structure dataset
 
