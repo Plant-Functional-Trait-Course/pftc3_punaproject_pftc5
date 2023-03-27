@@ -344,7 +344,9 @@ trait_pftc5 <- trait_2020 %>%
   # fix wrong wet mass
   mutate(wet_mass_g = if_else(id == "BVM5909", 0.075, wet_mass_g),
          wet_mass_g = if_else(id == "BUJ1931", 0.069, wet_mass_g),
-         wet_mass_g = if_else(id == "AKC4237", 0.063, wet_mass_g))
+         wet_mass_g = if_else(id == "AKC4237", 0.063, wet_mass_g),
+         # make plot_id a character
+         plot_id = as.character(plot_id))
 
 
 
@@ -448,7 +450,7 @@ trait_pftc5 <- trait_pftc5 %>%
   #reordering columns
   select(country, course, project, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
-         individual_nr, plant_height_cm,
+         individual_nr, leaf_id, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm = leaf_thickness_ave_mm, area_flag, dry_flag, wet_flag )
 
