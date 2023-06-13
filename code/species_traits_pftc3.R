@@ -515,14 +515,14 @@ trait_pftc3 <- traits %>%
          taxon_puna = NA_character_) %>%
   # add chemical traits
   # loosing 4 leaves that are bad or from sean
-  left_join(cnp_data, by = "id") |>
+  tidylog::left_join(cnp_data, by = "id") |>
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
          individual_nr, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
          leaf_thickness_mm, c_percent, n_percent, cn_ratio,
          p_percent, np_ratio, dn15_permil, dc13_permil,
-         area_flag, dry_flag, wet_flag, filename)
+         area_flag, dry_flag, wet_flag)
 
 
 
