@@ -9,17 +9,23 @@
 
 ############################################################################
 #### PHOSPHORUS DATA ####
-p <- read_csv(file = "data/chemical_traits/CNP_Template - Phosphorus.csv") %>%
-  select(-Rack_Number, -Row, -Column, -Date_weighed, -Name_weighed, -Date_measured, -Name_measured) |>
-  filter(Site == "Peru",
-         !is.na(ID)) |>
-  rename(Country = Site)
+
+p <- read_excel(path = "data/chemical_traits/PFTC_phosphorus_2018-2022.xlsx") %>%
+  select(Batch, Site, ID, Sample_Mass, Sample_Absorbance, Volume_of_Sample_ml) |>
+  tidylog::filter(Site == "Peru") |>
+  tidylog::filter(!is.na(ID)) |>
+  rename(Country = Site) |>
+  tidylog::mutate(ID = case_when(ID == "BRG2476" ~ "BRG2478",
+                                  ID == "CJD9841" ~ "CJD9041",
+                                  TRUE ~ ID))
 
 # Check IDs (all seem to be fine)
-all_codes <- get_PFTC_envelope_codes(seed = 1)
+#all_codes <- get_PFTC_envelope_codes(seed = 1)
 p |>
   filter(!ID %in% c("Hard Red Spring Wheat Flour", "Standard1", "Standard2")) |>
   anti_join(all_codes, by = c("ID" = "hashcode"))
+# BRG2476 -> BRG2478
+# CJD9841 -> CJD9041
 
 # pull of standard, calculate R2, choose standard for absorbance curve, make regression and plot
 standard_concentration <- tibble(Standard = c(0, 2, 4, 8, 12, 16),
@@ -91,9 +97,9 @@ CorrectionFactor <- OriginalValues %>%
 
 
 # Use Correction Factor on data
-CorrectedValues <- OriginalValues %>%
+Corrected_P <- OriginalValues %>%
   filter(!ID %in% c("Hard Red Spring Wheat Flour")) %>%
-  left_join(CorrectionFactor, by = c("Batch", "Country")) %>%
+  tidylog::left_join(CorrectionFactor, by = c("Batch", "Country")) %>%
   mutate(Pconc_Corrected = Pconc * Correction_Factor) %>%
   # Calculate mean, sd, coefficient of variation
   group_by(Country, ID) %>%
@@ -102,14 +108,14 @@ CorrectedValues <- OriginalValues %>%
             CoeffVarP_Corrected = sdP_Corrected / P_percent,
             N_replications = n()) %>%
   # flag data
-  mutate(Flag_corrected = ifelse(CoeffVarP_Corrected >= 0.2, "flag", ""))
+  mutate(Flag = ifelse(CoeffVarP_Corrected >= 0.2, "coeff. of variation > 0.2", ""))
 
 
 ############################################################################
 #### ISOTOPE DATA ####
 # import CN and isotope data and merge
 # Read isotope data
-list_files <- dir(path = "data/chemical_traits/IsotopeData/", pattern = "PERU.+\\.xlsx$", full.names = TRUE)
+list_files <- dir(path = "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019/", pattern = "PERU.+\\.xlsx$", full.names = TRUE)
 
 cn_isotopes <- list_files %>%
   set_names() %>%
@@ -130,18 +136,20 @@ cn_isotopes <- list_files %>%
   }, .id = "filename") |>
 
   # fix data for rerun
-  mutate(Site = if_else(is.na(Site), "Peru", Site),
-         ID = if_else(is.na(ID), "AHY9776", ID)) |>
+  mutate(Site = if_else(is.na(Site), "Peru", Site)) |>
   # fix repeats
-  mutate(ID = case_when(filename == "data/chemical_traits/IsotopeData//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "23" ~ "AUK0338",
-                        filename == "data/chemical_traits/IsotopeData//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "24" ~ "AUM5735",
-                        filename == "data/chemical_traits/IsotopeData//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "57" ~ "AYK7656",
-                        filename == "data/chemical_traits/IsotopeData//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "58" ~ "AYL5352",
-                        filename == "data/chemical_traits/IsotopeData//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "69" ~ "BBF8955",
-                        filename == "data/chemical_traits/IsotopeData//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "70" ~ "BBG5902",
+  mutate(ID = case_when(filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-1).321-REPORT.xlsx" & Samples_Nr == "48" ~ "AHY9776",
+                        filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "23" ~ "AUK0338",
+                        filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "24" ~ "AUM5735",
+                        filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "57" ~ "AYK7656",
+                        filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "58" ~ "AYL5352",
+                        filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "69" ~ "BBF8955",
+                        filename == "data/chemical_traits/PFTC3_Puna_cn_isotopes_2018-2019//Enquist(21PERU-2).621-REPORT.xlsx" & Samples_Nr == "70" ~ "BBG5902",
                         TRUE ~ ID)) |>
   # remove empty rows and failures
-  filter(!is.na(C_percent))
+  tidylog::filter(Samples_Nr != "REPEATS") |>
+  tidylog::filter(!is.na(C_percent))
+
 
 # check duplicates (no duplicates)
 # cn_isotopes %>%
@@ -152,7 +160,7 @@ cn_isotopes <- list_files %>%
 
 
 # Check ids
-#setdiff(cn_isotopes$Individual_Nr, all_codes$hashcode)
+#setdiff(cn_isotopes$ID, all_codes$hashcode)
 
 cn_data <- cn_isotopes %>%
   select(-Samples_Nr, -Row, -Column, -...11) |>
@@ -168,7 +176,10 @@ cn_data <- cn_isotopes %>%
          ID = gsub("BZI2250", "BZI2252", ID),
          ID = gsub("CYT2078", "CYT2076", ID),
          ID = gsub("DFO4823", "DFD4823", ID),
-         ID = gsub("DFG3811", "DFO3811", ID)) %>%
+         ID = gsub("DFG3811", "DFO3811", ID),
+         ID = gsub("EEJ6179", "EEJ6178", ID),
+         ID = gsub("EGU6285", "EGU8285", ID),
+         ID = gsub("EKE4630", "EKE4830", ID)) %>%
   rename(Country = Site)
 
 # check valid IDs
@@ -177,15 +188,16 @@ cn_data <- cn_isotopes %>%
 #   distinct(ID)
 
 
-
 ############################################################################
 ### MERGE ###
 
+
 cnp_data <- cn_data %>%
-  full_join(CorrectedValues, by = c("ID", "Country")) %>%
+  tidylog::full_join(Corrected_P, by = c("ID", "Country")) %>%
   # might want to keep Flag_corrected, if there are any flags
-  select(ID, Country, C_percent:dC13_permil, P_percent, filename) %>%
+  select(ID, Country, C_percent:dC13_permil, P_percent, Flag) %>%
   # filter unrealistic values
-  mutate(C_percent = if_else(C_percent > 65, NA_real_, C_percent)) %>%
+  mutate(C_percent = if_else(C_percent > 65, NA_real_, C_percent),
+         P_percent = if_else(P_percent < 0, NA_real_, P_percent)) %>%
   mutate(NP_ratio = N_percent / P_percent) |>
-  select(id = ID, c_percent = C_percent, n_percent = N_percent, cn_ratio = CN_ratio, p_percent = P_percent, np_ratio = NP_ratio, dn15_permil = dN15_permil, dc13_permil = dC13_permil, filename)
+  select(id = ID, c_percent = C_percent, n_percent = N_percent, cn_ratio = CN_ratio, p_percent = P_percent, np_ratio = NP_ratio, dn15_permil = dN15_permil, dc13_permil = dC13_permil, Flag)
