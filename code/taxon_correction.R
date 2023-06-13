@@ -1,6 +1,6 @@
 
-GenusDictionary2020 <- read.table(header = TRUE, 
-                                  stringsAsFactors = FALSE, 
+GenusDictionary2020 <- read.table(header = TRUE,
+                                  stringsAsFactors = FALSE,
                                   text = "wrong right
                                   Anatherastipa Anatherostipa
                                   Antenneria Antennaria
@@ -24,8 +24,8 @@ GenusDictionary2020 <- read.table(header = TRUE,
 
 
 
-SpeciesDictionary2020 <- read.table(header = TRUE, 
-                                    stringsAsFactors = FALSE, 
+SpeciesDictionary2020 <- read.table(header = TRUE,
+                                    stringsAsFactors = FALSE,
                                     text = "wrong right
                                     tricoides trichodes
                                     'hans meyeni' hans-meyeri
@@ -58,4 +58,21 @@ SpeciesDictionary2020 <- read.table(header = TRUE,
                                     postrata prostrata
                                     spicata spicigera
                                     andinium andinum"
+)
+
+
+
+genus_tnrs <- read.table(header = TRUE,
+                         stringsAsFactors = FALSE,
+                         text = "genus genus_new
+                         Agrostis Polypogon
+                         Cyrtochilum Cyrtochilum
+                         Lucilia Belloa"
+)
+species_tnrs <- read.table(header = TRUE,
+                           stringsAsFactors = FALSE,
+                           text = "species species_new
+                           haenkeana exasperatus
+                           mystacinum aureum
+                           kunthiana kunthiana"
 )
