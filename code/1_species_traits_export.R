@@ -12,23 +12,17 @@ source(here::here("code/species_traits_pftc5.R")) #PFTC5 import and clean
 source("code/taxon_correction.R")
 
 ## Join all data ----
-
 trait_data_peru <- bind_rows(trait_pftc3,
                              trait_puna,
                              trait_pftc5) %>%
   mutate(functional_group = if_else(functional_group == "Gramminoid", "Graminoid", functional_group)) %>%
   #tnrs corrections across datasets
-  # left_join(genus_tnrs, by = "genus") %>%
-  # left_join(species_tnrs, by = "species") %>%
-  left_join(GenusDictionary2020 |>
-              rename(wrong_genus = wrong,
-                     genus_new = right), by = c("genus" = "wrong_genus")) |>
-  left_join(SpeciesDictionary2020 |>
-              rename(wrong_species = wrong,
-                     species_new = right), by = c("species" = "wrong_species")) |>
+  tidylog::left_join(genus_tnrs, by = "genus") %>%
+  tidylog::left_join(species_tnrs, by = "species") %>%
   mutate(genus = if_else(!is.na(genus_new), genus_new, genus),
          species = if_else(!is.na(species_new), species_new, species),
          taxon = if_else(!is.na(genus_new), paste(genus_new, species_new, sep = " "), taxon),
+         taxon = if_else(taxon == "Polypogon NA", "Polypogon sp", taxon),
          season = if_else(month %in% c("July", "November"), "dry_season", "wet_season")) %>%
   select(-genus_new, -species_new) %>%
 
@@ -51,7 +45,7 @@ trait_data_peru <- bind_rows(trait_pftc3,
 dir.create("clean_data")
 
 trait_data_peru %>%
-  write_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean_newAH.csv")
+  write_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
 
 
 # End of Script ----
