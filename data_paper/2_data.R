@@ -22,6 +22,12 @@ species_cover %>% distinct(taxon)
 # nr observations
 dim(species_cover)
 
+species_cover |>
+  group_by(year, site, treatment, plot_id) |>
+  summarise(n = n()) |>
+  ungroup() |>
+  summarise(mean(n))
+
 ## Calculate responses
 diversity_index <- species_cover %>%
   group_by(year, month, site, elevation, treatment, plot_id) %>%
@@ -48,42 +54,17 @@ diversity_index %>%
   summarise(mean = mean(value),
             se = sd(value)/sqrt(n()))
 
-diversity_result <- diversity_index %>%
-  filter(treatment %in% c("C", "B", "NB")) %>%
+# run model
+diversity_index %>%
+  ungroup() |>
+  filter(treatment %in% c("C", "B", "NB"),
+         index %in% c("richness", "diversity", "evenness")) %>%
   mutate(treatment = factor(treatment, levels = c("C", "B", "NB"))) %>%
   group_by(index) %>%
   nest(data = -c(index)) %>%
-  mutate(model = map(data, ~lm(value ~ elevation * treatment, data = .x)),
+  mutate(model = map(data, ~lme(value ~ elevation * treatment, random = ~1|plot_id, data = .x)),
          result = map(model, tidy)) %>%
   unnest(result)
-
-dd <- diversity_index %>%
-  mutate(treatment = factor(treatment, levels = c("C", "B", "NB"))) %>%
-  filter(treatment %in% c("C", "B", "NB"),
-         index == "richness")
-summary(lm(value ~ elevation * treatment, dd))
-
-
-# NMDS ORDINATION
-cover_fat <- species_cover %>%
-  select(-family, -functional_group, -c(burn_year:course)) %>%
-  arrange(year, season, month) %>%
-  pivot_wider(names_from = "taxon", values_from = "cover", values_fill = 0) %>%
-  ungroup()
-
-cover_fat_spp <- cover_fat %>% select(-(year:plot_id))
-
-set.seed(32)
-NMDS <- metaMDS(cover_fat_spp,
-                noshare = TRUE,
-                try = 30,
-                trace = 0) #DNC
-# Kontrollene vekt 0
-
-fNMDS <- fortify(NMDS) %>%
-  filter(Score == "sites") %>%
-  bind_cols(cover_fat %>% select(year:plot_id))
-
 
 
 ### Vegetation height and structure
@@ -92,35 +73,16 @@ comm_structure <- read_csv("clean_data/PFTC3-Puna-Peru_2018-2019_CommunityStruct
 comm_structure %>%
   mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC"))) %>%
   filter(variable %in% c("bryophyte_depth", "median_height")) %>%
-  ggplot(aes(x = site, y = value)) +
-  geom_boxplot() +
-  facet_wrap(~ variable_class, scales = "free_y")
-
-comm_structure %>%
-  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC"))) %>%
-  filter(variable %in% c("bryophyte_depth", "median_height")) %>%
   group_by(site, variable) %>%
   summarise(mean = mean(value),
             se = sd(value)/sqrt(n()))
 
-comm_structure %>%
-  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC"))) %>%
-  filter(variable == c("cover")) %>%
-  ggplot(aes(x = site, y = value)) +
-  geom_boxplot() +
-  facet_wrap(~ variable_class, scales = "free_y")
 
-comm_structure %>%
-  filter(variable %in% c("cover", "median_height", "bryophyte_depth"),
-         !variable_class %in% c("shrub_layer", "field_layer", "bottom_layer")) %>%
-  mutate(treatment = factor(treatment, levels = c("C", "B", "NB"))) %>%
-  nest(data = -c(variable, variable_class)) %>%
-  mutate(model = map(data, ~lm(value ~ elevation, data = .x)),
-         result = map(model, glance)) %>%
-  unnest(result) %>%
-  filter(p.value <= 0.05) %>%
-  select(variable, variable_class, statistic, p.value, df, df.residual)
+dd <- comm_structure %>%
+  filter(variable == "median_height")
 
+fit <- lme(value ~ elevation * treatment, random = ~1|plot_id, data = dd)
+summary(fit)
 
 ### Biomass
 biomass <- read_csv("clean_data/Puna_Peru_2019_Biomass_clean.csv")
@@ -130,31 +92,18 @@ biomass %>%
   filter(variable == "biomass", variable_class == "total")
 
 biomass %>%
-  filter(variable == "biomass") %>%
-  mutate(site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE"))) %>%
-  ggplot(aes(x = site, y = value, colour = treatment)) +
-  geom_point() +
-  facet_wrap(~ variable_class, scales = "free_y")
-
-biomass %>%
-  filter(variable == "biomass") %>%
+  filter(variable == "biomass",
+         variable_class %in% c("graminoids")) %>%
   nest(data = -c(variable_class)) %>%
-  mutate(model = map(data, ~lm(value ~ elevation, data = .x)),
-  #        fit = map(model, tidy)) %>%
-  # unnest(fit) %>% filter(p.value < 0.05)
-         result = map(model, glance)) %>%
-  unnest(result) %>%
-  filter(p.value <= 0.05) %>%
-  select(variable_class, statistic, p.value, df, df.residual)
+  mutate(model = map(data, ~lme(value ~ elevation * treatment, random = ~1|plot_id, data = .x)),
+         result = map(model, tidy)) %>%
+  unnest(result)
 
 
 ### Traits
-traits_leaf <- read_csv(file = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
-# traits_chem <- read_csv(file = "clean_data/")
+traits <- read_csv(file = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
 
-#trait_data <- traits_leaf %>% bind_rows(traits_chem)
-
-trait_data <- traits_leaf %>%
+trait_data <- traits %>%
   mutate(value_trans = if_else(trait %in% c("dry_mass_g", "leaf_area_cm2", "plant_height_cm", "wet_mass_g"), log(value), value),
          trait_trans = case_when(trait == "dry_mass_g" ~ "dry_mass_g_log",
                                  trait == "wet_mass_g" ~ "wet_mass_g_log",
@@ -165,16 +114,20 @@ trait_data <- traits_leaf %>%
          treatment = factor(treatment, levels = c("C", "B", "NB", "BB")))
 
 
-traits_leaf %>% distinct(taxon)
-traits_leaf %>% distinct(id)
+trait_data %>% distinct(taxon)
+trait_data %>% distinct(id)
 
-traits_leaf %>%
+trait_data %>%
   group_by(site) %>%
   distinct(id) %>% count()
 
-traits_leaf %>%
+trait_data %>%
   group_by(treatment) %>%
   distinct(id) %>% count()
+
+# of which chem traits
+trait_data |> filter(grepl("percent|permil|ratio", trait)) |> distinct(id)
+trait_data |> filter(grepl("percent|permil|ratio", trait)) |> distinct(taxon)
 
 
 library(traitstrap)
@@ -185,7 +138,7 @@ species_cover <- species_cover %>%
 traits <- trait_data %>%
   mutate(treatment2 = treatment) %>%
   select(year, season, month, site, treatment, plot_id, taxon, trait, value_trans, treatment2)
-peru_trait_impute <- trait_impute(comm = species_cover,
+peru_trait_impute <- trait_fill(comm = species_cover,
              traits = traits,
              scale_hierarchy = c("year", "season", "month", "site", "plot_id"),
              taxon_col = "taxon",
@@ -200,3 +153,20 @@ peru_trait_impute <- trait_impute(comm = species_cover,
 
 autoplot(peru_trait_impute, other_col_how = "facet")
 
+fortify(peru_trait_impute) |>
+  ungroup() |>
+  #filter(Trait == "CN_ratio") |>
+  complete(.id, level, trait, fill = list(s = 0)) |>
+  filter(level == "plot_id") |>
+  group_by(trait) |>
+  # prob = 0.25 gives 75% of the plots
+  # also run prob = 0.5 for 50% of the plots
+  summarise(q = quantile(s, prob = 0.5))
+
+
+# climate
+climate <- read_csv("clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
+
+climate |>
+  group_by(site, treatment) |>
+  summarise(air = mean(air_temperature))
