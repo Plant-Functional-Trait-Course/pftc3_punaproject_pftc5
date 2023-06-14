@@ -5,7 +5,7 @@ source("code/load_libraries.R")
 library(dataDocumentation)
 
 # get attribute table
-attribute_table <- read_csv(file = "clean_data/PFTC3_Puna_PFTC5_data_dic.csv")
+attribute_table <- read_csv(file = "clean_data/PFTC3_Puna_PFTC5_attribute_table.csv")
 
 
 # community data
@@ -21,7 +21,7 @@ comm_struc <- read_csv("clean_data/PFTC3-Puna-Peru_2018-2019_CommunityStructure_
 
 comm_struc_dic <- make_data_dictionary(data = comm_struc,
                                  description_table = attribute_table,
-                                 table_ID = "comm_struc")
+                                 table_ID = "comm_structure")
 
 
 # biomass
@@ -36,14 +36,15 @@ traits <- read_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.
 
 trait_dic <- make_data_dictionary(data = traits,
                                     description_table = attribute_table,
-                                    table_ID = "traits")
+                                    table_ID = "traits") |>
+  mutate(`Variable range or levels` = if_else(`Variable range or levels` == "13-Jan - SVH1234", "AAA0656 - SVH1234", `Variable range or levels`))
 
 # climate
 climate <- read_csv("clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
 
 climate_dic <- make_data_dictionary(data = climate,
                                   description_table = attribute_table,
-                                  table_ID = NA_character_)
+                                  table_ID = "climate")
 
 
 
