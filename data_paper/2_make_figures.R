@@ -17,45 +17,33 @@ theme_set(theme_bw())
 
 ## ----DiversityPlot
 Gradient_plot_data <- diversity_index %>%
-  filter(index %in% c("richness", "evenness")) %>%
+  filter(index %in% c("richness", "diversity", "evenness")) %>%
   rename(variable = index) %>%
 
   # add community structure data
   bind_rows(
     comm_structure %>%
-      filter(variable %in% c("cover", "median_height", "bryophyte_depth"),
-             variable_class %in% c("forbs", "graminoids", "shrub", "litter", "vegetation", "bryophytes")) %>%
+      filter(variable %in% c("cover", "median_height"),
+             variable_class %in% c("graminoids", "vegetation")) %>%
       mutate(variable = paste(variable, variable_class, sep = "_")) %>%
-      select(-variable_class) %>%
-      filter(variable != "cover_bryophytes")
-  ) %>%
-  # add biomass data
-  bind_rows(
-    biomass %>%
-      filter(variable == "biomass",
-             variable_class == "total") %>%
       select(-variable_class)
   ) %>%
   ungroup() %>%
   filter(treatment %in% c("C", "B", "NB")) %>%
-  mutate(variable = case_when(variable == "cover_forbs" ~ "forb cover",
-                              variable == "cover_graminoids" ~ "graminoid cover",
-                              variable == "cover_shrub" ~ "shrub cover",
-                              variable == "cover_litter" ~ "litter cover",
+  mutate(variable = case_when(variable == "cover_graminoids" ~ "graminoid cover",
                               variable == "median_height_vegetation" ~ "vegetation height",
-                              variable == "bryophyte_depth_bryophytes" ~ "bryophyte depth",
-                              variable == "biomass" ~ "total biomass",
                               TRUE ~ variable),
-         variable = factor(variable, levels = c("richness", "evenness", "forb cover", "graminoid cover", "shrub cover", "litter cover", "total biomass", "vegetation height", "bryophyte depth")),
+         variable = factor(variable, levels = c("richness", "diversity","evenness", "graminoid cover", "vegetation height")),
          treatment = factor(treatment, levels = c("C", "B", "NB")))
 
 
 res_GP <- Gradient_plot_data %>%
   nest(data = -c(variable)) %>%
-  mutate(model = map(data, ~lm(value ~ elevation * treatment, data = .x)),
+  mutate(model = map(data, ~lme(value ~ elevation * treatment, random = ~ 1 | plot_id, data = .x)),
          result = map(model, tidy)) %>%
   unnest(result) %>%
   select(variable, term:p.value) %>%
+  filter(!grepl("sd_", term)) |>
   filter(term %in% c("elevation", "elevation:treatmentB", "elevation:treatmentNB")) %>%
   mutate(treatment = case_when(term == "elevation" ~ "C",
                                term == "elevation:treatmentB" ~ "B",
@@ -78,42 +66,41 @@ Gradient_plot <- Gradient_plot_data %>%
          fill = FALSE,
          colour = guide_legend(override.aes = list(fill = NA))) +
   facet_wrap( ~ variable, scales = "free_y",
-              labeller = labeller(.default = capitalise))
-Gradient_plot <- Gradient_plot + figure_theme
-Gradient_plot
-#ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 150)
+              labeller = labeller(.default = capitalise)) +
+  theme_bw() +
+  theme(text = element_text(size = 17),
+        legend.position = "top")
 
-## ----NMDSOrdination
-NMDS_ordination <- fNMDS %>%
-  as_tibble() %>%
-  mutate(treatment = factor(treatment, levels = c("C", "B", "NB", "BB")),
-         site = factor(site, levels = c("WAY", "ACJ", "PIL", "TRE", "QUE", "OCC")),
-         season = if_else(season == "dry_season",
-                          "Dry season",
-                          "Wet season")) %>%
-  ggplot(aes(x = NMDS1, y = NMDS2, colour = site, shape = treatment)) +
-  geom_point() +
-  scale_colour_manual("Treatment", values = puna_site_colour$colour) +
-  scale_shape_manual("Site", values=c(16, 5, 6, 8)) +
-  #scale_colour_viridis_d(option = "plasma", end = 0.8) +
-  facet_wrap(~ season)
-NMDS_ordination <- NMDS_ordination + figure_theme
-NMDS_ordination
-#ggsave("NMDS_ordination.jpeg", NMDS_ordination, dpi = 150, height = 5, width = 9)
+Gradient_plot
+ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 300, width = 10, height = 6)
+
+
+
+
+
 
 ## ----TraitDistribution
 trait_distibution <- trait_data %>%
-  mutate(trait = case_when(trait == "plant_height_cm" ~ "Plant~height~(cm)",
-                   trait == "sla_cm2_g" ~ "SLA~(cm^{2}/g)",
-                   trait == "ldmc" ~ "LDMC",
-                   trait == "leaf_thickness_mm" ~ "Leaf~thickness~(mm)",
-                   trait == "wet_mass_g" ~ "Wet~mass~(g)",
-                   trait == "dry_mass_g" ~ "Dry~mass~(g)",
-                   trait == "leaf_area_cm2" ~ "Leaf~area~(cm^{2})")) %>%
+  mutate(trait = recode(trait,
+                              c_percent = "C",
+                              cn_ratio = "CN~ratio",
+                              dc13_permil = "δC13",
+                              dn15_permil = "δN15",
+                              plant_height_cm = "Height~cm",
+                              dry_mass_g = "Dry~mass~g",
+                              ldmc = "LDMC",
+                              leaf_area_cm2 = "Area~cm^{2}",
+                              n_percent = "N",
+                              np_ratio = "NP~ratio",
+                              p_percent = "P",
+                              sla_cm2_g = "SLA~cm^{2}/g",
+                              leaf_thickness_mm = "Thickness~mm",
+                              wet_mass_g = "Wet~mass~g")) |>
   mutate(trait = factor(trait,
-                        levels = c("Plant~height~(cm)", "Wet~mass~(g)", "Dry~mass~(g)",
-                                   "Leaf~area~(cm^{2})", "Leaf~thickness~(mm)", "LDMC",
-                                   "SLA~(cm^{2}/g)"))) %>%
+                        levels = c("Height~cm", "Wet~mass~g", "Dry~mass~g",
+                                   "Area~cm^{2}", "Thickness~mm", "LDMC",
+                                   "SLA~cm^{2}/g", "C", "N","P","CN~ratio",
+                                   "NP~ratio", "δC13", "δN15"))) %>%
   ggplot(aes(x = value_trans, fill = site, colour = site)) +
   geom_density(alpha = 0.5) +
   geom_density(alpha = 0.5, fill = NA) +
@@ -124,10 +111,11 @@ trait_distibution <- trait_data %>%
   #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free",
              labeller = label_parsed) +
-  labs(x = "", y = "Density")
-trait_distibution <- trait_distibution + figure_theme
-trait_distibution
-#ggsave("Trait_distribution.jpeg", trait_distibution, dpi = 150)
+  labs(x = "", y = "Density") +
+  theme_bw() +
+  theme(text = element_text(size = 16),
+        legend.position = "top")
+ggsave("Trait_distribution.jpeg", trait_distibution, dpi = 300, width = 8, height = 8)
 
 
 ## ----TraitChecks
