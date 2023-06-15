@@ -513,11 +513,18 @@ trait_pftc3 <- traits %>%
          taxon = paste(genus, species, sep = " "),
          plot_id = as.character(plot_id),
          taxon_puna = NA_character_) %>%
+  # add chemical traits
+  # loosing 4 leaves that are bad or from sean
+  tidylog::left_join(cnp_data, by = "id") |>
   select(country, project, course, id, year, month, date, gradient, site, treatment, plot_id,
          functional_group, family, taxon, genus, species,
          individual_nr, plant_height_cm,
          wet_mass_g, dry_mass_g, leaf_area_cm2, sla_cm2_g, ldmc,
-         leaf_thickness_mm, area_flag, dry_flag, wet_flag)
+         leaf_thickness_mm, c_percent, n_percent, cn_ratio,
+         p_percent, np_ratio, dn15_permil, dc13_permil,
+         area_flag, dry_flag, wet_flag)
+
+
 
 # End of Script ----
 

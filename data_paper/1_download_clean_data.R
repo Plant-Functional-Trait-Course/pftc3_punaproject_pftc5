@@ -10,6 +10,12 @@ get_file(node = "gs8u6",
          path = "clean_data",
          remote_path = "community")
 
+#Download community data from OSF
+get_file(node = "gs8u6",
+         file = "PFTC3-Puna-Peru_2018-2019_CommunityStructure_clean.csv",
+         path = "clean_data",
+         remote_path = "community")
+
 
 #Download traits data from OSF
 get_file(node = "gs8u6",

@@ -18,7 +18,8 @@ package_vec <- c(
   "janitor",
   "writexl",
   "vegan",
-  "broom"
+  "broom",
+  "dataDownloader"
 )
 # install/load packages as needed
 sapply(package_vec, install.load.package)

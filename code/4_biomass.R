@@ -41,7 +41,7 @@ biomass <- biomass_raw %>%
   mutate(treatment = case_when(site == "TRE" & treatment == "B" ~ "NB",
                                TRUE ~ treatment)) %>%
   left_join(coordinates %>%
-              select(-comment),
+              distinct(site, treatment, burn_year, elevation, latitude, longitude),
             by = c("site", "treatment"))
 
 
