@@ -82,8 +82,12 @@ climate <- temp_raw %>%
   filter(n != 2) %>%
   mutate(treatment = if_else(site == "TRE" & treatment == "B", "NB", treatment),
          plot_id = as.character(plot_id)) %>%
-  left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
-  select(date_time, site, treatment, plot_id, air_temperature, ground_temperature, soil_temperature, raw_soilmoisture, burn_year, elevation, latitude, longitude, logger_id)
+  left_join(coordinates, by = c("site", "treatment", "plot_id"))
+
+climate <- climate |>
+  # calculate actual soil moisture
+  mutate(soilmoisture = soil.moist(raw_soilmoisture, soil_temperature, "sandy_loam_A")) |>
+  select(date_time, site, treatment, plot_id, air_temperature, ground_temperature, soil_temperature, soilmoisture, raw_soilmoisture, burn_year, elevation, latitude, longitude, logger_id)
 
 ## DATA SAVING
 write_csv(climate, file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
