@@ -20,7 +20,7 @@ clean_data/*
 *.xlsx
 
 #figures & output
-*.png
+
 *.html
 *.pdf
 *.jpeg
