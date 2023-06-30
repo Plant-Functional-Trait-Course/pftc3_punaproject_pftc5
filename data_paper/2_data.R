@@ -131,37 +131,65 @@ trait_data |> filter(grepl("percent|permil|ratio", trait)) |> distinct(taxon)
 
 
 library(traitstrap)
-species_cover <- species_cover %>%
+comm <- species_cover %>%
   select(year, season, month, site, treatment, plot_id, taxon, cover) %>%
-  mutate(treatment = factor(treatment, levels = c("C", "B", "NB", "BB")),
-         treatment2 = treatment)
+  mutate(treatment = factor(treatment, levels = c("fish", "C", "B", "NB", "BB")),
+         plot_id = paste(site, treatment, plot_id, sep = "_"),
+         all = "all") |>
+  group_by(all, taxon) |>
+  summarise(cover = mean(cover, na.rm = TRUE))
+
 traits <- trait_data %>%
-  mutate(treatment2 = treatment) %>%
-  select(year, season, month, site, treatment, plot_id, taxon, trait, value_trans, treatment2)
-peru_trait_impute <- trait_fill(comm = species_cover,
+  mutate(plot_id = as.numeric(plot_id)) %>%
+  mutate(treatment = factor(treatment, levels = c("fish", "C", "B", "NB", "BB")),
+         plot_id = paste(site, treatment, plot_id, sep = "_"),
+         all = "all") |>
+  select(all, site, treatment, plot_id, individual_nr, leaf_id, id, taxon, trait, value_trans)
+
+# plot level
+peru_trait_impute <- trait_fill(comm = comm,
              traits = traits,
-             scale_hierarchy = c("year", "season", "month", "site", "plot_id"),
+             scale_hierarchy = c("site", "plot_id"),
              taxon_col = "taxon",
              trait_col = "trait",
              value_col = "value_trans",
              abundance_col ="cover",
              treatment_col = "treatment",
              treatment_level = "site",
-             min_n_in_sample = 5,
-             other_col = "treatment2"
-             )
+             #other_col = c("year", "month"),
+             min_n_in_sample = 5)
 
-autoplot(peru_trait_impute, other_col_how = "facet")
+# global
+peru_trait_impute <- trait_fill(comm = comm,
+                                traits = traits,
+                                scale_hierarchy = "all",
+                                taxon_col = "taxon",
+                                trait_col = "trait",
+                                value_col = "value_trans",
+                                abundance_col ="cover",
+                                min_n_in_sample = 5)
 
-fortify(peru_trait_impute) |>
+
+#autoplot(peru_trait_impute, other_col_how = "facet")
+out <- fortify(peru_trait_impute)
+# out2 <- fortify(peru_trait_impute2)
+
+peru_trait_impute %>%
+  autoplot()
+
+
+189*100/392
+out |>
   ungroup() |>
-  #filter(Trait == "CN_ratio") |>
-  complete(.id, level, trait, fill = list(s = 0)) |>
+  filter(!grepl("percent|ratio|permil", trait)) |>
+  #complete(.id, level, trait, fill = list(s = 0)) |>
   filter(level == "plot_id") |>
+  summarise(min(s), max(s))
+  filter(s >= 0.8)
   group_by(trait) |>
   # prob = 0.25 gives 75% of the plots
   # also run prob = 0.5 for 50% of the plots
-  summarise(q = quantile(s, prob = 0.5))
+  summarise(q = quantile(s, prob = 0.25))
 
 
 # climate
