@@ -197,7 +197,7 @@ cnp_data <- cn_data %>%
   # might want to keep Flag_corrected, if there are any flags
   select(ID, Country, C_percent:dC13_permil, P_percent, Flag) %>%
   # filter unrealistic values
-  mutate(C_percent = if_else(C_percent > 65, NA_real_, C_percent),
+  tidylog::mutate(C_percent = if_else(C_percent > 65, NA_real_, C_percent),
          P_percent = if_else(P_percent < 0, NA_real_, P_percent)) %>%
   mutate(NP_ratio = N_percent / P_percent) |>
   select(id = ID, c_percent = C_percent, n_percent = N_percent, cn_ratio = CN_ratio, p_percent = P_percent, np_ratio = NP_ratio, dn15_permil = dN15_permil, dc13_permil = dC13_permil, Flag)

@@ -472,7 +472,7 @@ trait_pftc3 <- traits %>%
          leaf_area_cm2 = leaf_area_total_cm2 / number_leaves_scan_paul) %>%
 
   # make wet and dry mass NA if 0
-  mutate(wet_mass_g = if_else(wet_mass_g == 0, NA_real_, wet_mass_g),
+  tidylog::mutate(wet_mass_g = if_else(wet_mass_g == 0, NA_real_, wet_mass_g),
          dry_mass_g = if_else(dry_mass_g == 0, NA_real_, dry_mass_g)) %>%
 
   # Calculate SLA and LDMC
@@ -493,7 +493,7 @@ trait_pftc3 <- traits %>%
   filter(project != "Sean") %>%
 
   # remove 5 leaves with wrong ldmc/sla values because of problems in wet/dry mass
-  filter(!id %in% c("ASI4769", "AVO1141", "DSP7480", "BTW3395", "AVL0846")) %>%
+  tidylog::filter(!id %in% c("ASI4769", "AVO1141", "DSP7480", "BTW3395", "AVL0846")) %>%
 
   # remove because only height data
   filter(id != c("DXJ2730")) %>%
