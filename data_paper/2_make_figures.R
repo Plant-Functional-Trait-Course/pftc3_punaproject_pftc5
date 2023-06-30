@@ -7,6 +7,8 @@ library("ggvegan")
 #library("gridExtra")
 library("lubridate")
 library("patchwork")
+library(nlme)
+library(broom.mixed)
 
 # colours
 source("data_paper/puna_colour_palette.R")
@@ -35,6 +37,7 @@ Gradient_plot_data <- diversity_index %>%
                               TRUE ~ variable),
          variable = factor(variable, levels = c("richness", "diversity","evenness", "graminoid cover", "vegetation height")),
          treatment = factor(treatment, levels = c("C", "B", "NB")))
+
 
 
 res_GP <- Gradient_plot_data %>%
@@ -77,8 +80,6 @@ ggsave("Gradient_plot.jpeg", Gradient_plot, dpi = 300, width = 10, height = 6)
 
 
 
-
-
 ## ----TraitDistribution
 trait_distibution <- trait_data %>%
   mutate(trait = recode(trait,
@@ -104,10 +105,12 @@ trait_distibution <- trait_data %>%
   ggplot(aes(x = value_trans, fill = site, colour = site)) +
   geom_density(alpha = 0.5) +
   geom_density(alpha = 0.5, fill = NA) +
-  scale_fill_manual("Site",
-                    values = puna_site_colour$colour) +
-  scale_colour_manual("Site",
-                      values = puna_site_colour$colour) +
+  scale_fill_manual("Site - elevation (m a.s.l.)",
+                    values = puna_site_colour$colour,
+                    labels = c("WAY - 3101", "ACJ - 3468", "PIL - 3676", "TRE - 3715", "QUE - 3888", "OCC - 4383")) +
+  scale_colour_manual("Site - elevation (m a.s.l.)",
+                      values = puna_site_colour$colour,
+                      labels = c("WAY - 3101", "ACJ - 3468", "PIL - 3676", "TRE - 3715", "QUE - 3888", "OCC - 4383")) +
   #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free",
              labeller = label_parsed) +

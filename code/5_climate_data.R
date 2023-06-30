@@ -89,6 +89,13 @@ climate <- climate |>
   mutate(soilmoisture = soil.moist(raw_soilmoisture, soil_temperature, "sandy_loam_A")) |>
   select(date_time, site, treatment, plot_id, air_temperature, ground_temperature, soil_temperature, soilmoisture, raw_soilmoisture, burn_year, elevation, latitude, longitude, logger_id)
 
+# fix errors
+climate <- climate |>
+  mutate(soil_temperature = if_else(soil_temperature > 20, NA_real_, soil_temperature)) |>
+  mutate(soil_temperature = if_else(site == "PIL" & date_time < "2019-04-06 00:00:00", NA_real_, soil_temperature),
+         soil_temperature = if_else(site == "WAY" & date_time > "2019-07-01 00:00:00" & date_time < "2019-07-15 00:00:00" & soil_temperature > 16, NA_real_, soil_temperature),
+         ground_temperature = if_else(site == "WAY" & ground_temperature > 35, NA_real_, ground_temperature))
+
 ## DATA SAVING
 write_csv(climate, file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
 

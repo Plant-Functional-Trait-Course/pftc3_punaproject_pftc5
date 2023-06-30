@@ -429,7 +429,7 @@ trait_pftc5 <- trait_pftc5 %>%
                        NA)) %>%
 
   # fix problematic leaves
-  mutate(wet_mass_g = if_else(ldmc > 1, NA_real_, wet_mass_g),
+  tidylog::mutate(wet_mass_g = if_else(ldmc > 1, NA_real_, wet_mass_g),
                   dry_mass_g = if_else(ldmc > 1, NA_real_, dry_mass_g),
                   ldmc = if_else(ldmc > 1, NA_real_, ldmc),
 
