@@ -46,11 +46,29 @@ climate_dic <- make_data_dictionary(data = climate,
                                   description_table = attribute_table,
                                   table_ID = "climate")
 
+flux <- read_csv("clean_data/PFTC3_Puna_PFTC5_Peru_2018_2020_Cflux.csv")
+respiration <- read_csv("clean_data/PFTC3_Puna_PFTC5_Peru_2018_2020_rsoil.csv")
+water <- read_csv("clean_data/PFTC3_Puna_PFTC5_Peru_2018_2020_wflux.csv")
+
+cflux_dic <- make_data_dictionary(data = flux,
+                                    description_table = attribute_table,
+                                    table_ID = "cflux")
+
+resp_dic <- make_data_dictionary(data = respiration,
+                                 description_table = attribute_table,
+                                 table_ID = "rsoil")
+
+water_dic <- make_data_dictionary(data = water,
+                                 description_table = attribute_table,
+                                 table_ID = "wflux")
 
 
 write_xlsx(list(comm = comm_dic,
                 comm_Struc = comm_struc_dic,
                 biomass = biomass_dic,
                 trait = trait_dic,
-                climate = climate_dic),
+                climate = climate_dic,
+                cflux = cflux_dic,
+                resp = resp_dic,
+                water = water_dic),
            path = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_data_dictionary.xlsx")
