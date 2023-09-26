@@ -38,8 +38,8 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          species = str_to_lower(species),
          id = case_when(
            id == "CZQ3610" ~ "CYQ3610",
-           id == "ADZ1845" ~ "ADY1845",
-           id == "ADY3452" ~ "ADZ3452",
+           id == "ADZ1845" ~ "ADZ3452", #leaves switched, checked with envelopes
+           id == "ADY3452" ~ "ADY1845", #leaves switched, checked with envelopes
            id == "CZU0738" ~ "CYU0738",
            id == "CBN2433" ~ "CBM2433",
            id == "CGY2493" ~ "CGU2493",
@@ -57,6 +57,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          leaf_thickness_3_mm = if_else(id == "CFN6705", 0.181, leaf_thickness_3_mm),
          leaf_thickness_2_mm = if_else(leaf_thickness_2_mm == -0.545, 0.545,
                                        leaf_thickness_2_mm),
+
          site = if_else(id == "BEA0992", "ACJ", site),
          site = if_else(id %in% c("AKP1497", "AYS4952"), "QUE", site),
 
