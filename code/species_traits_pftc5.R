@@ -93,7 +93,56 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          site = if_else(id == "BEA0992", "ACJ", site),
          site = if_else(id %in% c("AKP1497", "AYS4952"), "QUE", site),
 
-         plot_id = if_else(id == "BMP6395", 1, plot_id)) %>%
+         plot_id = if_else(id == "BMP6395", 1, plot_id),
+         plot_id = ifelse(id == "CWF2802", 3, plot_id),
+         #correcting leaf ID mistakes, or adding leaf ID where there should have been one
+         leaf_id = ifelse(id == "BKW1860", 5, leaf_id),
+         leaf_id = ifelse(id == "ABS7148", 5, leaf_id),
+         leaf_id = ifelse(id == "CMH0413", 5, leaf_id),
+         leaf_id = if_else(id == "BNT3287", 1, leaf_id),
+         leaf_id = if_else(id == "BOO5640", 2, leaf_id),
+         leaf_id = if_else(id == "BOB7266", 3, leaf_id),
+         leaf_id = if_else(id == "BNX0682", 4, leaf_id),
+         leaf_id = if_else(id == "BQF6005", 5, leaf_id),
+         leaf_id = if_else(id == "ATJ5219", 2, leaf_id),
+         leaf_id = if_else(id == "AAH3401", 3, leaf_id),
+         leaf_id = if_else(id == "ATX9292", 4, leaf_id),
+         leaf_id = if_else(id == "ADF3723", 5, leaf_id),
+         leaf_id = ifelse(id == "CPQ6887", 3, leaf_id) ,
+         leaf_id = ifelse(id == "CPM4170", 4, leaf_id) ,
+         #These are not ITV individuals and should not have leaf ID, removing leaf_id info
+         leaf_id = ifelse(id %in% c("CIG8658", "BPR5529"), NA_real_, leaf_id),
+         #Correcting mistakes in individual number. Some are typos, some are duplicates that are given new names (often 11 or 12)
+         individual_nr = ifelse(id == "CPQ6887", 2, individual_nr),
+         individual_nr = ifelse(id == "CNW9172", 3, individual_nr),
+         individual_nr = ifelse(id == "CIG8658", 2, individual_nr),
+         individual_nr = ifelse(id == "BMC0849", 3, individual_nr),
+         individual_nr = ifelse(id == "CXX4125", 11, individual_nr),
+         individual_nr = ifelse(id == "BZH3536", 3, individual_nr),
+         individual_nr = ifelse(id == "APU4440", 12, individual_nr),
+         #Here each line is one individual with (several leaves that change to the same individual nr.)
+         individual_nr = ifelse(id %in% c("CIP5336", "CNY7719", "CIT7207", "AFR0503", ), 2, individual_nr),
+         individual_nr = ifelse(id %in% c("AYN2714", "ATY7432", "CEY7459", "AQF9992", "AQE5913"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("AQL4649", "AQK5616", "AQJ2521", "AQI6603", "AQM0288"), 12, individual_nr),
+         individual_nr = ifelse(id %in% c("CNP7038", "CNX3247", "COB5911"), 2, individual_nr),
+         individual_nr = ifelse(id %in% c("AJH6752", "CDQ3517", "CDU6030", "CDR9450", "CAS0411"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("CDS3004", "CAW9605", "CDP3189"), 12, individual_nr),
+         individual_nr = ifelse(id %in% c("CZA2309", "CZF0686", "CZE7072", "CZJ5895", "CZN4729"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("CDL6900", "CBF5268", "CBE4301", "CAA3576", "COY3821"), 12, individual_nr),
+         individual_nr = ifelse(id %in% c("CYF0619", "CXS5928", "CXW5856", "CYA3349", "CYE9151"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("BOJ2251", "BON0490", "BNO6456", "BNS6580", "BOA7727"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("AGG8353", "AGC5581", "AFY5122", "AFQ4784", "AFU4318"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("CZI4416", "AGE7337", "AGI7187", "AGM1060", "AGQ6196"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("APQ5417", "APM3849", "CET3376", "CFB5184", "CEX5438"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("CPB8831", "CPZ4857", "CQD3030", "CPJ4884", "CXC6033"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("BOM7625", "BMU4639", "BMY5426", "BLC7580", "AFV6468"), 21, individual_nr),
+         individual_nr = ifelse(id %in% c("BNT3287", "BOO5640", "BOB7266", "BNX0682", "BQF6005"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("BYH1355", "BYR4663", "BYO7151", "BYQ5420", "BYP4529"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("CJV5222", "CJZ6289", "CKH7214", "CKD0965", "CKL1087"), 11, individual_nr),
+         individual_nr = ifelse(id %in% c("CXE6426", "CXA8168"), 12, individual_nr),
+         individual_nr = ifelse(id == "CPM4170", 2, individual_nr),
+
+         ) %>%
   # Check species and genus
   mutate(genus = plyr::mapvalues(genus, from = GenusDictionary2020$wrong,
                                  to = GenusDictionary2020$right, warn_missing = FALSE)) %>%
