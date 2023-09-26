@@ -90,9 +90,9 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          plant_height_cm = if_else(id %in%   c("AGI7187", "AGM1060", "AGQ6196"), 5.9, plant_height_cm),
          plant_height_cm = if_else(id %in% c("CJS1572", "CKF4385", "CIY4513", "CKJ4817", "CKR1084"), 120, plant_height_cm),
          plant_length_cm = if_else(id == "ABR6458", 20.5, plant_length_cm),
+         #Fix wrong sites and wrong plot id
          site = if_else(id == "BEA0992", "ACJ", site),
          site = if_else(id %in% c("AKP1497", "AYS4952"), "QUE", site),
-
          plot_id = if_else(id == "BMP6395", 1, plot_id),
          plot_id = if_else(id == "CWF2802", 3, plot_id),
          #correcting leaf ID mistakes, or adding leaf ID where there should have been one
@@ -108,10 +108,12 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          leaf_nr = if_else(id == "AAH3401", 3, leaf_nr),
          leaf_nr = if_else(id == "ATX9292", 4, leaf_nr),
          leaf_nr = if_else(id == "ADF3723", 5, leaf_nr),
-         leaf_nr = if_else(id == "CPQ6887", 3, leaf_nr) ,
-         leaf_nr = if_else(id == "CPM4170", 4, leaf_nr) ,
+         leaf_nr = if_else(id == "CPQ6887", 3, leaf_nr),
+         leaf_nr = if_else(id == "CPM4170", 4, leaf_nr),
+         leaf_nr = if_else(id == "ABL1039", 5, leaf_nr),
+         leaf_nr = if_else(id == "CMT6881", 4, leaf_nr),
          #These are not ITV individuals and should not have leaf ID, removing leaf_nr info
-         leaf_nr = if_else(id %in% c("CIG8658", "BPR5529"), NA_real_, leaf_nr),
+         leaf_nr = if_else(id %in% c("CIG8658", "BPR5529", "AFR0503"), NA_real_, leaf_nr),
          #Correcting mistakes in individual number. Some are typos, some are duplicates that are given new names (often 11 or 12)
          individual_nr = if_else(id == "CPQ6887", 2, individual_nr),
          individual_nr = if_else(id == "CNW9172", 3, individual_nr),
