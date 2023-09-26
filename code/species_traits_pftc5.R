@@ -112,6 +112,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          leaf_nr = if_else(id == "CPM4170", 4, leaf_nr),
          leaf_nr = if_else(id == "ABL1039", 5, leaf_nr),
          leaf_nr = if_else(id == "CMT6881", 4, leaf_nr),
+         leaf_nr = if_else(id == "AQF9992", 4, leaf_nr),
          #These are not ITV individuals and should not have leaf ID, removing leaf_nr info
          leaf_nr = if_else(id %in% c("CIG8658", "BPR5529", "AFR0503"), NA_real_, leaf_nr),
          #Correcting mistakes in individual number. Some are typos, some are duplicates that are given new names (often 11 or 12)
