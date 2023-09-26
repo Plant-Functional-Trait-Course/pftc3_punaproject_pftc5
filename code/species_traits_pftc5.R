@@ -38,8 +38,8 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          species = str_to_lower(species),
          id = case_when(
            id == "CZQ3610" ~ "CYQ3610",
-           id == "ADZ1845" ~ "ADY1845",
-           id == "ADY3452" ~ "ADZ3452",
+           id == "ADZ1845" ~ "ADZ3452", #leaves switched, checked with envelopes
+           id == "ADY3452" ~ "ADY1845", #leaves switched, checked with envelopes
            id == "CZU0738" ~ "CYU0738",
            id == "CBN2433" ~ "CBM2433",
            id == "CGY2493" ~ "CGU2493",
@@ -57,10 +57,93 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          leaf_thickness_3_mm = if_else(id == "CFN6705", 0.181, leaf_thickness_3_mm),
          leaf_thickness_2_mm = if_else(leaf_thickness_2_mm == -0.545, 0.545,
                                        leaf_thickness_2_mm),
+         #Fixing wrongly entered plant height
+         plant_height_cm = if_else(id == "CXC6033", 2.3, plant_height_cm),
+         plant_height_cm = if_else(id == "BVA6015", 20, plant_height_cm),
+         plant_height_cm = if_else(id == "CWT5112", 3.9, plant_height_cm),
+         plant_height_cm = if_else(id == "CEA4386", 8.9, plant_height_cm),
+         plant_height_cm = if_else(id == "CEC4306", 7.1, plant_height_cm),
+         plant_height_cm = if_else(id == "BGF6708", 10.1, plant_height_cm),
+         plant_height_cm = if_else(id == "BJD7505", 15.0, plant_height_cm),
+         plant_height_cm = if_else(id == "ADP7756", 10.8, plant_height_cm),
+         plant_height_cm = if_else(id == "AGV6997", 39.4, plant_height_cm),
+         plant_height_cm = if_else(id == "CXP8061", 74.6, plant_height_cm),
+         plant_height_cm = if_else(id == "AUQ9983", 9.5, plant_height_cm),
+         plant_height_cm = if_else(id == "AFQ4784", 28.3, plant_height_cm),
+         plant_height_cm = if_else(id == "AJN5736", 2.8, plant_height_cm),
+         plant_height_cm = if_else(id == "CDO4494", 2.0, plant_height_cm),
+         plant_height_cm = if_else(id == "AAX4219", 11.7, plant_height_cm),
+         plant_height_cm = if_else(id == "AEW0937", 11.7, plant_height_cm),
+         plant_height_cm = if_else(id == "AZX9133", 24.8, plant_height_cm),
+         plant_height_cm = if_else(id == "BHC0873", 26.5, plant_height_cm),
+         plant_height_cm = if_else(id == "CJD9340", 34.2, plant_height_cm),
+         plant_height_cm = if_else(id == "CLD8557", 37.3, plant_height_cm),
+         plant_height_cm = if_else(id == "CJN4110", 13, plant_height_cm),
+         plant_height_cm = if_else(id == "CEX5438", 2.6, plant_height_cm),
+         plant_height_cm = if_else(id == "ACF7763", 9.6, plant_height_cm),
+         plant_height_cm = if_else(id == "CJT3535", 34.2, plant_height_cm),
+         plant_height_cm = if_else(id == "ABR6458", 18, plant_height_cm),
+         plant_height_cm = if_else(id %in% c("CWY6193", "CWM3970"), 8.9, plant_height_cm),
+         plant_height_cm = if_else(id %in% c("ASR6625", "ACU2880"), 7.5, plant_height_cm),
+         plant_height_cm = if_else(id %in% c("BGV5645", "BHD6397"), 12.4, plant_height_cm),
+         plant_height_cm = if_else(id %in% c("AVB4528", "AVJ3855", "AVE4471", "AVG6257"), 6.1, plant_height_cm),
+         plant_height_cm = if_else(id %in%   c("AGI7187", "AGM1060", "AGQ6196"), 5.9, plant_height_cm),
+         plant_height_cm = if_else(id %in% c("CJS1572", "CKF4385", "CIY4513", "CKJ4817", "CKR1084"), 120, plant_height_cm),
+         plant_length_cm = if_else(id == "ABR6458", 20.5, plant_length_cm),
+         #Fix wrong sites and wrong plot id
          site = if_else(id == "BEA0992", "ACJ", site),
          site = if_else(id %in% c("AKP1497", "AYS4952"), "QUE", site),
-
-         plot_id = if_else(id == "BMP6395", 1, plot_id)) %>%
+         plot_id = if_else(id == "BMP6395", 1, plot_id),
+         plot_id = if_else(id == "CWF2802", 3, plot_id),
+         #correcting leaf ID mistakes, or adding leaf ID where there should have been one
+         leaf_nr = if_else(id == "BKW1860", 5, leaf_nr),
+         leaf_nr = if_else(id == "ABS7148", 5, leaf_nr),
+         leaf_nr = if_else(id == "CMH0413", 5, leaf_nr),
+         leaf_nr = if_else(id == "BNT3287", 1, leaf_nr),
+         leaf_nr = if_else(id == "BOO5640", 2, leaf_nr),
+         leaf_nr = if_else(id == "BOB7266", 3, leaf_nr),
+         leaf_nr = if_else(id == "BNX0682", 4, leaf_nr),
+         leaf_nr = if_else(id == "BQF6005", 5, leaf_nr),
+         leaf_nr = if_else(id == "ATJ5219", 2, leaf_nr),
+         leaf_nr = if_else(id == "AAH3401", 3, leaf_nr),
+         leaf_nr = if_else(id == "ATX9292", 4, leaf_nr),
+         leaf_nr = if_else(id == "ADF3723", 5, leaf_nr),
+         leaf_nr = if_else(id == "CPQ6887", 3, leaf_nr),
+         leaf_nr = if_else(id == "CPM4170", 4, leaf_nr),
+         leaf_nr = if_else(id == "ABL1039", 5, leaf_nr),
+         leaf_nr = if_else(id == "CMT6881", 4, leaf_nr),
+         leaf_nr = if_else(id == "AQF9992", 4, leaf_nr),
+         #These are not ITV individuals and should not have leaf ID, removing leaf_nr info
+         leaf_nr = if_else(id %in% c("CIG8658", "BPR5529", "AFR0503"), NA_real_, leaf_nr),
+         #Correcting mistakes in individual number. Some are typos, some are duplicates that are given new names (often 11 or 12)
+         individual_nr = if_else(id == "CPQ6887", 2, individual_nr),
+         individual_nr = if_else(id == "CNW9172", 3, individual_nr),
+         individual_nr = if_else(id == "CIG8658", 2, individual_nr),
+         individual_nr = if_else(id == "BMC0849", 3, individual_nr),
+         individual_nr = if_else(id == "CXX4125", 11, individual_nr),
+         individual_nr = if_else(id == "BZH3536", 3, individual_nr),
+         individual_nr = if_else(id == "APU4440", 12, individual_nr),
+         #Here each line is one individual with several leaves that change to the same individual nr.
+         individual_nr = if_else(id %in% c("CIP5336", "CNY7719", "CIT7207", "AFR0503"), 2, individual_nr),
+         individual_nr = if_else(id %in% c("AYN2714", "ATY7432", "CEY7459", "AQF9992", "AQE5913"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("AQL4649", "AQK5616", "AQJ2521", "AQI6603", "AQM0288"), 12, individual_nr),
+         individual_nr = if_else(id %in% c("CNP7038", "CNX3247", "COB5911"), 2, individual_nr),
+         individual_nr = if_else(id %in% c("AJH6752", "CDQ3517", "CDU6030", "CDR9450", "CAS0411"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("CDS3004", "CAW9605", "CDP3189"), 12, individual_nr),
+         individual_nr = if_else(id %in% c("CZA2309", "CZF0686", "CZE7072", "CZJ5895", "CZN4729"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("CDL6900", "CBF5268", "CBE4301", "CAA3576", "COY3821"), 12, individual_nr),
+         individual_nr = if_else(id %in% c("CYF0619", "CXS5928", "CXW5856", "CYA3349", "CYE9151"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("BOJ2251", "BON0490", "BNO6456", "BNS6580", "BOA7727"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("AGG8353", "AGC5581", "AFY5122", "AFQ4784", "AFU4318"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("CZI4416", "AGE7337", "AGI7187", "AGM1060", "AGQ6196"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("APQ5417", "APM3849", "CET3376", "CFB5184", "CEX5438"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("CPB8831", "CPZ4857", "CQD3030", "CPJ4884", "CXC6033"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("BOM7625", "BMU4639", "BMY5426", "BLC7580", "AFV6468"), 21, individual_nr),
+         individual_nr = if_else(id %in% c("BNT3287", "BOO5640", "BOB7266", "BNX0682", "BQF6005"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("BYH1355", "BYR4663", "BYO7151", "BYQ5420", "BYP4529"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("CJV5222", "CJZ6289", "CKH7214", "CKD0965", "CKL1087"), 11, individual_nr),
+         individual_nr = if_else(id %in% c("CXE6426", "CXA8168"), 12, individual_nr),
+         individual_nr = if_else(id == "CPM4170", 2, individual_nr)) %>%
   # Check species and genus
   mutate(genus = plyr::mapvalues(genus, from = GenusDictionary2020$wrong,
                                  to = GenusDictionary2020$right, warn_missing = FALSE)) %>%
@@ -76,12 +159,15 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          species = if_else(genus == "Vaccinium" & species == "bonplandianum", "floribundum", species),
          #TRE C Plot5 - lachemilla
          species = if_else(id %in% c("APS3068", "APO8208", "CNV5505", "CWL1543"), "vulcanica", species)) %>%
+  #wrongly entered species
+  mutate(genus = if_else(id == "AQE5913", "Halenia", genus),
+         species = if_else(id == "AQE5913", "umbellata", species)) |>
   # Fix Plant_Length_cm, Bulk_nr_leaves, Length_cm
   # move length to right column
   mutate(length_cm = if_else(!is.na(plant_length_cm) & genus %in% c("Hypericum", "Lycopodium"),
                              plant_length_cm, length_cm)) %>%
   # replace length with NA
-  mutate(plant_length_cm = ifelse(!is.na(plant_length_cm) & genus %in% c("Halenia", "Oxalis", "Viola",
+  mutate(plant_length_cm = if_else(!is.na(plant_length_cm) & genus %in% c("Halenia", "Oxalis", "Viola",
                                                                          "Vaccinium", "Hypericum",
                                                                          "Lycopodium", "Lachemilla",
                                                                          "Oreomyrhys", "Hypericum",
@@ -221,7 +307,7 @@ leafarea <- leafarea %>%
          leafarea_cm2 = if_else(id %in% c("AJT3939"), leafarea_cm2*2, leafarea_cm2),
          leafarea_cm2 = if_else(id %in% c("AVX8706", "AWA4195"), leafarea_cm2*5/4, leafarea_cm2),
          leafarea_cm2 = if_else(id %in% c("BCP9007"), leafarea_cm2*5/1, leafarea_cm2)) %>%
-  mutate(leafarea_cm2 = ifelse(remark %in% c("double leaf area", "Leaf rolled, double leaf area",
+  mutate(leafarea_cm2 = if_else(remark %in% c("double leaf area", "Leaf rolled, double leaf area",
                                              "rolled leaf, double leaf area", "rolled leaves,
                                              double area", "Rolled - take double area",
                                              "Rolled leaf multiple leaf area"),
@@ -391,7 +477,7 @@ trait_pftc5 <- trait_pftc5 %>%
          taxon = paste(genus, species, sep = " ")) %>%
   # Cleaning trait values
   #these species are bulk species so number of leaves 'standardised to 1
-  mutate(nr_leaves = ifelse(name_2020 %in% c("Baccharis genistelloides",
+  mutate(nr_leaves = if_else(name_2020 %in% c("Baccharis genistelloides",
                                              "Lycopodium thyoides",
                                              "Lycopodium clavatum",
                                              "Hypericum andinum"), 1,
@@ -402,10 +488,10 @@ trait_pftc5 <- trait_pftc5 %>%
                              1,
                              nr_leaves)) %>%
   # Sisyrinchium: leaves are folded: area needs to be doubled and leaf thickness halfed
-  mutate(leaf_area_total_cm2= ifelse(genus == "Sisyrinchium", leaf_area_total_cm2 * 2, leaf_area_total_cm2),
-         leaf_thickness_1_mm = ifelse(genus == "Sisyrinchium", leaf_thickness_1_mm / 2, leaf_thickness_1_mm),
-         leaf_thickness_2_mm = ifelse(genus == "Sisyrinchium", leaf_thickness_2_mm / 2, leaf_thickness_2_mm),
-         leaf_thickness_3_mm = ifelse(genus == "Sisyrinchium", leaf_thickness_3_mm / 2, leaf_thickness_3_mm)) %>%
+  mutate(leaf_area_total_cm2= if_else(genus == "Sisyrinchium", leaf_area_total_cm2 * 2, leaf_area_total_cm2),
+         leaf_thickness_1_mm = if_else(genus == "Sisyrinchium", leaf_thickness_1_mm / 2, leaf_thickness_1_mm),
+         leaf_thickness_2_mm = if_else(genus == "Sisyrinchium", leaf_thickness_2_mm / 2, leaf_thickness_2_mm),
+         leaf_thickness_3_mm = if_else(genus == "Sisyrinchium", leaf_thickness_3_mm / 2, leaf_thickness_3_mm)) %>%
   # Calculate average leaf thickness
   mutate(leaf_thickness_ave_mm = rowMeans(select(., matches("leaf_thickness_\\d_mm")), na.rm = TRUE)) %>%
   # Calculate values on the leaf level (mostly bulk samples)
@@ -413,15 +499,15 @@ trait_pftc5 <- trait_pftc5 %>%
          dry_mass_g = dry_mass_total_g / nr_leaves,
          leaf_area_cm2 = leaf_area_total_cm2 / nr_leaves) %>%
   # Wet and dry mass do not make sense for these species
-  mutate(dry_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, dry_mass_g),
-         wet_mass_g = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, wet_mass_g),
-         leaf_area_cm2 = ifelse(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, leaf_area_cm2)) %>%
+  mutate(dry_mass_g = if_else(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, dry_mass_g),
+         wet_mass_g = if_else(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, wet_mass_g),
+         leaf_area_cm2 = if_else(genus %in% c("Baccharis", "Lycopodiella", "Lycopodium", "Hypericum"), NA_real_, leaf_area_cm2)) %>%
   # Calculate SLA and LDMC
   mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
          ldmc = dry_mass_g / wet_mass_g) %>%
   # TODO
   #Create a 'binary' bulk column - assuming these were the bulk spp. but CHECK
-  mutate(bulk = ifelse(name_2020 %in% c("Baccharis genistelloides",
+  mutate(bulk = if_else(name_2020 %in% c("Baccharis genistelloides",
                                         "Lycopodium thyoides",
                                         "Lycopodium clavatum",
                                         "Hypericum andinum"),
