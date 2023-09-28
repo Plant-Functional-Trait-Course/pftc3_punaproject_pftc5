@@ -21,10 +21,10 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          project = case_when(
            project == "T" ~ "trait",
            project == "S" ~ "sean",
-           project == "R" ~ "trait", # R its for Rangild project intraspecific variability?
+           project == "R" ~ "trait", # R its for Ragnhild project intraspecific variability?
            project == "t" ~ "trait",
            project == "s" ~ "sean",
-           project == "r" ~ "trait", # R its for Rangild project intraspecific variability?
+           project == "r" ~ "trait", # R its for Ragnhild project intraspecific variability?
            project == "Sean" ~ "sean",
            project == "Trait" ~ "trait",
            TRUE ~ project
@@ -73,7 +73,7 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          plant_height_cm = if_else(id == "AJN5736", 2.8, plant_height_cm),
          plant_height_cm = if_else(id == "CDO4494", 2.0, plant_height_cm),
          plant_height_cm = if_else(id == "AAX4219", 11.7, plant_height_cm),
-         plant_height_cm = if_else(id == "AEW0937", 11.7, plant_height_cm),
+         plant_height_cm = if_else(id == "AEW0937", 16.4, plant_height_cm),
          plant_height_cm = if_else(id == "AZX9133", 24.8, plant_height_cm),
          plant_height_cm = if_else(id == "BHC0873", 26.5, plant_height_cm),
          plant_height_cm = if_else(id == "CJD9340", 34.2, plant_height_cm),
@@ -83,6 +83,12 @@ trait_2020 <- read_csv("data/PFTC5_Peru_2020_LeafTraits.csv") %>%
          plant_height_cm = if_else(id == "ACF7763", 9.6, plant_height_cm),
          plant_height_cm = if_else(id == "CJT3535", 34.2, plant_height_cm),
          plant_height_cm = if_else(id == "ABR6458", 18, plant_height_cm),
+         plant_height_cm = if_else(id == "ABQ1404", 7.5, plant_height_cm,),
+         plant_height_cm = if_else(id == "AEW0937", 16.4, plant_height_cm),
+         plant_height_cm = if_else(id == "CAE6952", 13, plant_height_cm),
+         plant_height_cm = if_else(id == "CER9449", 59, plant_height_cm),
+         plant_height_cm = if_else(id == "AOR3155", 63.5, plant_height_cm),
+         plant_height_cm = if_else(id %in% c("AUP3248", "AUO6988"), 18, plant_height_cm,),
          plant_height_cm = if_else(id %in% c("CWY6193", "CWM3970"), 8.9, plant_height_cm),
          plant_height_cm = if_else(id %in% c("ASR6625", "ACU2880"), 7.5, plant_height_cm),
          plant_height_cm = if_else(id %in% c("BGV5645", "BHD6397"), 12.4, plant_height_cm),
