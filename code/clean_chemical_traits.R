@@ -20,7 +20,7 @@ p <- read_excel(path = "data/chemical_traits/PFTC_phosphorus_2018-2022.xlsx") %>
                                   TRUE ~ ID))
 
 # Check IDs (all seem to be fine)
-#all_codes <- get_PFTC_envelope_codes(seed = 1)
+all_codes <- get_PFTC_envelope_codes(seed = 1)
 p |>
   filter(!ID %in% c("Hard Red Spring Wheat Flour", "Standard1", "Standard2")) |>
   anti_join(all_codes, by = c("ID" = "hashcode"))
