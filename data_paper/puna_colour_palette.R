@@ -9,6 +9,7 @@ puna_colour = tribble(~site, ~treatment, ~colour,
                       "PIL", "C", "#F4B462",
                       "PIL", "B", "#C06733",
                       "PIL", "BB", "#005385", #bonus colour - pick your own
+
                       "TRE", "C", "#7AAB76",
                       "TRE", "NB", "#841457",
                       "QUE", "C", "#2C9160", #added to get complete elvation gradient
@@ -20,10 +21,16 @@ puna_site_colour = puna_colour %>%
   filter(treatment == "C") %>%
   select(-treatment)
 
-puna_treatment_colour = puna_colour %>%
-  filter(site == "ACJ" |
-         treatment == "BB") %>%
-  select(-site)
+# puna_treatment_colour = puna_colour %>%
+#   filter(site == "ACJ" |
+#          treatment == "BB") %>%
+#   select(-site)
+
+puna_treatment_colour <- tribble(~treatment, ~colour,
+        "C", "#FF9908",
+        "B", "#A55B02",
+        "NB", "#7F0704",
+        "BB", "#CE0F66")
 
 #To capitalise labels
 capitalise <- function(string) {
