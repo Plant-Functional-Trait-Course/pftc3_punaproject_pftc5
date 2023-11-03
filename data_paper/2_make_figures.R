@@ -9,6 +9,7 @@ library("lubridate")
 library("patchwork")
 library(nlme)
 library(broom.mixed)
+library(ggh4x)
 
 # colours
 source("data_paper/puna_colour_palette.R")
@@ -56,7 +57,13 @@ Gradient_plot <- Gradient_plot_data %>%
   left_join(res_GP %>%
               select(variable, treatment, p.value),
             by = c("variable", "treatment")) %>%
-  mutate(treatment = factor(treatment, levels = c("C", "B", "NB"))) %>%
+  mutate(treatment = factor(treatment, levels = c("C", "B", "NB")),
+         fancy_name = case_when(variable == "richness" ~ "Nr of species",
+                                variable == "diversity" ~ "Shannon diversity",
+                                variable == "evenness" ~ "Shannon evenness",
+                                variable == "graminoid cover" ~ "Graminoid cover (%)",
+                                variable == "vegetation height" ~ "Vegetation height (cm)"),
+         fancy_name = factor(fancy_name, levels = c("Nr of species", "Shannon diversity", "Shannon evenness", "Graminoid cover (%)", "Vegetation height (cm)"))) %>%
   ggplot(aes(x = elevation, y = value, colour = treatment, linetype = p.value < 0.05, fill = treatment)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", formula = "y ~ x", alpha = 0.2) +
@@ -68,10 +75,13 @@ Gradient_plot <- Gradient_plot_data %>%
   guides(linetype = FALSE,
          fill = FALSE,
          colour = guide_legend(override.aes = list(fill = NA))) +
-  facet_wrap( ~ variable, scales = "free_y",
+  facet_wrap( ~ fancy_name, scales = "free_y",
+              strip.position = "left",
               labeller = labeller(.default = capitalise)) +
   theme_bw() +
   theme(text = element_text(size = 17),
+        strip.background = element_blank(),
+        strip.placement = "outside",
         legend.position = "top")
 
 Gradient_plot
@@ -114,7 +124,7 @@ trait_distibution <- trait_data %>%
   #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free",
              labeller = label_parsed) +
-  labs(x = "", y = "Density") +
+  labs(x = "", y = "Trait density distribution") +
   theme_bw() +
   theme(text = element_text(size = 16),
         legend.position = "top")
