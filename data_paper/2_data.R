@@ -101,7 +101,7 @@ biomass %>%
 
 
 ### Traits
-traits <- read_csv(file = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
+traits <- read_csv(file = "clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_FunctionalTraits_clean.csv")
 
 trait_data <- traits %>%
   mutate(value_trans = if_else(trait %in% c("dry_mass_g", "leaf_area_cm2", "plant_height_cm", "wet_mass_g"), log(value), value),
