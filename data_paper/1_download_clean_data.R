@@ -19,7 +19,7 @@ get_file(node = "gs8u6",
 
 #Download traits data from OSF
 get_file(node = "gs8u6",
-         file = "PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv",
+         file = "PFTC3-Puna-PFTC5_Peru_2018-2020_FunctionalTraits_clean.csv",
          path = "clean_data",
          remote_path = "traits")
 

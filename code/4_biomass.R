@@ -41,8 +41,12 @@ biomass <- biomass_raw %>%
   mutate(treatment = case_when(site == "TRE" & treatment == "B" ~ "NB",
                                TRUE ~ treatment)) %>%
   left_join(coordinates %>%
-              distinct(site, treatment, burn_year, elevation, latitude, longitude),
-            by = c("site", "treatment"))
+              group_by(site, treatment) |>
+              summarise(elevation = mean(elevation),
+                        latitude = mean(latitude),
+                        longitude = mean(longitude)),
+            by = c("site", "treatment")) |>
+  tidylog::filter(!is.na(value))
 
 
 # make new folder

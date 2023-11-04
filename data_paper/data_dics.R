@@ -32,7 +32,7 @@ biomass_dic <- make_data_dictionary(data = biomass,
                                  table_ID = "biomass")
 
 # traits
-traits <- read_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
+traits <- read_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_FunctionalTraits_clean.csv")
 
 trait_dic <- make_data_dictionary(data = traits,
                                     description_table = attribute_table,
