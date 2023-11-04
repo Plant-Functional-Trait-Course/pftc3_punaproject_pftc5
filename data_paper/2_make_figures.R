@@ -124,7 +124,7 @@ trait_distibution <- trait_data %>%
   #scale_fill_viridis_d(option = "plasma") +
   facet_wrap(~ trait, scales = "free",
              labeller = label_parsed) +
-  labs(x = "", y = "Trait density distribution") +
+  labs(x = "Trait value", y = "Trait density distribution") +
   theme_bw() +
   theme(text = element_text(size = 16),
         legend.position = "top")
