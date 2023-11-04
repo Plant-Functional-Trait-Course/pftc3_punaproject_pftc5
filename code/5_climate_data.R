@@ -96,6 +96,15 @@ climate <- climate |>
          soil_temperature = if_else(site == "WAY" & date_time > "2019-07-01 00:00:00" & date_time < "2019-07-15 00:00:00" & soil_temperature > 16, NA_real_, soil_temperature),
          ground_temperature = if_else(site == "WAY" & ground_temperature > 35, NA_real_, ground_temperature))
 
+# make long
+climate <- climate |>
+  pivot_longer(cols = c(soil_temperature, ground_temperature, air_temperature, soilmoisture), names_to = "variable", values_to = "value") |>
+  mutate(unit = if_else(variable == "soilmoisture", "(m3 water x m-3 soil) x 100", "degrees celsius"))
+
+climate <- climate |>
+  mutate(unit = if_else(variable == "soilmoisture", "(m3 water x m-3 soil) x 100", "degrees celsius")) |>
+  select(date_time:plot_id, variable:unit, burn_year:longitude, logger_id, raw_soilmoisture)
+
 ## DATA SAVING
 write_csv(climate, file = "clean_data/PFTC3_Puna_PFTC5_2019_2020_Climate_clean.csv")
 
