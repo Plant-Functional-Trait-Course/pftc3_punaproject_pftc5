@@ -37,7 +37,7 @@ trait_data_peru <- bind_rows(trait_pftc3,
   select(-area_flag, -dry_flag, -wet_flag) %>%
   left_join(coordinates, by = c("site", "treatment", "plot_id")) %>%
   # not including flag, because the trait values are fine now, removed bad trait values
-  select(year, season, month, site, treatment, plot_id, individual_nr, leaf_id, id, functional_group, family, taxon, trait, value, burn_year:longitude, course)
+  select(year, season, month, site, treatment, plot_id, individual_nr, leaf_nr = leaf_id, id, functional_group, family, taxon, trait, value, burn_year:longitude, course)
 
 ## Export data ----
 
@@ -45,7 +45,7 @@ trait_data_peru <- bind_rows(trait_pftc3,
 dir.create("clean_data")
 
 trait_data_peru %>%
-  write_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_LeafTraits_clean.csv")
+  write_csv("clean_data/PFTC3-Puna-PFTC5_Peru_2018-2020_FunctionalTraits_clean.csv")
 
 
 # End of Script ----
